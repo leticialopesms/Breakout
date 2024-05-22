@@ -31,6 +31,8 @@ reg [9:0] y_ball;
 reg [9:0] vx_mod;   // modulo da velocidade em x
 reg [9:0] vy_mod;   // modulo da velocidade em y
 
+// Ideia: colocar velocidade máx para a bolinha
+
 wire move;
 
 timer t (
@@ -47,7 +49,7 @@ assign hit_right = ((x_ball >= x_bar + 32) && (x_ball <= x_bar + W_BAR));
 
 
 always @(posedge clock) begin
-  if (!reset) begin
+  if (reset) begin
     endgame = 0;
     estado = 0;
     x_ball = 320;
@@ -60,7 +62,7 @@ always @(posedge clock) begin
   // colocar os estados nos leds
     case(estado)
       0: begin
-        if(!start && !endgame) begin
+        if(start && !endgame) begin
             if(hit_bar) estado = 4;                       // bateu na barra
             else if(y_ball <= LIM_UP) estado = 1;         // bateu em cima
             else if(x_ball <= LIM_LEFT) estado = 2;       // bateu na esquerda
@@ -68,7 +70,7 @@ always @(posedge clock) begin
             else if(y_ball >= LIM_DOWN) estado = 5;       // ENDGAME!
             else estado = 6;
         end
-        else if (!start && endgame) begin
+        else if (start && endgame) begin
           estado = 0;
         end
         else begin
@@ -106,7 +108,7 @@ always @(posedge clock) begin
           if(vx_mod > 0) vx_mod = vx_mod + 1;
           else if(vx_mod < 0) vx_mod = vx_mod - 1;
           else vx_mod = 0;
-          vy_mod = vy_mod - 1;
+        //   vy_mod = vy_mod - 1;
         end
         estado = 6;
       end

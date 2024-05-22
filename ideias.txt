@@ -1,0 +1,10 @@
+// IDEIAS PARA A IMPLEMENTAÇÃO
+1. usar um vetor de tamanho 307200, com 32 bits para cada elemento, para representar os blocos e suas cores 
+declarar dessa forma:
+reg [31:0] pixel[307200];
+
+2. implementar apenas um módulo de bloco e testar ele (só fazer outros módulos depois)
+
+3. pesquisar generate de verilog e parâmetro!!!!! professor falou pra gabi, que falou pra let e pra lu
+
+// TO DO

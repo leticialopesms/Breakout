@@ -10,7 +10,7 @@ reg [30:0] contador;
 assign pulse = (contador == PULSE_TIME);
 
 always@(posedge clock) begin
-    if (!reset) begin
+    if (reset) begin
         contador = 0;
     end
     else begin

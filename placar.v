@@ -51,7 +51,7 @@ reg somou; // flag pra verificar se já somou 1 no placar atual
 always @(posedge clock) begin
   // implementar lógica de somar 1 no placar atual e ver se precisa
   // atualizar o placar máximo
-  if(!reset) begin 
+  if(reset) begin 
     somou = 0;
     display_curr = 0;
     display_max = 0;

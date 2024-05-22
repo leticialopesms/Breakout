@@ -30,7 +30,7 @@ module vga (
     reg [9:0] x; // h_counter
     reg [9:0] y; // v_counter
     always@(posedge clock) begin
-        if (!reset) begin
+        if (reset) begin
             x = 0;
             y = 0;
         end

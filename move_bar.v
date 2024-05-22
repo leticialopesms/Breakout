@@ -25,7 +25,7 @@ wire move;
 timer t (.clock(clock), .reset(reset), .pulse(move));
 
 always @(posedge clock) begin
-  if (!reset) begin
+  if (reset) begin
     estado = 0;
     x_pos = 320;
     y_pos = 464;

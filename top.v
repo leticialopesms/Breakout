@@ -13,8 +13,7 @@
 module top(
     input CLOCK_50,
     input [9:0] SW,
-    input left,
-    input right,
+    input [3:0] KEY,
     output reg VGA_CLK,
     output wire [7:0] VGA_R,    // RED (to resistor DAC VGA connector)
     output wire [7:0] VGA_G,    // GREEN (to resistor DAC to VGA connector)
@@ -73,9 +72,9 @@ parameter W_BAR = 64;   // metade da largura da barra
 
 placar p(
   .clock(VGA_CLK),
-  .reset(SW[0]),
+  .reset(~SW[0]),
   .hit_bar(hit_bar),
-  .start(SW[2]),
+  .start(~SW[2]),
   .digito0(HEX0),
   .digito1(HEX1),
   .digito4(HEX4),
@@ -84,7 +83,7 @@ placar p(
 
 vga v (
   .clock(VGA_CLK),
-  .reset(SW[0]),
+  .reset(~SW[0]),
   .next_x(next_x),
   .next_y(next_y),
   .vga_hs(VGA_HS),
@@ -96,17 +95,17 @@ vga v (
 
 move_bar m (
   .clock(VGA_CLK),
-  .reset(SW[0]),
-  .left(left),
-  .right(right),
+  .reset(~SW[0]),
+  .left(KEY[1]),
+  .right(KEY[0]),
   .x(x_bar),
   .y(y_bar),
 );
 
 move_ball b (
   .clock(VGA_CLK),
-  .reset(SW[0]),
-  .start(SW[2]),
+  .reset(~SW[0]),
+  .start(~SW[2]),
   .x_bar(x_bar),
   .y_bar(y_bar),
   .x_p(x_ball),

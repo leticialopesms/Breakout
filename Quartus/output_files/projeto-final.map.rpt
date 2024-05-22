@@ -1,0 +1,673 @@
+Analysis & Synthesis report for projeto-final
+Wed May 22 17:10:12 2024
+Quartus Prime Version 17.1.0 Build 590 10/25/2017 SJ Lite Edition
+
+
+---------------------
+; Table of Contents ;
+---------------------
+  1. Legal Notice
+  2. Analysis & Synthesis Summary
+  3. Analysis & Synthesis Settings
+  4. Parallel Compilation
+  5. Analysis & Synthesis Source Files Read
+  6. Analysis & Synthesis Resource Usage Summary
+  7. Analysis & Synthesis Resource Utilization by Entity
+  8. Analysis & Synthesis DSP Block Usage Summary
+  9. State Machine - |top|move_ball:b|estado
+ 10. State Machine - |top|move_bar:m|estado
+ 11. Registers Removed During Synthesis
+ 12. General Register Statistics
+ 13. Multiplexer Restructuring Statistics (Restructuring Performed)
+ 14. Parameter Settings for User Entity Instance: Top-level Entity: |top
+ 15. Parameter Settings for User Entity Instance: placar:p
+ 16. Parameter Settings for User Entity Instance: placar:p|bcd:b1
+ 17. Parameter Settings for User Entity Instance: placar:p|bcd:b2
+ 18. Parameter Settings for User Entity Instance: vga:v
+ 19. Parameter Settings for User Entity Instance: move_bar:m
+ 20. Parameter Settings for User Entity Instance: move_bar:m|timer:t
+ 21. Parameter Settings for User Entity Instance: move_ball:b
+ 22. Parameter Settings for User Entity Instance: move_ball:b|timer:t
+ 23. Port Connectivity Checks: "move_ball:b"
+ 24. Port Connectivity Checks: "placar:p|bcd:b2"
+ 25. Port Connectivity Checks: "placar:p|bcd:b1"
+ 26. Post-Synthesis Netlist Statistics for Top Partition
+ 27. Elapsed Time Per Partition
+ 28. Analysis & Synthesis Messages
+
+
+
+----------------
+; Legal Notice ;
+----------------
+Copyright (C) 2017  Intel Corporation. All rights reserved.
+Your use of Intel Corporation's design tools, logic functions 
+and other software and tools, and its AMPP partner logic 
+functions, and any output files from any of the foregoing 
+(including device programming or simulation files), and any 
+associated documentation or information are expressly subject 
+to the terms and conditions of the Intel Program License 
+Subscription Agreement, the Intel Quartus Prime License Agreement,
+the Intel FPGA IP License Agreement, or other applicable license
+agreement, including, without limitation, that your use is for
+the sole purpose of programming logic devices manufactured by
+Intel and sold by Intel or its authorized distributors.  Please
+refer to the applicable agreement for further details.
+
+
+
++-------------------------------------------------------------------------------+
+; Analysis & Synthesis Summary                                                  ;
++---------------------------------+---------------------------------------------+
+; Analysis & Synthesis Status     ; Successful - Wed May 22 17:10:12 2024       ;
+; Quartus Prime Version           ; 17.1.0 Build 590 10/25/2017 SJ Lite Edition ;
+; Revision Name                   ; projeto-final                               ;
+; Top-level Entity Name           ; top                                         ;
+; Family                          ; Cyclone V                                   ;
+; Logic utilization (in ALMs)     ; N/A                                         ;
+; Total registers                 ; 132                                         ;
+; Total pins                      ; 72                                          ;
+; Total virtual pins              ; 0                                           ;
+; Total block memory bits         ; 0                                           ;
+; Total DSP Blocks                ; 4                                           ;
+; Total HSSI RX PCSs              ; 0                                           ;
+; Total HSSI PMA RX Deserializers ; 0                                           ;
+; Total HSSI TX PCSs              ; 0                                           ;
+; Total HSSI PMA TX Serializers   ; 0                                           ;
+; Total PLLs                      ; 0                                           ;
+; Total DLLs                      ; 0                                           ;
++---------------------------------+---------------------------------------------+
+
+
++---------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Settings                                                                                             ;
++---------------------------------------------------------------------------------+--------------------+--------------------+
+; Option                                                                          ; Setting            ; Default Value      ;
++---------------------------------------------------------------------------------+--------------------+--------------------+
+; Device                                                                          ; 5CSEMA5F31C6       ;                    ;
+; Top-level entity name                                                           ; top                ; projeto-final      ;
+; Family name                                                                     ; Cyclone V          ; Cyclone V          ;
+; Use smart compilation                                                           ; Off                ; Off                ;
+; Enable parallel Assembler and TimeQuest Timing Analyzer during compilation      ; On                 ; On                 ;
+; Enable compact report table                                                     ; Off                ; Off                ;
+; Restructure Multiplexers                                                        ; Auto               ; Auto               ;
+; MLAB Add Timing Constraints For Mixed-Port Feed-Through Mode Setting Don't Care ; Off                ; Off                ;
+; Create Debugging Nodes for IP Cores                                             ; Off                ; Off                ;
+; Preserve fewer node names                                                       ; On                 ; On                 ;
+; Intel FPGA IP Evaluation Mode                                                   ; Enable             ; Enable             ;
+; Verilog Version                                                                 ; Verilog_2001       ; Verilog_2001       ;
+; VHDL Version                                                                    ; VHDL_1993          ; VHDL_1993          ;
+; State Machine Processing                                                        ; Auto               ; Auto               ;
+; Safe State Machine                                                              ; Off                ; Off                ;
+; Extract Verilog State Machines                                                  ; On                 ; On                 ;
+; Extract VHDL State Machines                                                     ; On                 ; On                 ;
+; Ignore Verilog initial constructs                                               ; Off                ; Off                ;
+; Iteration limit for constant Verilog loops                                      ; 5000               ; 5000               ;
+; Iteration limit for non-constant Verilog loops                                  ; 250                ; 250                ;
+; Add Pass-Through Logic to Inferred RAMs                                         ; On                 ; On                 ;
+; Infer RAMs from Raw Logic                                                       ; On                 ; On                 ;
+; Parallel Synthesis                                                              ; On                 ; On                 ;
+; DSP Block Balancing                                                             ; Auto               ; Auto               ;
+; NOT Gate Push-Back                                                              ; On                 ; On                 ;
+; Power-Up Don't Care                                                             ; On                 ; On                 ;
+; Remove Redundant Logic Cells                                                    ; Off                ; Off                ;
+; Remove Duplicate Registers                                                      ; On                 ; On                 ;
+; Ignore CARRY Buffers                                                            ; Off                ; Off                ;
+; Ignore CASCADE Buffers                                                          ; Off                ; Off                ;
+; Ignore GLOBAL Buffers                                                           ; Off                ; Off                ;
+; Ignore ROW GLOBAL Buffers                                                       ; Off                ; Off                ;
+; Ignore LCELL Buffers                                                            ; Off                ; Off                ;
+; Ignore SOFT Buffers                                                             ; On                 ; On                 ;
+; Limit AHDL Integers to 32 Bits                                                  ; Off                ; Off                ;
+; Optimization Technique                                                          ; Balanced           ; Balanced           ;
+; Carry Chain Length                                                              ; 70                 ; 70                 ;
+; Auto Carry Chains                                                               ; On                 ; On                 ;
+; Auto Open-Drain Pins                                                            ; On                 ; On                 ;
+; Perform WYSIWYG Primitive Resynthesis                                           ; Off                ; Off                ;
+; Auto ROM Replacement                                                            ; On                 ; On                 ;
+; Auto RAM Replacement                                                            ; On                 ; On                 ;
+; Auto DSP Block Replacement                                                      ; On                 ; On                 ;
+; Auto Shift Register Replacement                                                 ; Auto               ; Auto               ;
+; Allow Shift Register Merging across Hierarchies                                 ; Auto               ; Auto               ;
+; Auto Clock Enable Replacement                                                   ; On                 ; On                 ;
+; Strict RAM Replacement                                                          ; Off                ; Off                ;
+; Allow Synchronous Control Signals                                               ; On                 ; On                 ;
+; Force Use of Synchronous Clear Signals                                          ; Off                ; Off                ;
+; Auto Resource Sharing                                                           ; Off                ; Off                ;
+; Allow Any RAM Size For Recognition                                              ; Off                ; Off                ;
+; Allow Any ROM Size For Recognition                                              ; Off                ; Off                ;
+; Allow Any Shift Register Size For Recognition                                   ; Off                ; Off                ;
+; Use LogicLock Constraints during Resource Balancing                             ; On                 ; On                 ;
+; Ignore translate_off and synthesis_off directives                               ; Off                ; Off                ;
+; Timing-Driven Synthesis                                                         ; On                 ; On                 ;
+; Report Parameter Settings                                                       ; On                 ; On                 ;
+; Report Source Assignments                                                       ; On                 ; On                 ;
+; Report Connectivity Checks                                                      ; On                 ; On                 ;
+; Ignore Maximum Fan-Out Assignments                                              ; Off                ; Off                ;
+; Synchronization Register Chain Length                                           ; 3                  ; 3                  ;
+; Power Optimization During Synthesis                                             ; Normal compilation ; Normal compilation ;
+; HDL message level                                                               ; Level2             ; Level2             ;
+; Suppress Register Optimization Related Messages                                 ; Off                ; Off                ;
+; Number of Removed Registers Reported in Synthesis Report                        ; 5000               ; 5000               ;
+; Number of Swept Nodes Reported in Synthesis Report                              ; 5000               ; 5000               ;
+; Number of Inverted Registers Reported in Synthesis Report                       ; 100                ; 100                ;
+; Clock MUX Protection                                                            ; On                 ; On                 ;
+; Auto Gated Clock Conversion                                                     ; Off                ; Off                ;
+; Block Design Naming                                                             ; Auto               ; Auto               ;
+; SDC constraint protection                                                       ; Off                ; Off                ;
+; Synthesis Effort                                                                ; Auto               ; Auto               ;
+; Shift Register Replacement - Allow Asynchronous Clear Signal                    ; On                 ; On                 ;
+; Pre-Mapping Resynthesis Optimization                                            ; Off                ; Off                ;
+; Analysis & Synthesis Message Level                                              ; Medium             ; Medium             ;
+; Disable Register Merging Across Hierarchies                                     ; Auto               ; Auto               ;
+; Resource Aware Inference For Block RAM                                          ; On                 ; On                 ;
+; Automatic Parallel Synthesis                                                    ; On                 ; On                 ;
+; Partial Reconfiguration Bitstream ID                                            ; Off                ; Off                ;
++---------------------------------------------------------------------------------+--------------------+--------------------+
+
+
++------------------------------------------+
+; Parallel Compilation                     ;
++----------------------------+-------------+
+; Processors                 ; Number      ;
++----------------------------+-------------+
+; Number detected on machine ; 20          ;
+; Maximum allowed            ; 12          ;
+;                            ;             ;
+; Average used               ; 1.00        ;
+; Maximum used               ; 12          ;
+;                            ;             ;
+; Usage by Processor         ; % Time Used ;
+;     Processor 1            ; 100.0%      ;
+;     Processor 2            ;   0.0%      ;
+;     Processor 3            ;   0.0%      ;
+;     Processor 4            ;   0.0%      ;
+;     Processor 5            ;   0.0%      ;
+;     Processor 6            ;   0.0%      ;
+;     Processor 7            ;   0.0%      ;
+;     Processor 8            ;   0.0%      ;
+;     Processors 9-12        ;   0.0%      ;
++----------------------------+-------------+
+
+
++---------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Source Files Read                                                                                                                        ;
++----------------------------------+-----------------+------------------------+-----------------------------------------------------------------------+---------+
+; File Name with User-Entered Path ; Used in Netlist ; File Type              ; File Name with Absolute Path                                          ; Library ;
++----------------------------------+-----------------+------------------------+-----------------------------------------------------------------------+---------+
+; ../vga.v                         ; yes             ; User Verilog HDL File  ; /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/vga.v       ;         ;
+; ../top.v                         ; yes             ; User Verilog HDL File  ; /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/top.v       ;         ;
+; ../timer.v                       ; yes             ; User Verilog HDL File  ; /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/timer.v     ;         ;
+; ../placar.v                      ; yes             ; User Verilog HDL File  ; /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/placar.v    ;         ;
+; ../move_bar.v                    ; yes             ; User Verilog HDL File  ; /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/move_bar.v  ;         ;
+; ../move_ball.v                   ; yes             ; User Verilog HDL File  ; /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/move_ball.v ;         ;
+; ../cb7s.v                        ; yes             ; User Verilog HDL File  ; /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/cb7s.v      ;         ;
+; ../bcd.v                         ; yes             ; User Verilog HDL File  ; /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/bcd.v       ;         ;
++----------------------------------+-----------------+------------------------+-----------------------------------------------------------------------+---------+
+
+
++------------------------------------------------------------+
+; Analysis & Synthesis Resource Usage Summary                ;
++---------------------------------------------+--------------+
+; Resource                                    ; Usage        ;
++---------------------------------------------+--------------+
+; Estimate of Logic utilization (ALMs needed) ; 264          ;
+;                                             ;              ;
+; Combinational ALUT usage for logic          ; 461          ;
+;     -- 7 input functions                    ; 1            ;
+;     -- 6 input functions                    ; 65           ;
+;     -- 5 input functions                    ; 68           ;
+;     -- 4 input functions                    ; 61           ;
+;     -- <=3 input functions                  ; 266          ;
+;                                             ;              ;
+; Dedicated logic registers                   ; 132          ;
+;                                             ;              ;
+; I/O pins                                    ; 72           ;
+;                                             ;              ;
+; Total DSP Blocks                            ; 4            ;
+;                                             ;              ;
+; Maximum fan-out node                        ; VGA_CLK~reg0 ;
+; Maximum fan-out                             ; 133          ;
+; Total fan-out                               ; 2266         ;
+; Average fan-out                             ; 3.06         ;
++---------------------------------------------+--------------+
+
+
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Resource Utilization by Entity                                                                                                                                             ;
++----------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+------------------------------+-------------+--------------+
+; Compilation Hierarchy Node ; Combinational ALUTs ; Dedicated Logic Registers ; Block Memory Bits ; DSP Blocks ; Pins ; Virtual Pins ; Full Hierarchy Name          ; Entity Name ; Library Name ;
++----------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+------------------------------+-------------+--------------+
+; |top                       ; 461 (92)            ; 132 (2)                   ; 0                 ; 4          ; 72   ; 0            ; |top                         ; top         ; work         ;
+;    |move_ball:b|           ; 199 (161)           ; 79 (48)                   ; 0                 ; 0          ; 0    ; 0            ; |top|move_ball:b             ; move_ball   ; work         ;
+;       |timer:t|            ; 38 (38)             ; 31 (31)                   ; 0                 ; 0          ; 0    ; 0            ; |top|move_ball:b|timer:t     ; timer       ; work         ;
+;    |move_bar:m|            ; 16 (16)             ; 12 (12)                   ; 0                 ; 0          ; 0    ; 0            ; |top|move_bar:m              ; move_bar    ; work         ;
+;    |placar:p|              ; 104 (36)            ; 19 (19)                   ; 0                 ; 0          ; 0    ; 0            ; |top|placar:p                ; placar      ; work         ;
+;       |bcd:b1|             ; 14 (14)             ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |top|placar:p|bcd:b1         ; bcd         ; work         ;
+;       |bcd:b2|             ; 14 (14)             ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |top|placar:p|bcd:b2         ; bcd         ; work         ;
+;       |cb7s:c0_max|        ; 7 (7)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |top|placar:p|cb7s:c0_max    ; cb7s        ; work         ;
+;       |cb7s:c0_placar|     ; 7 (7)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |top|placar:p|cb7s:c0_placar ; cb7s        ; work         ;
+;       |cb7s:c1_max|        ; 13 (13)             ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |top|placar:p|cb7s:c1_max    ; cb7s        ; work         ;
+;       |cb7s:c1_placar|     ; 13 (13)             ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |top|placar:p|cb7s:c1_placar ; cb7s        ; work         ;
+;    |vga:v|                 ; 50 (50)             ; 20 (20)                   ; 0                 ; 0          ; 0    ; 0            ; |top|vga:v                   ; vga         ; work         ;
++----------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+------------------------------+-------------+--------------+
+Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
+
+
++-----------------------------------------------+
+; Analysis & Synthesis DSP Block Usage Summary  ;
++---------------------------------+-------------+
+; Statistic                       ; Number Used ;
++---------------------------------+-------------+
+; Two Independent 18x18           ; 2           ;
+; Sum of two 18x18                ; 2           ;
+; Total number of DSP blocks      ; 4           ;
+;                                 ;             ;
+; Fixed Point Unsigned Multiplier ; 6           ;
++---------------------------------+-------------+
+
+
+Encoding Type:  One-Hot
++---------------------------------------------------------------------------------------------------------------+
+; State Machine - |top|move_ball:b|estado                                                                       ;
++-------------+-------------+-------------+-------------+-------------+-------------+-------------+-------------+
+; Name        ; estado.0110 ; estado.0101 ; estado.0100 ; estado.0011 ; estado.0010 ; estado.0001 ; estado.0000 ;
++-------------+-------------+-------------+-------------+-------------+-------------+-------------+-------------+
+; estado.0000 ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ;
+; estado.0001 ; 0           ; 0           ; 0           ; 0           ; 0           ; 1           ; 1           ;
+; estado.0010 ; 0           ; 0           ; 0           ; 0           ; 1           ; 0           ; 1           ;
+; estado.0011 ; 0           ; 0           ; 0           ; 1           ; 0           ; 0           ; 1           ;
+; estado.0100 ; 0           ; 0           ; 1           ; 0           ; 0           ; 0           ; 1           ;
+; estado.0101 ; 0           ; 1           ; 0           ; 0           ; 0           ; 0           ; 1           ;
+; estado.0110 ; 1           ; 0           ; 0           ; 0           ; 0           ; 0           ; 1           ;
++-------------+-------------+-------------+-------------+-------------+-------------+-------------+-------------+
+
+
+Encoding Type:  One-Hot
++-------------------------------------------------------+
+; State Machine - |top|move_bar:m|estado                ;
++-------------+-------------+-------------+-------------+
+; Name        ; estado.0000 ; estado.0010 ; estado.0001 ;
++-------------+-------------+-------------+-------------+
+; estado.0000 ; 0           ; 0           ; 0           ;
+; estado.0001 ; 1           ; 0           ; 1           ;
+; estado.0010 ; 1           ; 1           ; 0           ;
++-------------+-------------+-------------+-------------+
+
+
++---------------------------------------------------------------------------------------+
+; Registers Removed During Synthesis                                                    ;
++----------------------------------------+----------------------------------------------+
+; Register name                          ; Reason for Removal                           ;
++----------------------------------------+----------------------------------------------+
+; move_bar:m|x_pos[0]                    ; Stuck at GND due to stuck port data_in       ;
+; move_bar:m|y_pos[9]                    ; Stuck at GND due to stuck port data_in       ;
+; move_bar:m|y_pos[6..8]                 ; Stuck at VCC due to stuck port data_in       ;
+; move_bar:m|y_pos[5]                    ; Stuck at GND due to stuck port data_in       ;
+; move_bar:m|y_pos[4]                    ; Stuck at VCC due to stuck port data_in       ;
+; move_bar:m|y_pos[0..3]                 ; Stuck at GND due to stuck port data_in       ;
+; blue_reg[1..7]                         ; Merged with blue_reg[0]                      ;
+; green_reg[0..7]                        ; Merged with blue_reg[0]                      ;
+; red_reg[0..7]                          ; Merged with blue_reg[0]                      ;
+; move_bar:m|timer:t|contador[17]        ; Merged with move_ball:b|timer:t|contador[17] ;
+; move_bar:m|timer:t|contador[16]        ; Merged with move_ball:b|timer:t|contador[16] ;
+; move_bar:m|timer:t|contador[15]        ; Merged with move_ball:b|timer:t|contador[15] ;
+; move_bar:m|timer:t|contador[14]        ; Merged with move_ball:b|timer:t|contador[14] ;
+; move_bar:m|timer:t|contador[12]        ; Merged with move_ball:b|timer:t|contador[12] ;
+; move_bar:m|timer:t|contador[7]         ; Merged with move_ball:b|timer:t|contador[7]  ;
+; move_bar:m|timer:t|contador[4]         ; Merged with move_ball:b|timer:t|contador[4]  ;
+; move_bar:m|timer:t|contador[30]        ; Merged with move_ball:b|timer:t|contador[30] ;
+; move_bar:m|timer:t|contador[29]        ; Merged with move_ball:b|timer:t|contador[29] ;
+; move_bar:m|timer:t|contador[28]        ; Merged with move_ball:b|timer:t|contador[28] ;
+; move_bar:m|timer:t|contador[27]        ; Merged with move_ball:b|timer:t|contador[27] ;
+; move_bar:m|timer:t|contador[26]        ; Merged with move_ball:b|timer:t|contador[26] ;
+; move_bar:m|timer:t|contador[25]        ; Merged with move_ball:b|timer:t|contador[25] ;
+; move_bar:m|timer:t|contador[24]        ; Merged with move_ball:b|timer:t|contador[24] ;
+; move_bar:m|timer:t|contador[23]        ; Merged with move_ball:b|timer:t|contador[23] ;
+; move_bar:m|timer:t|contador[22]        ; Merged with move_ball:b|timer:t|contador[22] ;
+; move_bar:m|timer:t|contador[21]        ; Merged with move_ball:b|timer:t|contador[21] ;
+; move_bar:m|timer:t|contador[20]        ; Merged with move_ball:b|timer:t|contador[20] ;
+; move_bar:m|timer:t|contador[19]        ; Merged with move_ball:b|timer:t|contador[19] ;
+; move_bar:m|timer:t|contador[18]        ; Merged with move_ball:b|timer:t|contador[18] ;
+; move_bar:m|timer:t|contador[13]        ; Merged with move_ball:b|timer:t|contador[13] ;
+; move_bar:m|timer:t|contador[11]        ; Merged with move_ball:b|timer:t|contador[11] ;
+; move_bar:m|timer:t|contador[10]        ; Merged with move_ball:b|timer:t|contador[10] ;
+; move_bar:m|timer:t|contador[9]         ; Merged with move_ball:b|timer:t|contador[9]  ;
+; move_bar:m|timer:t|contador[8]         ; Merged with move_ball:b|timer:t|contador[8]  ;
+; move_bar:m|timer:t|contador[6]         ; Merged with move_ball:b|timer:t|contador[6]  ;
+; move_bar:m|timer:t|contador[5]         ; Merged with move_ball:b|timer:t|contador[5]  ;
+; move_bar:m|timer:t|contador[3]         ; Merged with move_ball:b|timer:t|contador[3]  ;
+; move_bar:m|timer:t|contador[2]         ; Merged with move_ball:b|timer:t|contador[2]  ;
+; move_bar:m|timer:t|contador[1]         ; Merged with move_ball:b|timer:t|contador[1]  ;
+; move_bar:m|timer:t|contador[0]         ; Merged with move_ball:b|timer:t|contador[0]  ;
+; move_ball:b|estado~2                   ; Lost fanout                                  ;
+; move_ball:b|estado~3                   ; Lost fanout                                  ;
+; move_ball:b|estado~4                   ; Lost fanout                                  ;
+; move_ball:b|estado~5                   ; Lost fanout                                  ;
+; move_bar:m|estado~4                    ; Lost fanout                                  ;
+; move_bar:m|estado~5                    ; Lost fanout                                  ;
+; Total Number of Removed Registers = 71 ;                                              ;
++----------------------------------------+----------------------------------------------+
+
+
++------------------------------------------------------+
+; General Register Statistics                          ;
++----------------------------------------------+-------+
+; Statistic                                    ; Value ;
++----------------------------------------------+-------+
+; Total registers                              ; 132   ;
+; Number of registers using Synchronous Clear  ; 96    ;
+; Number of registers using Synchronous Load   ; 13    ;
+; Number of registers using Asynchronous Clear ; 0     ;
+; Number of registers using Asynchronous Load  ; 0     ;
+; Number of registers using Clock Enable       ; 76    ;
+; Number of registers using Preset             ; 0     ;
++----------------------------------------------+-------+
+
+
++-----------------------------------------------------------------------------------------------------------------------------------------------------+
+; Multiplexer Restructuring Statistics (Restructuring Performed)                                                                                      ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+---------------------------------------+
+; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output            ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+---------------------------------------+
+; 3:1                ; 31 bits   ; 62 LEs        ; 0 LEs                ; 62 LEs                 ; Yes        ; |top|move_ball:b|timer:t|contador[16] ;
+; 3:1                ; 10 bits   ; 20 LEs        ; 0 LEs                ; 20 LEs                 ; Yes        ; |top|vga:v|x[5]                       ;
+; 4:1                ; 10 bits   ; 20 LEs        ; 0 LEs                ; 20 LEs                 ; Yes        ; |top|vga:v|y[1]                       ;
+; 4:1                ; 9 bits    ; 18 LEs        ; 0 LEs                ; 18 LEs                 ; Yes        ; |top|placar:p|display_curr[8]         ;
+; 6:1                ; 14 bits   ; 56 LEs        ; 0 LEs                ; 56 LEs                 ; Yes        ; |top|move_ball:b|x_ball[0]            ;
+; 6:1                ; 6 bits    ; 24 LEs        ; 12 LEs               ; 12 LEs                 ; Yes        ; |top|move_ball:b|x_ball[8]            ;
+; 6:1                ; 7 bits    ; 28 LEs        ; 14 LEs               ; 14 LEs                 ; Yes        ; |top|move_bar:m|x_pos[3]              ;
+; 6:1                ; 2 bits    ; 8 LEs         ; 4 LEs                ; 4 LEs                  ; Yes        ; |top|move_bar:m|x_pos[6]              ;
+; 6:1                ; 10 bits   ; 40 LEs        ; 20 LEs               ; 20 LEs                 ; Yes        ; |top|move_ball:b|vy_mod[6]            ;
+; 12:1               ; 9 bits    ; 72 LEs        ; 18 LEs               ; 54 LEs                 ; Yes        ; |top|move_ball:b|vx_mod[7]            ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+---------------------------------------+
+
+
++---------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: Top-level Entity: |top ;
++----------------+-------+--------------------------------------------+
+; Parameter Name ; Value ; Type                                       ;
++----------------+-------+--------------------------------------------+
+; LIM_LEFT       ; 8     ; Signed Integer                             ;
+; LIM_RIGHT      ; 632   ; Signed Integer                             ;
+; LIM_UP         ; 8     ; Signed Integer                             ;
+; LIM_DOWN       ; 472   ; Signed Integer                             ;
+; R_BALL         ; 8     ; Signed Integer                             ;
+; H_BAR          ; 8     ; Signed Integer                             ;
+; W_BAR          ; 64    ; Signed Integer                             ;
++----------------+-------+--------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-------------------------------------------------------+
+; Parameter Settings for User Entity Instance: placar:p ;
++----------------+-------+------------------------------+
+; Parameter Name ; Value ; Type                         ;
++----------------+-------+------------------------------+
+; TAM            ; 8     ; Signed Integer               ;
++----------------+-------+------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++--------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: placar:p|bcd:b1 ;
++----------------+-------+-------------------------------------+
+; Parameter Name ; Value ; Type                                ;
++----------------+-------+-------------------------------------+
+; W              ; 9     ; Signed Integer                      ;
++----------------+-------+-------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++--------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: placar:p|bcd:b2 ;
++----------------+-------+-------------------------------------+
+; Parameter Name ; Value ; Type                                ;
++----------------+-------+-------------------------------------+
+; W              ; 9     ; Signed Integer                      ;
++----------------+-------+-------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++----------------------------------------------------+
+; Parameter Settings for User Entity Instance: vga:v ;
++----------------+------------+----------------------+
+; Parameter Name ; Value      ; Type                 ;
++----------------+------------+----------------------+
+; H_TOTAL        ; 1100100000 ; Unsigned Binary      ;
+; H_ACTIVE       ; 1010000000 ; Unsigned Binary      ;
+; H_FRONT        ; 0000010000 ; Unsigned Binary      ;
+; H_PULSE        ; 0001100000 ; Unsigned Binary      ;
+; H_BACK         ; 0000110000 ; Unsigned Binary      ;
+; V_TOTAL        ; 1000001101 ; Unsigned Binary      ;
+; V_ACTIVE       ; 0111100000 ; Unsigned Binary      ;
+; V_FRONT        ; 0000001010 ; Unsigned Binary      ;
+; V_PULSE        ; 0000000010 ; Unsigned Binary      ;
+; V_BACK         ; 0000100001 ; Unsigned Binary      ;
++----------------+------------+----------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++---------------------------------------------------------+
+; Parameter Settings for User Entity Instance: move_bar:m ;
++----------------+-------+--------------------------------+
+; Parameter Name ; Value ; Type                           ;
++----------------+-------+--------------------------------+
+; H_BAR          ; 8     ; Signed Integer                 ;
+; W_BAR          ; 64    ; Signed Integer                 ;
+; LIM_LEFT       ; 64    ; Signed Integer                 ;
+; LIM_RIGHT      ; 576   ; Signed Integer                 ;
++----------------+-------+--------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++--------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: move_bar:m|timer:t    ;
++----------------+---------------------------------+-----------------+
+; Parameter Name ; Value                           ; Type            ;
++----------------+---------------------------------+-----------------+
+; PULSE_TIME     ; 0000000000000111101000010010000 ; Unsigned Binary ;
++----------------+---------------------------------+-----------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++----------------------------------------------------------+
+; Parameter Settings for User Entity Instance: move_ball:b ;
++----------------+-------+---------------------------------+
+; Parameter Name ; Value ; Type                            ;
++----------------+-------+---------------------------------+
+; LIM_LEFT       ; 8     ; Signed Integer                  ;
+; LIM_RIGHT      ; 632   ; Signed Integer                  ;
+; LIM_UP         ; 8     ; Signed Integer                  ;
+; LIM_DOWN       ; 472   ; Signed Integer                  ;
+; R_BALL         ; 8     ; Signed Integer                  ;
+; H_BAR          ; 8     ; Signed Integer                  ;
+; W_BAR          ; 64    ; Signed Integer                  ;
++----------------+-------+---------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++--------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: move_ball:b|timer:t   ;
++----------------+---------------------------------+-----------------+
+; Parameter Name ; Value                           ; Type            ;
++----------------+---------------------------------+-----------------+
+; PULSE_TIME     ; 0000000000000111101000010010000 ; Unsigned Binary ;
++----------------+---------------------------------+-----------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "move_ball:b"                                                                           ;
++---------+--------+----------+-------------------------------------------------------------------------------------+
+; Port    ; Type   ; Severity ; Details                                                                             ;
++---------+--------+----------+-------------------------------------------------------------------------------------+
+; endgame ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++---------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "placar:p|bcd:b2"                                                                                                                ;
++-----------+--------+----------+----------------------------------------------------------------------------------------------------------------------------+
+; Port      ; Type   ; Severity ; Details                                                                                                                    ;
++-----------+--------+----------+----------------------------------------------------------------------------------------------------------------------------+
+; bcd       ; Output ; Warning  ; Output or bidir port (11 bits) is wider than the port expression (10 bits) it drives; bit(s) "bcd[10..10]" have no fanouts ;
+; bcd[9..8] ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed.                                        ;
++-----------+--------+----------+----------------------------------------------------------------------------------------------------------------------------+
+
+
++------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "placar:p|bcd:b1"                                                                                                                ;
++-----------+--------+----------+----------------------------------------------------------------------------------------------------------------------------+
+; Port      ; Type   ; Severity ; Details                                                                                                                    ;
++-----------+--------+----------+----------------------------------------------------------------------------------------------------------------------------+
+; bcd       ; Output ; Warning  ; Output or bidir port (11 bits) is wider than the port expression (10 bits) it drives; bit(s) "bcd[10..10]" have no fanouts ;
+; bcd[9..8] ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed.                                        ;
++-----------+--------+----------+----------------------------------------------------------------------------------------------------------------------------+
+
+
++-----------------------------------------------------+
+; Post-Synthesis Netlist Statistics for Top Partition ;
++-----------------------+-----------------------------+
+; Type                  ; Count                       ;
++-----------------------+-----------------------------+
+; arriav_ff             ; 132                         ;
+;     ENA               ; 15                          ;
+;     ENA SCLR          ; 49                          ;
+;     ENA SLD           ; 12                          ;
+;     SCLR              ; 47                          ;
+;     SLD               ; 1                           ;
+;     plain             ; 8                           ;
+; arriav_lcell_comb     ; 465                         ;
+;     arith             ; 193                         ;
+;         0 data inputs ; 3                           ;
+;         1 data inputs ; 101                         ;
+;         2 data inputs ; 74                          ;
+;         3 data inputs ; 4                           ;
+;         4 data inputs ; 1                           ;
+;         5 data inputs ; 10                          ;
+;     extend            ; 1                           ;
+;         7 data inputs ; 1                           ;
+;     normal            ; 246                         ;
+;         0 data inputs ; 1                           ;
+;         1 data inputs ; 4                           ;
+;         2 data inputs ; 35                          ;
+;         3 data inputs ; 23                          ;
+;         4 data inputs ; 60                          ;
+;         5 data inputs ; 58                          ;
+;         6 data inputs ; 65                          ;
+;     shared            ; 25                          ;
+;         0 data inputs ; 1                           ;
+;         2 data inputs ; 10                          ;
+;         3 data inputs ; 14                          ;
+; arriav_mac            ; 4                           ;
+; boundary_port         ; 72                          ;
+;                       ;                             ;
+; Max LUT depth         ; 6.00                        ;
+; Average LUT depth     ; 3.80                        ;
++-----------------------+-----------------------------+
+
+
++-------------------------------+
+; Elapsed Time Per Partition    ;
++----------------+--------------+
+; Partition Name ; Elapsed Time ;
++----------------+--------------+
+; Top            ; 00:00:01     ;
++----------------+--------------+
+
+
++-------------------------------+
+; Analysis & Synthesis Messages ;
++-------------------------------+
+Info: *******************************************************************
+Info: Running Quartus Prime Analysis & Synthesis
+    Info: Version 17.1.0 Build 590 10/25/2017 SJ Lite Edition
+    Info: Processing started: Wed May 22 17:10:05 2024
+Info: Command: quartus_map --read_settings_files=on --write_settings_files=off projeto-final -c projeto-final
+Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
+Info (20030): Parallel compilation is enabled and will use 12 of the 12 processors detected
+Info (12021): Found 1 design units, including 1 entities, in source file /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/vga.v
+    Info (12023): Found entity 1: vga File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/vga.v Line: 1
+Warning (10275): Verilog HDL Module Instantiation warning at top.v(103): ignored dangling comma in List of Port Connections File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/top.v Line: 103
+Info (12021): Found 1 design units, including 1 entities, in source file /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/top.v
+    Info (12023): Found entity 1: top File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/top.v Line: 13
+Info (12021): Found 1 design units, including 1 entities, in source file /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/timer.v
+    Info (12023): Found entity 1: timer File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/timer.v Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/placar.v
+    Info (12023): Found entity 1: placar File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/placar.v Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/move_bar.v
+    Info (12023): Found entity 1: move_bar File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/move_bar.v Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/move_ball.v
+    Info (12023): Found entity 1: move_ball File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/move_ball.v Line: 2
+Info (12021): Found 1 design units, including 1 entities, in source file /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/cb7s.v
+    Info (12023): Found entity 1: cb7s File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/cb7s.v Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/button.v
+    Info (12023): Found entity 1: button File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/button.v Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/bcd.v
+    Info (12023): Found entity 1: bcd File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/bcd.v Line: 3
+Warning (10236): Verilog HDL Implicit Net warning at move_ball.v(46): created implicit net for "hit_center" File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/move_ball.v Line: 46
+Warning (10236): Verilog HDL Implicit Net warning at move_ball.v(47): created implicit net for "hit_left" File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/move_ball.v Line: 47
+Warning (10236): Verilog HDL Implicit Net warning at move_ball.v(48): created implicit net for "hit_right" File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/move_ball.v Line: 48
+Info (12127): Elaborating entity "top" for the top level hierarchy
+Warning (10230): Verilog HDL assignment warning at top.v(148): truncated value with size 32 to match size of target (8) File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/top.v Line: 148
+Warning (10230): Verilog HDL assignment warning at top.v(149): truncated value with size 32 to match size of target (8) File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/top.v Line: 149
+Warning (10230): Verilog HDL assignment warning at top.v(150): truncated value with size 32 to match size of target (8) File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/top.v Line: 150
+Info (12128): Elaborating entity "placar" for hierarchy "placar:p" File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/top.v Line: 82
+Warning (10230): Verilog HDL assignment warning at placar.v(68): truncated value with size 32 to match size of target (9) File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/placar.v Line: 68
+Info (12128): Elaborating entity "bcd" for hierarchy "placar:p|bcd:b1" File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/placar.v Line: 28
+Info (12128): Elaborating entity "cb7s" for hierarchy "placar:p|cb7s:c0_max" File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/placar.v Line: 39
+Info (12128): Elaborating entity "vga" for hierarchy "vga:v" File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/top.v Line: 94
+Warning (10230): Verilog HDL assignment warning at vga.v(38): truncated value with size 32 to match size of target (10) File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/vga.v Line: 38
+Warning (10230): Verilog HDL assignment warning at vga.v(41): truncated value with size 32 to match size of target (10) File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/vga.v Line: 41
+Warning (10230): Verilog HDL assignment warning at vga.v(49): truncated value with size 32 to match size of target (1) File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/vga.v Line: 49
+Warning (10230): Verilog HDL assignment warning at vga.v(50): truncated value with size 32 to match size of target (1) File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/vga.v Line: 50
+Info (12128): Elaborating entity "move_bar" for hierarchy "move_bar:m" File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/top.v Line: 103
+Info (10264): Verilog HDL Case Statement information at move_bar.v(38): all case item expressions in this case statement are onehot File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/move_bar.v Line: 38
+Warning (10230): Verilog HDL assignment warning at move_bar.v(48): truncated value with size 32 to match size of target (10) File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/move_bar.v Line: 48
+Warning (10230): Verilog HDL assignment warning at move_bar.v(63): truncated value with size 32 to match size of target (10) File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/move_bar.v Line: 63
+Info (12128): Elaborating entity "timer" for hierarchy "move_bar:m|timer:t" File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/move_bar.v Line: 25
+Warning (10230): Verilog HDL assignment warning at timer.v(20): truncated value with size 32 to match size of target (31) File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/timer.v Line: 20
+Info (12128): Elaborating entity "move_ball" for hierarchy "move_ball:b" File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/top.v Line: 115
+Warning (10230): Verilog HDL assignment warning at move_ball.v(58): truncated value with size 32 to match size of target (10) File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/move_ball.v Line: 58
+Warning (10230): Verilog HDL assignment warning at move_ball.v(82): truncated value with size 32 to match size of target (10) File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/move_ball.v Line: 82
+Warning (10230): Verilog HDL assignment warning at move_ball.v(86): truncated value with size 32 to match size of target (10) File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/move_ball.v Line: 86
+Warning (10230): Verilog HDL assignment warning at move_ball.v(90): truncated value with size 32 to match size of target (10) File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/move_ball.v Line: 90
+Warning (10230): Verilog HDL assignment warning at move_ball.v(94): truncated value with size 32 to match size of target (10) File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/move_ball.v Line: 94
+Warning (10230): Verilog HDL assignment warning at move_ball.v(98): truncated value with size 32 to match size of target (10) File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/move_ball.v Line: 98
+Warning (10230): Verilog HDL assignment warning at move_ball.v(100): truncated value with size 32 to match size of target (10) File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/move_ball.v Line: 100
+Warning (10230): Verilog HDL assignment warning at move_ball.v(101): truncated value with size 32 to match size of target (10) File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/move_ball.v Line: 101
+Warning (10230): Verilog HDL assignment warning at move_ball.v(104): truncated value with size 32 to match size of target (10) File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/move_ball.v Line: 104
+Warning (10230): Verilog HDL assignment warning at move_ball.v(105): truncated value with size 32 to match size of target (10) File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/move_ball.v Line: 105
+Warning (10230): Verilog HDL assignment warning at move_ball.v(108): truncated value with size 32 to match size of target (10) File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/move_ball.v Line: 108
+Warning (10230): Verilog HDL assignment warning at move_ball.v(109): truncated value with size 32 to match size of target (10) File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/move_ball.v Line: 109
+Warning (12241): 2 hierarchies have connectivity warnings - see the Connectivity Checks report folder
+Warning (13024): Output pins are stuck at VCC or GND
+    Warning (13410): Pin "VGA_SYNC_N" is stuck at GND File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/top.v Line: 23
+Info (286030): Timing-Driven Synthesis is running
+Info (17049): 6 registers lost all their fanouts during netlist optimizations.
+Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
+    Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
+Warning (21074): Design contains 10 input pin(s) that do not drive logic
+    Warning (15610): No output dependent on input pin "SW[1]" File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/top.v Line: 15
+    Warning (15610): No output dependent on input pin "SW[3]" File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/top.v Line: 15
+    Warning (15610): No output dependent on input pin "SW[4]" File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/top.v Line: 15
+    Warning (15610): No output dependent on input pin "SW[5]" File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/top.v Line: 15
+    Warning (15610): No output dependent on input pin "SW[6]" File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/top.v Line: 15
+    Warning (15610): No output dependent on input pin "SW[7]" File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/top.v Line: 15
+    Warning (15610): No output dependent on input pin "SW[8]" File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/top.v Line: 15
+    Warning (15610): No output dependent on input pin "SW[9]" File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/top.v Line: 15
+    Warning (15610): No output dependent on input pin "KEY[2]" File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/top.v Line: 16
+    Warning (15610): No output dependent on input pin "KEY[3]" File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/top.v Line: 16
+Info (21057): Implemented 557 device resources after synthesis - the final resource count might be different
+    Info (21058): Implemented 15 input pins
+    Info (21059): Implemented 57 output pins
+    Info (21061): Implemented 481 logic cells
+    Info (21062): Implemented 4 DSP elements
+Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 42 warnings
+    Info: Peak virtual memory: 1313 megabytes
+    Info: Processing ended: Wed May 22 17:10:12 2024
+    Info: Elapsed time: 00:00:07
+    Info: Total CPU time (on all processors): 00:00:15
+
+

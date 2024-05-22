@@ -9,7 +9,7 @@ module button (
 reg [1:0] estado;
 
 always @(posedge clock) begin
-    if (!reset) begin
+    if (reset) begin
         estado = 0; 
         saida = 0; // não realiza operação
     end
