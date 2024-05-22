@@ -2,12 +2,10 @@
 
 Grupo:
 
-- RA - Nome
-- RA - Nome
-- RA - Nome
+- 186087 - Gabriela Martins Jacob
+- 184423 - Letícia Lopes Mendes da Silva
+- 238001 - Luísa de Melo Barros Penze
 
 ## Descrição
 
 Descrição do projeto.
-
-
