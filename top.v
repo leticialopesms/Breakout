@@ -1,38 +1,20 @@
-// o top 3 meramente imprime na tela o fundo, a barra e a bola
-// e implementa o placar
-
-// TO DO: 
-// 1. fazer o jogo funcionar com varios starts (pra manter o placar max)    [OK]
-// 2. fazer a aceleracao
-// 3. arrumar a velocidade pra aumentar em x e diminuir em y (SERA?)
-// 4. implementar / debugar o placar                                        [OK]
-// 5. fazer a barra andar de forma continua                                 [OK]
-// 6. fazer todo mundo comecar no centro                                    [OK]
-// 7. resetar o placar atual toda vez que o start for apertado              [OK]
-
 module top(
     input CLOCK_50,
     input [9:0] SW,
     input [3:0] KEY,
     output reg VGA_CLK,
-    output wire [7:0] VGA_R,    // RED (to resistor DAC VGA connector)
-    output wire [7:0] VGA_G,    // GREEN (to resistor DAC to VGA connector)
-    output wire [7:0] VGA_B,    // BLUE (to resistor DAC to VGA connector)
-    output wire VGA_HS,         // HSYNC (to VGA connector)
-    output wire VGA_VS,         // VSYNC (to VGA connector)
-    output wire VGA_SYNC_N,     // SYNC to VGA connector
-    output wire VGA_BLANK_N,     // BLANK to VGA connector
-    output wire [6:0] HEX0,        //  digito 0  - digito da direita
-    output wire [6:0] HEX1,        //  digito 1
-    output wire [6:0] HEX4,        //  digito 4
-    output wire [6:0] HEX5         //  digito 5 - digito da esquerda
+    output wire [7:0] VGA_R,        // RED (to resistor DAC VGA connector)
+    output wire [7:0] VGA_G,        // GREEN (to resistor DAC to VGA connector)
+    output wire [7:0] VGA_B,        // BLUE (to resistor DAC to VGA connector)
+    output wire VGA_HS,             // HSYNC (to VGA connector)
+    output wire VGA_VS,             // VSYNC (to VGA connector)
+    output wire VGA_SYNC_N,         // SYNC to VGA connector
+    output wire VGA_BLANK_N,        // BLANK to VGA connector
+    output wire [6:0] HEX0,         //  digito 0  - digito da direita
+    output wire [6:0] HEX1,         //  digito 1
+    output wire [6:0] HEX4,         //  digito 4
+    output wire [6:0] HEX5          //  digito 5 - digito da esquerda
 );
-
-// implementar o placar do jogo. o placar deve ser incrementado a cada vez que a bola tocar na barra. 
-// o placar máximo deve ser atualizado se o placar atual for maior que o placar máximo.
-
-// 3 dígitos da direita = placar atual
-// 3 dígitos da esquerda = placar máximo
 
 // regs cores
 reg [7:0] red_reg;
@@ -45,7 +27,7 @@ wire [9:0] y_bar;
 wire [9:0] x_ball;
 wire [9:0] y_ball;
 
-// Wires x e y
+// wires x e y
 wire [9:0] next_x;
 wire [9:0] next_y;
 wire active;
@@ -75,6 +57,7 @@ placar p(
   .reset(~SW[0]),
   .hit_bar(hit_bar),
   .start(~SW[2]),
+  .endgame(endgame),
   .digito0(HEX0),
   .digito1(HEX1),
   .digito4(HEX4),

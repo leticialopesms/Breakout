@@ -7,4 +7,13 @@ reg [31:0] pixel[307200];
 
 3. pesquisar generate de verilog e parâmetro!!!!! professor falou pra gabi, que falou pra let e pra lu
 
+4. no placar.v, passar o sinal de endgame (que é saída de move_ball.v) para ver se diminui q qnt de vidas restantes
+(com a lógica do start eu acho que n vai dar certo)
+
 // TO DO
+
+1- verificar se a lógica do placar está correta
+
+2- fazer o módulo do bloco
+
+3- arrumar lógica do movimento da bola qnd bate na barra

@@ -1,4 +1,3 @@
-// TODO: nosso jogo precisa funcionar se a gnt der start mais de uma vez - placar maximo
 module move_ball(
     input clock,
     input reset,
