@@ -25,3 +25,11 @@ reg [31:0] pixel[307200];
 6 - tratar o endgame e o youwin no top
 
 7 - fazer lógica da bola bater no bloco por cima 
+
+8 - vamos fazer um contador para o youwin
+
+9 - escrever OVER no display quando acabarem as vidas (e o jogador nao ganhar o jogo)
+
+10 - entender por que o display de vidas não começa com 10
+
+11 - entender por que nao acrescenta 1 quando bateu no bloco

@@ -15,6 +15,7 @@ parameter LIM_LEFT = R_BALL;
 parameter LIM_RIGHT = 640 - R_BALL;
 parameter LIM_UP = R_BALL;
 parameter LIM_DOWN = 480 - R_BALL;
+parameter LIM_ENDGAME = 480 - 8 - 2*H_BAR;
 
 // parametros para os tamanhos da bola e da barra
 parameter R_BALL = 8;   // raio da bolinha
@@ -34,7 +35,7 @@ reg [9:0] vy_mod;   // modulo da velocidade em y
 
 wire move;
 
-timer_ball t (
+timer t (
   .clock(clock),
   .reset(reset),
   .pulse(move)
@@ -53,8 +54,8 @@ always @(posedge clock) begin
     estado = 0;
     x_ball = 320;
     y_ball = 240;
-    vx_mod = 1;
-    vy_mod = -1;
+    vx_mod = 2;
+    vy_mod = -2;
   end
   else begin
   // implementação da máquina de estados aqui
@@ -66,7 +67,8 @@ always @(posedge clock) begin
             else if(y_ball <= LIM_UP) estado = 1;         // bateu em cima
             else if(x_ball <= LIM_LEFT) estado = 2;       // bateu na esquerda
             else if(x_ball >= LIM_RIGHT) estado = 3;      // bateu na direita
-            else if(y_ball >= LIM_DOWN) estado = 5;       // ENDGAME!
+            else if(y_ball >= LIM_ENDGAME) estado = 5;       // ENDGAME!
+            // pra resolver o bug: mudar esse limdown pra 
             else estado = 6;
         end
         else if (start && endgame) begin
@@ -77,8 +79,8 @@ always @(posedge clock) begin
           estado = 0;
           x_ball = 320;
           y_ball = 240;
-          vx_mod = 1;
-          vy_mod = -1;
+          vx_mod = 2;
+          vy_mod = -2;
         end
       end
       1: begin // bateu na borda de cima
@@ -103,16 +105,10 @@ always @(posedge clock) begin
           if(vx_mod > 0) vx_mod = vx_mod + 1;
           else vx_mod = vx_mod - 1;
         end
-        else if(hit_center) begin
-          if(vx_mod > 0) vx_mod = vx_mod + 1;
-          else if(vx_mod < 0) vx_mod = vx_mod - 1;
-          else vx_mod = 0;
-        //   vy_mod = vy_mod - 1;
-        end
         estado = 6;
       end
       5: begin // bateu na borda de baixo (endgame)
-        estado = 0; // ideia: o bola fica parada até a peesoa que está jogando
+        estado = 0;
         endgame = 1;
         // apertar em reset ou start novamente
       end

@@ -45,7 +45,7 @@ always @(posedge clock) begin
       1: begin
         if (move) begin
           if (x_pos > LIM_LEFT) begin // caso em que dá pra andar pra esquerda
-            x_pos = x_pos - 2;
+            x_pos = x_pos - 4;
           end
           else begin // caso em que chegou no limite da esquerda (vai pra direita)
             x_pos = x_pos;
@@ -60,7 +60,7 @@ always @(posedge clock) begin
       2: begin
         if (move) begin
           if (x_pos < LIM_RIGHT) begin // caso em que dá pra andar pra direita
-            x_pos = x_pos + 2;
+            x_pos = x_pos + 4;
           end
           else begin // caso em que chegou no limite da direita (vai pra esquerda)
             x_pos = x_pos;

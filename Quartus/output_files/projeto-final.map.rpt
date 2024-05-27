@@ -1,5 +1,5 @@
 Analysis & Synthesis report for projeto-final
-Wed May 22 17:10:12 2024
+Mon May 27 17:17:49 2024
 Quartus Prime Version 17.1.0 Build 590 10/25/2017 SJ Lite Edition
 
 
@@ -14,26 +14,32 @@ Quartus Prime Version 17.1.0 Build 590 10/25/2017 SJ Lite Edition
   6. Analysis & Synthesis Resource Usage Summary
   7. Analysis & Synthesis Resource Utilization by Entity
   8. Analysis & Synthesis DSP Block Usage Summary
-  9. State Machine - |top|move_ball:b|estado
- 10. State Machine - |top|move_bar:m|estado
- 11. Registers Removed During Synthesis
- 12. General Register Statistics
- 13. Multiplexer Restructuring Statistics (Restructuring Performed)
- 14. Parameter Settings for User Entity Instance: Top-level Entity: |top
- 15. Parameter Settings for User Entity Instance: placar:p
- 16. Parameter Settings for User Entity Instance: placar:p|bcd:b1
- 17. Parameter Settings for User Entity Instance: placar:p|bcd:b2
- 18. Parameter Settings for User Entity Instance: vga:v
- 19. Parameter Settings for User Entity Instance: move_bar:m
- 20. Parameter Settings for User Entity Instance: move_bar:m|timer:t
- 21. Parameter Settings for User Entity Instance: move_ball:b
- 22. Parameter Settings for User Entity Instance: move_ball:b|timer:t
- 23. Port Connectivity Checks: "move_ball:b"
- 24. Port Connectivity Checks: "placar:p|bcd:b2"
- 25. Port Connectivity Checks: "placar:p|bcd:b1"
- 26. Post-Synthesis Netlist Statistics for Top Partition
- 27. Elapsed Time Per Partition
- 28. Analysis & Synthesis Messages
+  9. State Machine - |top|bloco:b1|estado
+ 10. State Machine - |top|move_ball:b|estado
+ 11. State Machine - |top|move_bar:m|estado
+ 12. State Machine - |top|placar:p|estado
+ 13. State Machine - |top|placar:p|button:b|estado
+ 14. Registers Removed During Synthesis
+ 15. Removed Registers Triggering Further Register Optimizations
+ 16. General Register Statistics
+ 17. Multiplexer Restructuring Statistics (Restructuring Performed)
+ 18. Parameter Settings for User Entity Instance: Top-level Entity: |top
+ 19. Parameter Settings for User Entity Instance: placar:p
+ 20. Parameter Settings for User Entity Instance: placar:p|bcd:b1
+ 21. Parameter Settings for User Entity Instance: placar:p|bcd:b2
+ 22. Parameter Settings for User Entity Instance: vga:v
+ 23. Parameter Settings for User Entity Instance: move_bar:m
+ 24. Parameter Settings for User Entity Instance: move_bar:m|timer:t
+ 25. Parameter Settings for User Entity Instance: move_ball:b
+ 26. Parameter Settings for User Entity Instance: move_ball:b|timer:t
+ 27. Parameter Settings for User Entity Instance: bloco:b1
+ 28. Port Connectivity Checks: "bloco:b1"
+ 29. Port Connectivity Checks: "move_ball:b"
+ 30. Port Connectivity Checks: "placar:p|bcd:b2"
+ 31. Port Connectivity Checks: "placar:p|bcd:b1"
+ 32. Post-Synthesis Netlist Statistics for Top Partition
+ 33. Elapsed Time Per Partition
+ 34. Analysis & Synthesis Messages
 
 
 
@@ -59,13 +65,13 @@ refer to the applicable agreement for further details.
 +-------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                  ;
 +---------------------------------+---------------------------------------------+
-; Analysis & Synthesis Status     ; Successful - Wed May 22 17:10:12 2024       ;
+; Analysis & Synthesis Status     ; Successful - Mon May 27 17:17:49 2024       ;
 ; Quartus Prime Version           ; 17.1.0 Build 590 10/25/2017 SJ Lite Edition ;
 ; Revision Name                   ; projeto-final                               ;
 ; Top-level Entity Name           ; top                                         ;
 ; Family                          ; Cyclone V                                   ;
 ; Logic utilization (in ALMs)     ; N/A                                         ;
-; Total registers                 ; 132                                         ;
+; Total registers                 ; 140                                         ;
 ; Total pins                      ; 72                                          ;
 ; Total virtual pins              ; 0                                           ;
 ; Total block memory bits         ; 0                                           ;
@@ -195,6 +201,7 @@ refer to the applicable agreement for further details.
 +----------------------------------+-----------------+------------------------+-----------------------------------------------------------------------+---------+
 ; File Name with User-Entered Path ; Used in Netlist ; File Type              ; File Name with Absolute Path                                          ; Library ;
 +----------------------------------+-----------------+------------------------+-----------------------------------------------------------------------+---------+
+; ../bloco.v                       ; yes             ; User Verilog HDL File  ; /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/bloco.v     ;         ;
 ; ../vga.v                         ; yes             ; User Verilog HDL File  ; /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/vga.v       ;         ;
 ; ../top.v                         ; yes             ; User Verilog HDL File  ; /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/top.v       ;         ;
 ; ../timer.v                       ; yes             ; User Verilog HDL File  ; /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/timer.v     ;         ;
@@ -202,6 +209,7 @@ refer to the applicable agreement for further details.
 ; ../move_bar.v                    ; yes             ; User Verilog HDL File  ; /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/move_bar.v  ;         ;
 ; ../move_ball.v                   ; yes             ; User Verilog HDL File  ; /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/move_ball.v ;         ;
 ; ../cb7s.v                        ; yes             ; User Verilog HDL File  ; /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/cb7s.v      ;         ;
+; ../button.v                      ; yes             ; User Verilog HDL File  ; /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/button.v    ;         ;
 ; ../bcd.v                         ; yes             ; User Verilog HDL File  ; /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/bcd.v       ;         ;
 +----------------------------------+-----------------+------------------------+-----------------------------------------------------------------------+---------+
 
@@ -211,25 +219,25 @@ refer to the applicable agreement for further details.
 +---------------------------------------------+--------------+
 ; Resource                                    ; Usage        ;
 +---------------------------------------------+--------------+
-; Estimate of Logic utilization (ALMs needed) ; 264          ;
+; Estimate of Logic utilization (ALMs needed) ; 290          ;
 ;                                             ;              ;
-; Combinational ALUT usage for logic          ; 461          ;
-;     -- 7 input functions                    ; 1            ;
-;     -- 6 input functions                    ; 65           ;
-;     -- 5 input functions                    ; 68           ;
-;     -- 4 input functions                    ; 61           ;
-;     -- <=3 input functions                  ; 266          ;
+; Combinational ALUT usage for logic          ; 487          ;
+;     -- 7 input functions                    ; 0            ;
+;     -- 6 input functions                    ; 92           ;
+;     -- 5 input functions                    ; 51           ;
+;     -- 4 input functions                    ; 68           ;
+;     -- <=3 input functions                  ; 276          ;
 ;                                             ;              ;
-; Dedicated logic registers                   ; 132          ;
+; Dedicated logic registers                   ; 140          ;
 ;                                             ;              ;
 ; I/O pins                                    ; 72           ;
 ;                                             ;              ;
 ; Total DSP Blocks                            ; 4            ;
 ;                                             ;              ;
 ; Maximum fan-out node                        ; VGA_CLK~reg0 ;
-; Maximum fan-out                             ; 133          ;
-; Total fan-out                               ; 2266         ;
-; Average fan-out                             ; 3.06         ;
+; Maximum fan-out                             ; 141          ;
+; Total fan-out                               ; 2449         ;
+; Average fan-out                             ; 3.16         ;
 +---------------------------------------------+--------------+
 
 
@@ -238,18 +246,20 @@ refer to the applicable agreement for further details.
 +----------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+------------------------------+-------------+--------------+
 ; Compilation Hierarchy Node ; Combinational ALUTs ; Dedicated Logic Registers ; Block Memory Bits ; DSP Blocks ; Pins ; Virtual Pins ; Full Hierarchy Name          ; Entity Name ; Library Name ;
 +----------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+------------------------------+-------------+--------------+
-; |top                       ; 461 (92)            ; 132 (2)                   ; 0                 ; 4          ; 72   ; 0            ; |top                         ; top         ; work         ;
-;    |move_ball:b|           ; 199 (161)           ; 79 (48)                   ; 0                 ; 0          ; 0    ; 0            ; |top|move_ball:b             ; move_ball   ; work         ;
+; |top                       ; 487 (116)           ; 140 (5)                   ; 0                 ; 4          ; 72   ; 0            ; |top                         ; top         ; work         ;
+;    |bloco:b1|              ; 6 (6)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |top|bloco:b1                ; bloco       ; work         ;
+;    |move_ball:b|           ; 202 (164)           ; 79 (48)                   ; 0                 ; 0          ; 0    ; 0            ; |top|move_ball:b             ; move_ball   ; work         ;
 ;       |timer:t|            ; 38 (38)             ; 31 (31)                   ; 0                 ; 0          ; 0    ; 0            ; |top|move_ball:b|timer:t     ; timer       ; work         ;
-;    |move_bar:m|            ; 16 (16)             ; 12 (12)                   ; 0                 ; 0          ; 0    ; 0            ; |top|move_bar:m              ; move_bar    ; work         ;
-;    |placar:p|              ; 104 (36)            ; 19 (19)                   ; 0                 ; 0          ; 0    ; 0            ; |top|placar:p                ; placar      ; work         ;
+;    |move_bar:m|            ; 15 (15)             ; 11 (11)                   ; 0                 ; 0          ; 0    ; 0            ; |top|move_bar:m              ; move_bar    ; work         ;
+;    |placar:p|              ; 100 (30)            ; 25 (22)                   ; 0                 ; 0          ; 0    ; 0            ; |top|placar:p                ; placar      ; work         ;
 ;       |bcd:b1|             ; 14 (14)             ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |top|placar:p|bcd:b1         ; bcd         ; work         ;
 ;       |bcd:b2|             ; 14 (14)             ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |top|placar:p|bcd:b2         ; bcd         ; work         ;
-;       |cb7s:c0_max|        ; 7 (7)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |top|placar:p|cb7s:c0_max    ; cb7s        ; work         ;
+;       |button:b|           ; 2 (2)               ; 3 (3)                     ; 0                 ; 0          ; 0    ; 0            ; |top|placar:p|button:b       ; button      ; work         ;
 ;       |cb7s:c0_placar|     ; 7 (7)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |top|placar:p|cb7s:c0_placar ; cb7s        ; work         ;
-;       |cb7s:c1_max|        ; 13 (13)             ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |top|placar:p|cb7s:c1_max    ; cb7s        ; work         ;
+;       |cb7s:c0_vidas|      ; 7 (7)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |top|placar:p|cb7s:c0_vidas  ; cb7s        ; work         ;
 ;       |cb7s:c1_placar|     ; 13 (13)             ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |top|placar:p|cb7s:c1_placar ; cb7s        ; work         ;
-;    |vga:v|                 ; 50 (50)             ; 20 (20)                   ; 0                 ; 0          ; 0    ; 0            ; |top|vga:v                   ; vga         ; work         ;
+;       |cb7s:c1_vidas|      ; 13 (13)             ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |top|placar:p|cb7s:c1_vidas  ; cb7s        ; work         ;
+;    |vga:v|                 ; 48 (48)             ; 20 (20)                   ; 0                 ; 0          ; 0    ; 0            ; |top|vga:v                   ; vga         ; work         ;
 +----------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+------------------------------+-------------+--------------+
 Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
 
@@ -265,6 +275,18 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ;                                 ;             ;
 ; Fixed Point Unsigned Multiplier ; 6           ;
 +---------------------------------+-------------+
+
+
+Encoding Type:  One-Hot
++-------------------------------------------------------+
+; State Machine - |top|bloco:b1|estado                  ;
++-------------+-------------+-------------+-------------+
+; Name        ; estado.0000 ; estado.0010 ; estado.0001 ;
++-------------+-------------+-------------+-------------+
+; estado.0000 ; 0           ; 0           ; 0           ;
+; estado.0001 ; 1           ; 0           ; 1           ;
+; estado.0010 ; 1           ; 1           ; 0           ;
++-------------+-------------+-------------+-------------+
 
 
 Encoding Type:  One-Hot
@@ -295,27 +317,63 @@ Encoding Type:  One-Hot
 +-------------+-------------+-------------+-------------+
 
 
+Encoding Type:  One-Hot
++-----------------------------------------------------------------------------------+
+; State Machine - |top|placar:p|estado                                              ;
++-------------+-------------+-------------+-------------+-------------+-------------+
+; Name        ; estado.0011 ; estado.0010 ; estado.0001 ; estado.0000 ; estado.0100 ;
++-------------+-------------+-------------+-------------+-------------+-------------+
+; estado.0000 ; 0           ; 0           ; 0           ; 0           ; 0           ;
+; estado.0001 ; 0           ; 0           ; 1           ; 1           ; 0           ;
+; estado.0010 ; 0           ; 1           ; 0           ; 1           ; 0           ;
+; estado.0011 ; 1           ; 0           ; 0           ; 1           ; 0           ;
+; estado.0100 ; 0           ; 0           ; 0           ; 1           ; 1           ;
++-------------+-------------+-------------+-------------+-------------+-------------+
+
+
+Encoding Type:  One-Hot
++-----------------------------------------------+
+; State Machine - |top|placar:p|button:b|estado ;
++-----------+-----------+-----------+-----------+
+; Name      ; estado.00 ; estado.10 ; estado.01 ;
++-----------+-----------+-----------+-----------+
+; estado.00 ; 0         ; 0         ; 0         ;
+; estado.01 ; 1         ; 0         ; 1         ;
+; estado.10 ; 1         ; 1         ; 0         ;
++-----------+-----------+-----------+-----------+
+
+
 +---------------------------------------------------------------------------------------+
 ; Registers Removed During Synthesis                                                    ;
 +----------------------------------------+----------------------------------------------+
 ; Register name                          ; Reason for Removal                           ;
 +----------------------------------------+----------------------------------------------+
-; move_bar:m|x_pos[0]                    ; Stuck at GND due to stuck port data_in       ;
+; bloco:b1|y_block[4..6]                 ; Stuck at GND due to stuck port data_in       ;
+; bloco:b1|y_block[3]                    ; Stuck at VCC due to stuck port data_in       ;
+; bloco:b1|y_block[0..2,7..9]            ; Stuck at GND due to stuck port data_in       ;
+; bloco:b1|x_block[0..4]                 ; Stuck at GND due to stuck port data_in       ;
+; bloco:b1|x_block[5]                    ; Stuck at VCC due to stuck port data_in       ;
+; bloco:b1|x_block[6..9]                 ; Stuck at GND due to stuck port data_in       ;
+; move_bar:m|x_pos[0,1]                  ; Stuck at GND due to stuck port data_in       ;
 ; move_bar:m|y_pos[9]                    ; Stuck at GND due to stuck port data_in       ;
 ; move_bar:m|y_pos[6..8]                 ; Stuck at VCC due to stuck port data_in       ;
 ; move_bar:m|y_pos[5]                    ; Stuck at GND due to stuck port data_in       ;
 ; move_bar:m|y_pos[4]                    ; Stuck at VCC due to stuck port data_in       ;
 ; move_bar:m|y_pos[0..3]                 ; Stuck at GND due to stuck port data_in       ;
-; blue_reg[1..7]                         ; Merged with blue_reg[0]                      ;
-; green_reg[0..7]                        ; Merged with blue_reg[0]                      ;
-; red_reg[0..7]                          ; Merged with blue_reg[0]                      ;
+; blue_reg[3]                            ; Merged with blue_reg[0]                      ;
+; green_reg[0,3,4]                       ; Merged with blue_reg[0]                      ;
+; red_reg[0,2,4..7]                      ; Merged with blue_reg[0]                      ;
+; red_reg[1,3]                           ; Merged with blue_reg[4]                      ;
+; blue_reg[5]                            ; Merged with blue_reg[1]                      ;
+; green_reg[1,2,5..7]                    ; Merged with blue_reg[1]                      ;
+; blue_reg[6,7]                          ; Merged with blue_reg[2]                      ;
+; move_bar:m|timer:t|contador[18]        ; Merged with move_ball:b|timer:t|contador[18] ;
 ; move_bar:m|timer:t|contador[17]        ; Merged with move_ball:b|timer:t|contador[17] ;
 ; move_bar:m|timer:t|contador[16]        ; Merged with move_ball:b|timer:t|contador[16] ;
 ; move_bar:m|timer:t|contador[15]        ; Merged with move_ball:b|timer:t|contador[15] ;
-; move_bar:m|timer:t|contador[14]        ; Merged with move_ball:b|timer:t|contador[14] ;
-; move_bar:m|timer:t|contador[12]        ; Merged with move_ball:b|timer:t|contador[12] ;
-; move_bar:m|timer:t|contador[7]         ; Merged with move_ball:b|timer:t|contador[7]  ;
-; move_bar:m|timer:t|contador[4]         ; Merged with move_ball:b|timer:t|contador[4]  ;
+; move_bar:m|timer:t|contador[13]        ; Merged with move_ball:b|timer:t|contador[13] ;
+; move_bar:m|timer:t|contador[8]         ; Merged with move_ball:b|timer:t|contador[8]  ;
+; move_bar:m|timer:t|contador[5]         ; Merged with move_ball:b|timer:t|contador[5]  ;
 ; move_bar:m|timer:t|contador[30]        ; Merged with move_ball:b|timer:t|contador[30] ;
 ; move_bar:m|timer:t|contador[29]        ; Merged with move_ball:b|timer:t|contador[29] ;
 ; move_bar:m|timer:t|contador[28]        ; Merged with move_ball:b|timer:t|contador[28] ;
@@ -328,26 +386,45 @@ Encoding Type:  One-Hot
 ; move_bar:m|timer:t|contador[21]        ; Merged with move_ball:b|timer:t|contador[21] ;
 ; move_bar:m|timer:t|contador[20]        ; Merged with move_ball:b|timer:t|contador[20] ;
 ; move_bar:m|timer:t|contador[19]        ; Merged with move_ball:b|timer:t|contador[19] ;
-; move_bar:m|timer:t|contador[18]        ; Merged with move_ball:b|timer:t|contador[18] ;
-; move_bar:m|timer:t|contador[13]        ; Merged with move_ball:b|timer:t|contador[13] ;
+; move_bar:m|timer:t|contador[14]        ; Merged with move_ball:b|timer:t|contador[14] ;
+; move_bar:m|timer:t|contador[12]        ; Merged with move_ball:b|timer:t|contador[12] ;
 ; move_bar:m|timer:t|contador[11]        ; Merged with move_ball:b|timer:t|contador[11] ;
 ; move_bar:m|timer:t|contador[10]        ; Merged with move_ball:b|timer:t|contador[10] ;
 ; move_bar:m|timer:t|contador[9]         ; Merged with move_ball:b|timer:t|contador[9]  ;
-; move_bar:m|timer:t|contador[8]         ; Merged with move_ball:b|timer:t|contador[8]  ;
+; move_bar:m|timer:t|contador[7]         ; Merged with move_ball:b|timer:t|contador[7]  ;
 ; move_bar:m|timer:t|contador[6]         ; Merged with move_ball:b|timer:t|contador[6]  ;
-; move_bar:m|timer:t|contador[5]         ; Merged with move_ball:b|timer:t|contador[5]  ;
+; move_bar:m|timer:t|contador[4]         ; Merged with move_ball:b|timer:t|contador[4]  ;
 ; move_bar:m|timer:t|contador[3]         ; Merged with move_ball:b|timer:t|contador[3]  ;
 ; move_bar:m|timer:t|contador[2]         ; Merged with move_ball:b|timer:t|contador[2]  ;
 ; move_bar:m|timer:t|contador[1]         ; Merged with move_ball:b|timer:t|contador[1]  ;
 ; move_bar:m|timer:t|contador[0]         ; Merged with move_ball:b|timer:t|contador[0]  ;
+; bloco:b1|estado~7                      ; Lost fanout                                  ;
+; bloco:b1|estado~8                      ; Lost fanout                                  ;
 ; move_ball:b|estado~2                   ; Lost fanout                                  ;
 ; move_ball:b|estado~3                   ; Lost fanout                                  ;
 ; move_ball:b|estado~4                   ; Lost fanout                                  ;
 ; move_ball:b|estado~5                   ; Lost fanout                                  ;
 ; move_bar:m|estado~4                    ; Lost fanout                                  ;
 ; move_bar:m|estado~5                    ; Lost fanout                                  ;
-; Total Number of Removed Registers = 71 ;                                              ;
+; placar:p|estado~4                      ; Lost fanout                                  ;
+; placar:p|estado~5                      ; Lost fanout                                  ;
+; placar:p|estado~7                      ; Lost fanout                                  ;
+; bloco:b1|estado.0001                   ; Lost fanout                                  ;
+; bloco:b1|estado.0010                   ; Lost fanout                                  ;
+; bloco:b1|estado.0000                   ; Lost fanout                                  ;
+; placar:p|button:b|estado.10            ; Lost fanout                                  ;
+; placar:p|estado.0011                   ; Lost fanout                                  ;
+; Total Number of Removed Registers = 99 ;                                              ;
 +----------------------------------------+----------------------------------------------+
+
+
++---------------------------------------------------------------------------------+
+; Removed Registers Triggering Further Register Optimizations                     ;
++-------------------+--------------------+----------------------------------------+
+; Register name     ; Reason for Removal ; Registers Removed due to This Register ;
++-------------------+--------------------+----------------------------------------+
+; placar:p|estado~4 ; Lost Fanouts       ; placar:p|estado.0011                   ;
++-------------------+--------------------+----------------------------------------+
 
 
 +------------------------------------------------------+
@@ -355,12 +432,12 @@ Encoding Type:  One-Hot
 +----------------------------------------------+-------+
 ; Statistic                                    ; Value ;
 +----------------------------------------------+-------+
-; Total registers                              ; 132   ;
-; Number of registers using Synchronous Clear  ; 96    ;
-; Number of registers using Synchronous Load   ; 13    ;
+; Total registers                              ; 140   ;
+; Number of registers using Synchronous Clear  ; 91    ;
+; Number of registers using Synchronous Load   ; 41    ;
 ; Number of registers using Asynchronous Clear ; 0     ;
 ; Number of registers using Asynchronous Load  ; 0     ;
-; Number of registers using Clock Enable       ; 76    ;
+; Number of registers using Clock Enable       ; 74    ;
 ; Number of registers using Preset             ; 0     ;
 +----------------------------------------------+-------+
 
@@ -370,16 +447,20 @@ Encoding Type:  One-Hot
 +--------------------+-----------+---------------+----------------------+------------------------+------------+---------------------------------------+
 ; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output            ;
 +--------------------+-----------+---------------+----------------------+------------------------+------------+---------------------------------------+
-; 3:1                ; 31 bits   ; 62 LEs        ; 0 LEs                ; 62 LEs                 ; Yes        ; |top|move_ball:b|timer:t|contador[16] ;
-; 3:1                ; 10 bits   ; 20 LEs        ; 0 LEs                ; 20 LEs                 ; Yes        ; |top|vga:v|x[5]                       ;
-; 4:1                ; 10 bits   ; 20 LEs        ; 0 LEs                ; 20 LEs                 ; Yes        ; |top|vga:v|y[1]                       ;
-; 4:1                ; 9 bits    ; 18 LEs        ; 0 LEs                ; 18 LEs                 ; Yes        ; |top|placar:p|display_curr[8]         ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 7 LEs                ; 7 LEs                  ; Yes        ; |top|placar:p|vidas[2]                ;
+; 3:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |top|placar:p|vidas[1]                ;
+; 3:1                ; 9 bits    ; 18 LEs        ; 0 LEs                ; 18 LEs                 ; Yes        ; |top|placar:p|score[2]                ;
+; 3:1                ; 31 bits   ; 62 LEs        ; 0 LEs                ; 62 LEs                 ; Yes        ; |top|move_ball:b|timer:t|contador[30] ;
+; 3:1                ; 10 bits   ; 20 LEs        ; 0 LEs                ; 20 LEs                 ; Yes        ; |top|vga:v|x[7]                       ;
+; 4:1                ; 10 bits   ; 20 LEs        ; 0 LEs                ; 20 LEs                 ; Yes        ; |top|vga:v|y[0]                       ;
+; 4:1                ; 4 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; Yes        ; |top|blue_reg[0]                      ;
 ; 6:1                ; 14 bits   ; 56 LEs        ; 0 LEs                ; 56 LEs                 ; Yes        ; |top|move_ball:b|x_ball[0]            ;
-; 6:1                ; 6 bits    ; 24 LEs        ; 12 LEs               ; 12 LEs                 ; Yes        ; |top|move_ball:b|x_ball[8]            ;
-; 6:1                ; 7 bits    ; 28 LEs        ; 14 LEs               ; 14 LEs                 ; Yes        ; |top|move_bar:m|x_pos[3]              ;
-; 6:1                ; 2 bits    ; 8 LEs         ; 4 LEs                ; 4 LEs                  ; Yes        ; |top|move_bar:m|x_pos[6]              ;
-; 6:1                ; 10 bits   ; 40 LEs        ; 20 LEs               ; 20 LEs                 ; Yes        ; |top|move_ball:b|vy_mod[6]            ;
-; 12:1               ; 9 bits    ; 72 LEs        ; 18 LEs               ; 54 LEs                 ; Yes        ; |top|move_ball:b|vx_mod[7]            ;
+; 6:1                ; 6 bits    ; 24 LEs        ; 12 LEs               ; 12 LEs                 ; Yes        ; |top|move_ball:b|y_ball[4]            ;
+; 6:1                ; 6 bits    ; 24 LEs        ; 12 LEs               ; 12 LEs                 ; Yes        ; |top|move_bar:m|x_pos[3]              ;
+; 6:1                ; 2 bits    ; 8 LEs         ; 4 LEs                ; 4 LEs                  ; Yes        ; |top|move_bar:m|x_pos[8]              ;
+; 6:1                ; 9 bits    ; 36 LEs        ; 18 LEs               ; 18 LEs                 ; Yes        ; |top|move_ball:b|vy_mod[3]            ;
+; 10:1               ; 9 bits    ; 54 LEs        ; 18 LEs               ; 36 LEs                 ; Yes        ; |top|move_ball:b|vx_mod[9]            ;
+; 3:1                ; 2 bits    ; 4 LEs         ; 4 LEs                ; 0 LEs                  ; No         ; |top|bloco:b1|estado                  ;
 +--------------------+-----------+---------------+----------------------+------------------------+------------+---------------------------------------+
 
 
@@ -395,6 +476,8 @@ Encoding Type:  One-Hot
 ; R_BALL         ; 8     ; Signed Integer                             ;
 ; H_BAR          ; 8     ; Signed Integer                             ;
 ; W_BAR          ; 64    ; Signed Integer                             ;
+; H_BLOCK        ; 8     ; Signed Integer                             ;
+; W_BLOCK        ; 32    ; Signed Integer                             ;
 +----------------+-------+--------------------------------------------+
 Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
 
@@ -466,7 +549,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 +----------------+---------------------------------+-----------------+
 ; Parameter Name ; Value                           ; Type            ;
 +----------------+---------------------------------+-----------------+
-; PULSE_TIME     ; 0000000000000111101000010010000 ; Unsigned Binary ;
+; PULSE_TIME     ; 0000000000001111010000100100000 ; Unsigned Binary ;
 +----------------+---------------------------------+-----------------+
 Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
 
@@ -480,6 +563,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 ; LIM_RIGHT      ; 632   ; Signed Integer                  ;
 ; LIM_UP         ; 8     ; Signed Integer                  ;
 ; LIM_DOWN       ; 472   ; Signed Integer                  ;
+; LIM_ENDGAME    ; 456   ; Signed Integer                  ;
 ; R_BALL         ; 8     ; Signed Integer                  ;
 ; H_BAR          ; 8     ; Signed Integer                  ;
 ; W_BAR          ; 64    ; Signed Integer                  ;
@@ -492,9 +576,39 @@ Note: In order to hide this table in the UI and the text report file, please set
 +----------------+---------------------------------+-----------------+
 ; Parameter Name ; Value                           ; Type            ;
 +----------------+---------------------------------+-----------------+
-; PULSE_TIME     ; 0000000000000111101000010010000 ; Unsigned Binary ;
+; PULSE_TIME     ; 0000000000001111010000100100000 ; Unsigned Binary ;
 +----------------+---------------------------------+-----------------+
 Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-------------------------------------------------------+
+; Parameter Settings for User Entity Instance: bloco:b1 ;
++----------------+-------+------------------------------+
+; Parameter Name ; Value ; Type                         ;
++----------------+-------+------------------------------+
+; R_BALL         ; 8     ; Signed Integer               ;
+; H_BAR          ; 8     ; Signed Integer               ;
+; W_BAR          ; 64    ; Signed Integer               ;
+; H_BLOCK        ; 8     ; Signed Integer               ;
+; W_BLOCK        ; 32    ; Signed Integer               ;
++----------------+-------+------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "bloco:b1"                                                                                                                                                                               ;
++-----------+-------+----------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Port      ; Type  ; Severity ; Details                                                                                                                                                                             ;
++-----------+-------+----------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; x_i       ; Input ; Warning  ; Input port expression (32 bits) is wider than the input port (10 bits) it drives.  The 22 most-significant bit(s) in the expression will be dangling if they have no other fanouts. ;
+; x_i[9..6] ; Input ; Info     ; Stuck at GND                                                                                                                                                                        ;
+; x_i[4..0] ; Input ; Info     ; Stuck at GND                                                                                                                                                                        ;
+; x_i[5]    ; Input ; Info     ; Stuck at VCC                                                                                                                                                                        ;
+; y_i       ; Input ; Warning  ; Input port expression (32 bits) is wider than the input port (10 bits) it drives.  The 22 most-significant bit(s) in the expression will be dangling if they have no other fanouts. ;
+; y_i[9..4] ; Input ; Info     ; Stuck at GND                                                                                                                                                                        ;
+; y_i[2..0] ; Input ; Info     ; Stuck at GND                                                                                                                                                                        ;
+; y_i[3]    ; Input ; Info     ; Stuck at VCC                                                                                                                                                                        ;
++-----------+-------+----------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 
 +-------------------------------------------------------------------------------------------------------------------+
@@ -502,7 +616,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 +---------+--------+----------+-------------------------------------------------------------------------------------+
 ; Port    ; Type   ; Severity ; Details                                                                             ;
 +---------+--------+----------+-------------------------------------------------------------------------------------+
-; endgame ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
+; hit_bar ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
 +---------+--------+----------+-------------------------------------------------------------------------------------+
 
 
@@ -531,31 +645,29 @@ Note: In order to hide this table in the UI and the text report file, please set
 +-----------------------+-----------------------------+
 ; Type                  ; Count                       ;
 +-----------------------+-----------------------------+
-; arriav_ff             ; 132                         ;
-;     ENA               ; 15                          ;
-;     ENA SCLR          ; 49                          ;
-;     ENA SLD           ; 12                          ;
-;     SCLR              ; 47                          ;
-;     SLD               ; 1                           ;
-;     plain             ; 8                           ;
-; arriav_lcell_comb     ; 465                         ;
-;     arith             ; 193                         ;
-;         0 data inputs ; 3                           ;
-;         1 data inputs ; 101                         ;
-;         2 data inputs ; 74                          ;
+; arriav_ff             ; 140                         ;
+;     ENA               ; 6                           ;
+;     ENA SCLR          ; 48                          ;
+;     ENA SLD           ; 20                          ;
+;     SCLR              ; 43                          ;
+;     SLD               ; 21                          ;
+;     plain             ; 2                           ;
+; arriav_lcell_comb     ; 490                         ;
+;     arith             ; 191                         ;
+;         0 data inputs ; 2                           ;
+;         1 data inputs ; 110                         ;
+;         2 data inputs ; 64                          ;
 ;         3 data inputs ; 4                           ;
 ;         4 data inputs ; 1                           ;
 ;         5 data inputs ; 10                          ;
-;     extend            ; 1                           ;
-;         7 data inputs ; 1                           ;
-;     normal            ; 246                         ;
+;     normal            ; 274                         ;
 ;         0 data inputs ; 1                           ;
 ;         1 data inputs ; 4                           ;
-;         2 data inputs ; 35                          ;
-;         3 data inputs ; 23                          ;
-;         4 data inputs ; 60                          ;
-;         5 data inputs ; 58                          ;
-;         6 data inputs ; 65                          ;
+;         2 data inputs ; 34                          ;
+;         3 data inputs ; 35                          ;
+;         4 data inputs ; 67                          ;
+;         5 data inputs ; 41                          ;
+;         6 data inputs ; 92                          ;
 ;     shared            ; 25                          ;
 ;         0 data inputs ; 1                           ;
 ;         2 data inputs ; 10                          ;
@@ -563,8 +675,8 @@ Note: In order to hide this table in the UI and the text report file, please set
 ; arriav_mac            ; 4                           ;
 ; boundary_port         ; 72                          ;
 ;                       ;                             ;
-; Max LUT depth         ; 6.00                        ;
-; Average LUT depth     ; 3.80                        ;
+; Max LUT depth         ; 6.80                        ;
+; Average LUT depth     ; 4.07                        ;
 +-----------------------+-----------------------------+
 
 
@@ -583,15 +695,16 @@ Note: In order to hide this table in the UI and the text report file, please set
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 17.1.0 Build 590 10/25/2017 SJ Lite Edition
-    Info: Processing started: Wed May 22 17:10:05 2024
+    Info: Processing started: Mon May 27 17:17:43 2024
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off projeto-final -c projeto-final
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (20030): Parallel compilation is enabled and will use 12 of the 12 processors detected
+Info (12021): Found 1 design units, including 1 entities, in source file /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/bloco.v
+    Info (12023): Found entity 1: bloco File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/bloco.v Line: 1
 Info (12021): Found 1 design units, including 1 entities, in source file /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/vga.v
     Info (12023): Found entity 1: vga File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/vga.v Line: 1
-Warning (10275): Verilog HDL Module Instantiation warning at top.v(103): ignored dangling comma in List of Port Connections File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/top.v Line: 103
 Info (12021): Found 1 design units, including 1 entities, in source file /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/top.v
-    Info (12023): Found entity 1: top File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/top.v Line: 13
+    Info (12023): Found entity 1: top File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/top.v Line: 1
 Info (12021): Found 1 design units, including 1 entities, in source file /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/timer.v
     Info (12023): Found entity 1: timer File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/timer.v Line: 1
 Info (12021): Found 1 design units, including 1 entities, in source file /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/placar.v
@@ -599,75 +712,82 @@ Info (12021): Found 1 design units, including 1 entities, in source file /home/e
 Info (12021): Found 1 design units, including 1 entities, in source file /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/move_bar.v
     Info (12023): Found entity 1: move_bar File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/move_bar.v Line: 1
 Info (12021): Found 1 design units, including 1 entities, in source file /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/move_ball.v
-    Info (12023): Found entity 1: move_ball File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/move_ball.v Line: 2
+    Info (12023): Found entity 1: move_ball File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/move_ball.v Line: 1
 Info (12021): Found 1 design units, including 1 entities, in source file /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/cb7s.v
     Info (12023): Found entity 1: cb7s File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/cb7s.v Line: 1
 Info (12021): Found 1 design units, including 1 entities, in source file /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/button.v
     Info (12023): Found entity 1: button File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/button.v Line: 1
 Info (12021): Found 1 design units, including 1 entities, in source file /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/bcd.v
     Info (12023): Found entity 1: bcd File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/bcd.v Line: 3
+Warning (10236): Verilog HDL Implicit Net warning at bloco.v(35): created implicit net for "hit_block_down" File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/bloco.v Line: 35
+Warning (10236): Verilog HDL Implicit Net warning at bloco.v(36): created implicit net for "hit_block_up" File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/bloco.v Line: 36
+Warning (10236): Verilog HDL Implicit Net warning at bloco.v(37): created implicit net for "hit_block_right" File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/bloco.v Line: 37
+Warning (10236): Verilog HDL Implicit Net warning at bloco.v(38): created implicit net for "hit_block_left" File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/bloco.v Line: 38
 Warning (10236): Verilog HDL Implicit Net warning at move_ball.v(46): created implicit net for "hit_center" File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/move_ball.v Line: 46
 Warning (10236): Verilog HDL Implicit Net warning at move_ball.v(47): created implicit net for "hit_left" File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/move_ball.v Line: 47
 Warning (10236): Verilog HDL Implicit Net warning at move_ball.v(48): created implicit net for "hit_right" File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/move_ball.v Line: 48
 Info (12127): Elaborating entity "top" for the top level hierarchy
-Warning (10230): Verilog HDL assignment warning at top.v(148): truncated value with size 32 to match size of target (8) File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/top.v Line: 148
-Warning (10230): Verilog HDL assignment warning at top.v(149): truncated value with size 32 to match size of target (8) File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/top.v Line: 149
-Warning (10230): Verilog HDL assignment warning at top.v(150): truncated value with size 32 to match size of target (8) File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/top.v Line: 150
-Info (12128): Elaborating entity "placar" for hierarchy "placar:p" File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/top.v Line: 82
-Warning (10230): Verilog HDL assignment warning at placar.v(68): truncated value with size 32 to match size of target (9) File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/placar.v Line: 68
-Info (12128): Elaborating entity "bcd" for hierarchy "placar:p|bcd:b1" File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/placar.v Line: 28
-Info (12128): Elaborating entity "cb7s" for hierarchy "placar:p|cb7s:c0_max" File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/placar.v Line: 39
-Info (12128): Elaborating entity "vga" for hierarchy "vga:v" File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/top.v Line: 94
+Warning (10036): Verilog HDL or VHDL warning at top.v(46): object "endgame" assigned a value but never read File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/top.v Line: 46
+Warning (10230): Verilog HDL assignment warning at top.v(185): truncated value with size 32 to match size of target (8) File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/top.v Line: 185
+Warning (10230): Verilog HDL assignment warning at top.v(186): truncated value with size 32 to match size of target (8) File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/top.v Line: 186
+Warning (10230): Verilog HDL assignment warning at top.v(187): truncated value with size 32 to match size of target (8) File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/top.v Line: 187
+Info (12128): Elaborating entity "placar" for hierarchy "placar:p" File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/top.v Line: 95
+Warning (10230): Verilog HDL assignment warning at placar.v(99): truncated value with size 32 to match size of target (9) File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/placar.v Line: 99
+Warning (10230): Verilog HDL assignment warning at placar.v(112): truncated value with size 32 to match size of target (9) File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/placar.v Line: 112
+Info (12128): Elaborating entity "bcd" for hierarchy "placar:p|bcd:b1" File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/placar.v Line: 27
+Info (12128): Elaborating entity "cb7s" for hierarchy "placar:p|cb7s:c0_vidas" File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/placar.v Line: 38
+Info (12128): Elaborating entity "button" for hierarchy "placar:p|button:b" File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/placar.v Line: 56
+Info (12128): Elaborating entity "vga" for hierarchy "vga:v" File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/top.v Line: 107
 Warning (10230): Verilog HDL assignment warning at vga.v(38): truncated value with size 32 to match size of target (10) File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/vga.v Line: 38
 Warning (10230): Verilog HDL assignment warning at vga.v(41): truncated value with size 32 to match size of target (10) File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/vga.v Line: 41
 Warning (10230): Verilog HDL assignment warning at vga.v(49): truncated value with size 32 to match size of target (1) File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/vga.v Line: 49
 Warning (10230): Verilog HDL assignment warning at vga.v(50): truncated value with size 32 to match size of target (1) File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/vga.v Line: 50
-Info (12128): Elaborating entity "move_bar" for hierarchy "move_bar:m" File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/top.v Line: 103
+Info (12128): Elaborating entity "move_bar" for hierarchy "move_bar:m" File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/top.v Line: 116
 Info (10264): Verilog HDL Case Statement information at move_bar.v(38): all case item expressions in this case statement are onehot File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/move_bar.v Line: 38
 Warning (10230): Verilog HDL assignment warning at move_bar.v(48): truncated value with size 32 to match size of target (10) File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/move_bar.v Line: 48
 Warning (10230): Verilog HDL assignment warning at move_bar.v(63): truncated value with size 32 to match size of target (10) File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/move_bar.v Line: 63
 Info (12128): Elaborating entity "timer" for hierarchy "move_bar:m|timer:t" File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/move_bar.v Line: 25
 Warning (10230): Verilog HDL assignment warning at timer.v(20): truncated value with size 32 to match size of target (31) File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/timer.v Line: 20
-Info (12128): Elaborating entity "move_ball" for hierarchy "move_ball:b" File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/top.v Line: 115
+Info (12128): Elaborating entity "move_ball" for hierarchy "move_ball:b" File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/top.v Line: 128
+Warning (10036): Verilog HDL or VHDL warning at move_ball.v(46): object "hit_center" assigned a value but never read File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/move_ball.v Line: 46
 Warning (10230): Verilog HDL assignment warning at move_ball.v(58): truncated value with size 32 to match size of target (10) File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/move_ball.v Line: 58
-Warning (10230): Verilog HDL assignment warning at move_ball.v(82): truncated value with size 32 to match size of target (10) File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/move_ball.v Line: 82
-Warning (10230): Verilog HDL assignment warning at move_ball.v(86): truncated value with size 32 to match size of target (10) File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/move_ball.v Line: 86
-Warning (10230): Verilog HDL assignment warning at move_ball.v(90): truncated value with size 32 to match size of target (10) File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/move_ball.v Line: 90
-Warning (10230): Verilog HDL assignment warning at move_ball.v(94): truncated value with size 32 to match size of target (10) File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/move_ball.v Line: 94
-Warning (10230): Verilog HDL assignment warning at move_ball.v(98): truncated value with size 32 to match size of target (10) File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/move_ball.v Line: 98
-Warning (10230): Verilog HDL assignment warning at move_ball.v(100): truncated value with size 32 to match size of target (10) File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/move_ball.v Line: 100
+Warning (10230): Verilog HDL assignment warning at move_ball.v(83): truncated value with size 32 to match size of target (10) File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/move_ball.v Line: 83
+Warning (10230): Verilog HDL assignment warning at move_ball.v(87): truncated value with size 32 to match size of target (10) File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/move_ball.v Line: 87
+Warning (10230): Verilog HDL assignment warning at move_ball.v(91): truncated value with size 32 to match size of target (10) File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/move_ball.v Line: 91
+Warning (10230): Verilog HDL assignment warning at move_ball.v(95): truncated value with size 32 to match size of target (10) File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/move_ball.v Line: 95
+Warning (10230): Verilog HDL assignment warning at move_ball.v(99): truncated value with size 32 to match size of target (10) File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/move_ball.v Line: 99
 Warning (10230): Verilog HDL assignment warning at move_ball.v(101): truncated value with size 32 to match size of target (10) File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/move_ball.v Line: 101
-Warning (10230): Verilog HDL assignment warning at move_ball.v(104): truncated value with size 32 to match size of target (10) File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/move_ball.v Line: 104
+Warning (10230): Verilog HDL assignment warning at move_ball.v(102): truncated value with size 32 to match size of target (10) File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/move_ball.v Line: 102
 Warning (10230): Verilog HDL assignment warning at move_ball.v(105): truncated value with size 32 to match size of target (10) File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/move_ball.v Line: 105
-Warning (10230): Verilog HDL assignment warning at move_ball.v(108): truncated value with size 32 to match size of target (10) File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/move_ball.v Line: 108
-Warning (10230): Verilog HDL assignment warning at move_ball.v(109): truncated value with size 32 to match size of target (10) File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/move_ball.v Line: 109
-Warning (12241): 2 hierarchies have connectivity warnings - see the Connectivity Checks report folder
+Warning (10230): Verilog HDL assignment warning at move_ball.v(106): truncated value with size 32 to match size of target (10) File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/move_ball.v Line: 106
+Info (12128): Elaborating entity "bloco" for hierarchy "bloco:b1" File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/top.v Line: 142
+Warning (12241): 3 hierarchies have connectivity warnings - see the Connectivity Checks report folder
 Warning (13024): Output pins are stuck at VCC or GND
-    Warning (13410): Pin "VGA_SYNC_N" is stuck at GND File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/top.v Line: 23
+    Warning (13410): Pin "VGA_SYNC_N" is stuck at GND File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/top.v Line: 11
 Info (286030): Timing-Driven Synthesis is running
-Info (17049): 6 registers lost all their fanouts during netlist optimizations.
+Info (17049): 16 registers lost all their fanouts during netlist optimizations.
 Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
     Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
 Warning (21074): Design contains 10 input pin(s) that do not drive logic
-    Warning (15610): No output dependent on input pin "SW[1]" File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/top.v Line: 15
-    Warning (15610): No output dependent on input pin "SW[3]" File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/top.v Line: 15
-    Warning (15610): No output dependent on input pin "SW[4]" File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/top.v Line: 15
-    Warning (15610): No output dependent on input pin "SW[5]" File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/top.v Line: 15
-    Warning (15610): No output dependent on input pin "SW[6]" File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/top.v Line: 15
-    Warning (15610): No output dependent on input pin "SW[7]" File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/top.v Line: 15
-    Warning (15610): No output dependent on input pin "SW[8]" File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/top.v Line: 15
-    Warning (15610): No output dependent on input pin "SW[9]" File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/top.v Line: 15
-    Warning (15610): No output dependent on input pin "KEY[2]" File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/top.v Line: 16
-    Warning (15610): No output dependent on input pin "KEY[3]" File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/top.v Line: 16
-Info (21057): Implemented 557 device resources after synthesis - the final resource count might be different
+    Warning (15610): No output dependent on input pin "SW[1]" File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/top.v Line: 3
+    Warning (15610): No output dependent on input pin "SW[3]" File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/top.v Line: 3
+    Warning (15610): No output dependent on input pin "SW[4]" File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/top.v Line: 3
+    Warning (15610): No output dependent on input pin "SW[5]" File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/top.v Line: 3
+    Warning (15610): No output dependent on input pin "SW[6]" File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/top.v Line: 3
+    Warning (15610): No output dependent on input pin "SW[7]" File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/top.v Line: 3
+    Warning (15610): No output dependent on input pin "SW[8]" File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/top.v Line: 3
+    Warning (15610): No output dependent on input pin "SW[9]" File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/top.v Line: 3
+    Warning (15610): No output dependent on input pin "KEY[2]" File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/top.v Line: 4
+    Warning (15610): No output dependent on input pin "KEY[3]" File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/top.v Line: 4
+Info (21057): Implemented 593 device resources after synthesis - the final resource count might be different
     Info (21058): Implemented 15 input pins
     Info (21059): Implemented 57 output pins
-    Info (21061): Implemented 481 logic cells
+    Info (21061): Implemented 517 logic cells
     Info (21062): Implemented 4 DSP elements
-Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 42 warnings
-    Info: Peak virtual memory: 1313 megabytes
-    Info: Processing ended: Wed May 22 17:10:12 2024
-    Info: Elapsed time: 00:00:07
-    Info: Total CPU time (on all processors): 00:00:15
+Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 46 warnings
+    Info: Peak virtual memory: 1315 megabytes
+    Info: Processing ended: Mon May 27 17:17:49 2024
+    Info: Elapsed time: 00:00:06
+    Info: Total CPU time (on all processors): 00:00:14
 
 

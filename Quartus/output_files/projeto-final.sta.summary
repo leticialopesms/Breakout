@@ -3,99 +3,99 @@ TimeQuest Timing Analyzer Summary
 ------------------------------------------------------------
 
 Type  : Slow 1100mV 85C Model Setup 'VGA_CLK~reg0'
-Slack : -11.247
-TNS   : -622.488
+Slack : -11.482
+TNS   : -623.744
 
 Type  : Slow 1100mV 85C Model Setup 'CLOCK_50'
-Slack : -2.766
-TNS   : -2.766
+Slack : -2.603
+TNS   : -2.603
 
 Type  : Slow 1100mV 85C Model Hold 'VGA_CLK~reg0'
-Slack : 0.279
-TNS   : 0.000
-
-Type  : Slow 1100mV 85C Model Hold 'CLOCK_50'
-Slack : 1.079
-TNS   : 0.000
-
-Type  : Slow 1100mV 85C Model Minimum Pulse Width 'CLOCK_50'
-Slack : -0.403
-TNS   : -0.797
-
-Type  : Slow 1100mV 85C Model Minimum Pulse Width 'VGA_CLK~reg0'
-Slack : -0.394
-TNS   : -72.216
-
-Type  : Slow 1100mV 0C Model Setup 'VGA_CLK~reg0'
-Slack : -11.570
-TNS   : -609.531
-
-Type  : Slow 1100mV 0C Model Setup 'CLOCK_50'
-Slack : -2.651
-TNS   : -2.651
-
-Type  : Slow 1100mV 0C Model Hold 'VGA_CLK~reg0'
 Slack : 0.281
 TNS   : 0.000
 
+Type  : Slow 1100mV 85C Model Hold 'CLOCK_50'
+Slack : 1.130
+TNS   : 0.000
+
+Type  : Slow 1100mV 85C Model Minimum Pulse Width 'CLOCK_50'
+Slack : -0.458
+TNS   : -0.852
+
+Type  : Slow 1100mV 85C Model Minimum Pulse Width 'VGA_CLK~reg0'
+Slack : -0.394
+TNS   : -84.790
+
+Type  : Slow 1100mV 0C Model Setup 'VGA_CLK~reg0'
+Slack : -11.657
+TNS   : -612.097
+
+Type  : Slow 1100mV 0C Model Setup 'CLOCK_50'
+Slack : -2.512
+TNS   : -2.512
+
+Type  : Slow 1100mV 0C Model Hold 'VGA_CLK~reg0'
+Slack : 0.283
+TNS   : 0.000
+
 Type  : Slow 1100mV 0C Model Hold 'CLOCK_50'
-Slack : 1.048
+Slack : 1.091
 TNS   : 0.000
 
 Type  : Slow 1100mV 0C Model Minimum Pulse Width 'CLOCK_50'
-Slack : -0.420
-TNS   : -0.814
+Slack : -0.468
+TNS   : -0.862
 
 Type  : Slow 1100mV 0C Model Minimum Pulse Width 'VGA_CLK~reg0'
 Slack : -0.394
-TNS   : -70.681
+TNS   : -83.260
 
 Type  : Fast 1100mV 85C Model Setup 'VGA_CLK~reg0'
-Slack : -5.689
-TNS   : -329.447
+Slack : -5.979
+TNS   : -332.674
 
 Type  : Fast 1100mV 85C Model Setup 'CLOCK_50'
-Slack : -2.112
-TNS   : -2.112
+Slack : -1.992
+TNS   : -1.992
 
 Type  : Fast 1100mV 85C Model Hold 'VGA_CLK~reg0'
-Slack : 0.090
+Slack : 0.092
 TNS   : 0.000
 
 Type  : Fast 1100mV 85C Model Hold 'CLOCK_50'
-Slack : 1.027
+Slack : 1.077
 TNS   : 0.000
 
 Type  : Fast 1100mV 85C Model Minimum Pulse Width 'CLOCK_50'
-Slack : -0.407
-TNS   : -0.463
+Slack : -0.456
+TNS   : -0.561
 
 Type  : Fast 1100mV 85C Model Minimum Pulse Width 'VGA_CLK~reg0'
-Slack : 0.018
-TNS   : 0.000
+Slack : -0.110
+TNS   : -4.017
 
 Type  : Fast 1100mV 0C Model Setup 'VGA_CLK~reg0'
-Slack : -5.331
-TNS   : -291.868
+Slack : -5.549
+TNS   : -294.626
 
 Type  : Fast 1100mV 0C Model Setup 'CLOCK_50'
-Slack : -1.769
-TNS   : -1.769
+Slack : -1.657
+TNS   : -1.657
 
 Type  : Fast 1100mV 0C Model Hold 'VGA_CLK~reg0'
-Slack : 0.078
+Slack : 0.079
 TNS   : 0.000
 
 Type  : Fast 1100mV 0C Model Hold 'CLOCK_50'
-Slack : 0.774
+Slack : 0.792
 TNS   : 0.000
 
 Type  : Fast 1100mV 0C Model Minimum Pulse Width 'CLOCK_50'
-Slack : -0.419
-TNS   : -0.496
+Slack : -0.457
+TNS   : -0.573
 
 Type  : Fast 1100mV 0C Model Minimum Pulse Width 'VGA_CLK~reg0'
-Slack : 0.057
-TNS   : 0.000
+Slack : -0.054
+TNS   : -1.182
 
 ------------------------------------------------------------
