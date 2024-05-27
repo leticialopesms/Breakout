@@ -61,7 +61,7 @@ always @(posedge clock) begin
       display_vidas = display_vidas - 1;
       display_curr = 0;
     end
-    else if(endgame && !display_vidas) begin
+    else if(endgame && (display_vidas == 0)) begin
       display_vidas = 0;  // fica assim ate dar reset
       display_curr = 0;   // fica assim ate dar reset
     end

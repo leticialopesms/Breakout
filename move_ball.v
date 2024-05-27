@@ -34,7 +34,7 @@ reg [9:0] vy_mod;   // modulo da velocidade em y
 
 wire move;
 
-timer t (
+timer_ball t (
   .clock(clock),
   .reset(reset),
   .pulse(move)

@@ -36,10 +36,21 @@ wire active;
 wire barrinha;
 wire bolinha;
 
+// booleanos que vamos precisar nos outros arquivos
+wire hit_bar;
+wire endgame_ball; 
+wire hit_block1, hit_block2, hit_block3, hit_block4, hit_block5, hit_block6, hit_block7, hit_block8, hit_block9, hit_block10, 
+hit_block11, hit_block12, hit_block13, hit_block14, hit_block15;
+
+wire endgame_block1, endgame_block2, endgame_block3, endgame_block4, endgame_block5, endgame_block6, endgame_block7, endgame_block8, endgame_block9, endgame_block10,
+endgame_block11, endgame_block12, endgame_block13, endgame_block14, endgame_block15;
+
 assign barrinha = ((next_x <= x_bar + W_BAR) && (next_x >= x_bar - W_BAR) && (next_y <= y_bar + H_BAR) && (next_y >= y_bar - H_BAR));
 assign bolinha = (((x_ball - next_x) * (x_ball - next_x) + (y_ball - next_y) * (y_ball - next_y)) <= R_BALL*R_BALL);
 
-wire hit_bar, endgame; // booleanos que vamos precisar nos outros arquivos
+// pensar em talvez um existe_bloco, por causa da questao da implementacao do hit_bloco estar sempre 1
+// assign youwin = (hit_bloco1 && hit_bloco2 && hit_bloco3 && hit_bloco4 && hit_bloco5 && hit_bloco6 && hit_bloco7 && hit_bloco8 && hit_bloco9 && hit_bloco10 && hit_bloco11 && hit_bloco12 && hit_bloco13 && hit_bloco14 && hit_bloco15);
+assign endgame = (endgame_block1 || endgame_block2 || endgame_block3 || endgame_block4 || endgame_block5 || endgame_block6 || endgame_block7 || endgame_block8 || endgame_block9 || endgame_block10 || endgame_block11 || endgame_block12 || endgame_block13 || endgame_block14 || endgame_block15 || endgame_ball);
 
 // parametros para os limites do monitor (até onde o quadrado pode ir)
 parameter LIM_LEFT = R_BALL;
@@ -94,7 +105,7 @@ move_ball b (
   .x_p(x_ball),
   .y_p(y_ball),
   .hit_bar(hit_bar),
-  .endgame(endgame)
+  .endgame(endgame_ball)
 );
 
 // divisor de frequência
