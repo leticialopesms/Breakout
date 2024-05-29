@@ -1,4 +1,10 @@
 
+State Machine - |top|bloco:b2|estado
+Name estado.0000 estado.0010 estado.0001 
+estado.0000 0 0 0 
+estado.0001 1 0 1 
+estado.0010 1 1 0 
+
 State Machine - |top|bloco:b1|estado
 Name estado.0000 estado.0010 estado.0001 
 estado.0000 0 0 0 
@@ -6,14 +12,18 @@ estado.0001 1 0 1
 estado.0010 1 1 0 
 
 State Machine - |top|move_ball:b|estado
-Name estado.0110 estado.0101 estado.0100 estado.0011 estado.0010 estado.0001 estado.0000 
-estado.0000 0 0 0 0 0 0 0 
-estado.0001 0 0 0 0 0 1 1 
-estado.0010 0 0 0 0 1 0 1 
-estado.0011 0 0 0 1 0 0 1 
-estado.0100 0 0 1 0 0 0 1 
-estado.0101 0 1 0 0 0 0 1 
-estado.0110 1 0 0 0 0 0 1 
+Name estado.001010 estado.001001 estado.001000 estado.000111 estado.000110 estado.000101 estado.000100 estado.000011 estado.000010 estado.000001 estado.000000 
+estado.000000 0 0 0 0 0 0 0 0 0 0 0 
+estado.000001 0 0 0 0 0 0 0 0 0 1 1 
+estado.000010 0 0 0 0 0 0 0 0 1 0 1 
+estado.000011 0 0 0 0 0 0 0 1 0 0 1 
+estado.000100 0 0 0 0 0 0 1 0 0 0 1 
+estado.000101 0 0 0 0 0 1 0 0 0 0 1 
+estado.000110 0 0 0 0 1 0 0 0 0 0 1 
+estado.000111 0 0 0 1 0 0 0 0 0 0 1 
+estado.001000 0 0 1 0 0 0 0 0 0 0 1 
+estado.001001 0 1 0 0 0 0 0 0 0 0 1 
+estado.001010 1 0 0 0 0 0 0 0 0 0 1 
 
 State Machine - |top|move_bar:m|estado
 Name estado.0000 estado.0010 estado.0001 

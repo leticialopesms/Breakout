@@ -16,6 +16,19 @@ module top(
     output wire [6:0] HEX5          //  digito 5 - digito da esquerda
 );
 
+// parametros para os limites do monitor (até onde o quadrado pode ir)
+parameter LIM_LEFT = R_BALL;
+parameter LIM_RIGHT = 640 - R_BALL;
+parameter LIM_UP = R_BALL;
+parameter LIM_DOWN = 480 - R_BALL;
+
+// parametros para os tamanhos da bola, barra e bloco
+parameter R_BALL = 8;   // raio da bolinha
+parameter H_BAR = 8;    // metade da altura da barra
+parameter W_BAR = 64;   // metade da largura da barra
+
+// --- wires e regs --- //
+
 // regs cores
 reg [7:0] red_reg;
 reg [7:0] green_reg;
@@ -37,47 +50,53 @@ wire active;
 // flags de controle para pintar a barrinha e a bolinha
 wire barrinha;
 wire bolinha;
-wire bloquinho;
+wire bloquinho1, bloquinho2, bloquinho3, bloquinho4, bloquinho5, bloquinho6, bloquinho7, bloquinho8, bloquinho9, bloquinho10;
 wire lavinha;
 
 // booleanos que vamos precisar nos outros arquivos
 wire hit_bar;
+wire hit_block;
 wire endgame_ball;
+wire endgame_block;
 wire endgame;
 
-// parametros para os limites do monitor (até onde o quadrado pode ir)
-parameter LIM_LEFT = R_BALL;
-parameter LIM_RIGHT = 640 - R_BALL;
-parameter LIM_UP = R_BALL;
-parameter LIM_DOWN = 480 - R_BALL;
+// wires para hit_block
+wire hit_block1, hit_block2, hit_block3, hit_block4, hit_block5, hit_block6, hit_block7, hit_block8, hit_block9, hit_block10;
+wire hit_block_down1, hit_block_up1, hit_block_right1, hit_block_left1;
+wire hit_block_down2, hit_block_up2, hit_block_right2, hit_block_left2;
+wire hit_block_down3, hit_block_up3, hit_block_right3, hit_block_left3;
+wire hit_block_down4, hit_block_up4, hit_block_right4, hit_block_left4;
+wire hit_block_down5, hit_block_up5, hit_block_right5, hit_block_left5;
+wire hit_block_down6, hit_block_up6, hit_block_right6, hit_block_left6;
+wire hit_block_down7, hit_block_up7, hit_block_right7, hit_block_left7;
+wire hit_block_down8, hit_block_up8, hit_block_right8, hit_block_left8;
+wire hit_block_down9, hit_block_up9, hit_block_right9, hit_block_left9;
+wire hit_block_down10, hit_block_up10, hit_block_right10, hit_block_left10;
 
-// parametros para os tamanhos da bola, barra e bloco
-parameter R_BALL = 8;   // raio da bolinha
-parameter H_BAR = 8;    // metade da altura da barra
-parameter W_BAR = 64;   // metade da largura da barra
-parameter H_BLOCK = 8;  // metade da altura do bloco
-parameter W_BLOCK = 32; // metade da largura do bloco
+wire existe_b1, existe_b2, existe_b3, existe_b4, existe_b5, existe_b6, existe_b7, existe_b8, existe_b9, existe_b10;
 
-// wire hit_block1, hit_block2, hit_block3, hit_block4, hit_block5, hit_block6, hit_block7, hit_block8, hit_block9, hit_block10, 
-// hit_block11, hit_block12, hit_block13, hit_block14, hit_block15;
-wire hit_block1;
-wire hit_block;
-
-// wire endgame_block1, endgame_block2, endgame_block3, endgame_block4, endgame_block5, endgame_block6, endgame_block7, endgame_block8, endgame_block9, endgame_block10,
-// endgame_block11, endgame_block12, endgame_block13, endgame_block14, endgame_block15;
-wire endgame_block1;
-wire endgame_block;
-
-assign barrinha = ((next_x <= x_bar + W_BAR) && (next_x >= x_bar - W_BAR) && (next_y <= y_bar + H_BAR) && (next_y >= y_bar - H_BAR));
-assign bolinha = (((x_ball - next_x) * (x_ball - next_x) + (y_ball - next_y) * (y_ball - next_y)) <= R_BALL*R_BALL);
-assign bloquinho = ((next_x <= x_block + W_BLOCK) && (next_x >= x_block - W_BLOCK) && (next_y <= y_block + H_BLOCK) && (next_y >= y_block - H_BLOCK));
-assign lavinha = (next_y >= 480 - 16);
+// wires para endgame_block
+wire endgame_block1, endgame_block2, endgame_block3, endgame_block4, endgame_block5, endgame_block6, endgame_block7, endgame_block8, endgame_block9, endgame_block10;
 
 // pensar em talvez um existe_bloco, por causa da questao da implementacao do hit_bloco estar sempre 1
 
+// --- atribuições --- //
+
+// atribuições para os elementos do jogo
+assign barrinha = ((next_x <= x_bar + W_BAR) && (next_x >= x_bar - W_BAR) && (next_y <= y_bar + H_BAR) && (next_y >= y_bar - H_BAR));
+assign bolinha = (((x_ball - next_x) * (x_ball - next_x) + (y_ball - next_y) * (y_ball - next_y)) <= R_BALL*R_BALL);
+assign lavinha = (next_y >= 480 - 16);
+
+// atribuições para hit_block
+assign hit_block = (hit_block1 || hit_block2 || hit_block3 || hit_block4 || hit_block5 || hit_block6 || hit_block7 || hit_block8 || hit_block9 || hit_block10);
+assign hit_block_down = (hit_block_down1 || hit_block_down2 || hit_block_down3 || hit_block_down4 || hit_block_down5 || hit_block_down6 || hit_block_down7 || hit_block_down8 || hit_block_down9 || hit_block_down10);
+assign hit_block_up = (hit_block_up1 || hit_block_up2 || hit_block_up3 || hit_block_up4 || hit_block_up5 || hit_block_up6 || hit_block_up7 || hit_block_up8 || hit_block_up9 || hit_block_up10);
+assign hit_block_right = (hit_block_right1 || hit_block_right2 || hit_block_right3 || hit_block_right4 || hit_block_right5 || hit_block_right6 || hit_block_right7 || hit_block_right8 || hit_block_right9 || hit_block_right10);
+assign hit_block_left = (hit_block_left1 || hit_block_left2 || hit_block_left3 || hit_block_left4 || hit_block_left5 || hit_block_left6 || hit_block_left7 || hit_block_left8 || hit_block_left9 || hit_block_left10);
+
+// atribuições para endgame
 // assign endgame = (endgame_block1 || endgame_block2 || endgame_block3 || endgame_block4 || endgame_block5 || endgame_block6 || endgame_block7 || endgame_block8 || endgame_block9 || endgame_block10 || endgame_block11 || endgame_block12 || endgame_block13 || endgame_block14 || endgame_block15 || endgame_ball);
-assign hit_block = (hit_block1);
-assign endgame_block = (endgame_block1);
+assign endgame_block = (endgame_block1 || endgame_block2 || endgame_block3 || endgame_block4 || endgame_block5 || endgame_block6 || endgame_block7 || endgame_block8 || endgame_block9 || endgame_block10);
 assign endgame = (endgame_block || endgame_ball);
 
 
@@ -121,6 +140,11 @@ move_ball b (
   .start(~SW[2]),
   .x_bar(x_bar),
   .y_bar(y_bar),
+  .hit_block(hit_block),
+  .hit_block_down(hit_block_down),
+  .hit_block_up(hit_block_up),
+  .hit_block_right(hit_block_right),
+  .hit_block_left(hit_block_left),
   .x_p(x_ball),
   .y_p(y_ball),
   .hit_bar(hit_bar),
@@ -131,14 +155,40 @@ bloco b1 (
   .clock(VGA_CLK),
   .reset(~SW[0]),
   .start(~SW[2]),
-  .x_i(32),
-  .y_i(8),
+  .x_i(64),
+  .y_i(32),
   .x_ball(x_ball),
   .y_ball(y_ball),
-  .x_block(x_block),
-  .y_block(y_block),
+  .next_x(next_x),
+  .next_y(next_y),
+  .area(bloquinho1),
   .hit_block(hit_block1),
-  .endgame(endgame_block1)
+  .hit_block_down(hit_block_down1),
+  .hit_block_up(hit_block_up1),
+  .hit_block_right(hit_block_right1),
+  .hit_block_left(hit_block_left1),
+  .endgame(endgame_block1),
+  .exist(existe_b1)
+);
+
+bloco b2 (
+  .clock(VGA_CLK),
+  .reset(~SW[0]),
+  .start(~SW[2]),
+  .x_i(192),
+  .y_i(32),
+  .x_ball(x_ball),
+  .y_ball(y_ball),
+  .next_x(next_x),
+  .next_y(next_y),
+  .area(bloquinho2),
+  .hit_block(hit_block2),
+  .hit_block_down(hit_block_down2),
+  .hit_block_up(hit_block_up2),
+  .hit_block_right(hit_block_right2),
+  .hit_block_left(hit_block_left2),
+  .endgame(endgame_block2),
+  .exist(existe_b2)
 );
 
 // divisor de frequência
@@ -159,10 +209,15 @@ always @(posedge VGA_CLK) begin
         green_reg = 255; // verde
         blue_reg = 255; // azul
       end
-      else if (bloquinho) begin
+      else if (bloquinho1 && existe_b1) begin
         red_reg = 10; // vermelho
         green_reg = 230; // verde
         blue_reg = 50; // azul
+      end
+      else if (bloquinho2 && existe_b2) begin
+        red_reg = 100; // vermelho
+        green_reg = 50; // verde
+        blue_reg = 230; // azul
       end
       else if (lavinha && !barrinha) begin
         red_reg = 255; // vermelho

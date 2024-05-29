@@ -4,6 +4,11 @@ module move_ball(
     input start,
     input [9:0] x_bar,
     input [9:0] y_bar,
+    input hit_block,
+    input hit_block_up,
+    input hit_block_down,
+    input hit_block_left,
+    input hit_block_right,
     output wire [9:0] x_p,
     output wire [9:0] y_p,
     output wire hit_bar,
@@ -23,7 +28,7 @@ parameter H_BAR = 8;    // metade da altura da barra
 parameter W_BAR = 64;   // metade da largura da barra
 
 // variável estado para a máquina de estados
-reg [3:0] estado;
+reg [5:0] estado;
 
 // coordenadas do centro da bolinha
 reg [9:0] x_ball;
@@ -68,8 +73,13 @@ always @(posedge clock) begin
             else if(x_ball <= LIM_LEFT) estado = 2;       // bateu na esquerda
             else if(x_ball >= LIM_RIGHT) estado = 3;      // bateu na direita
             else if(y_ball >= LIM_ENDGAME) estado = 5;       // ENDGAME!
-            // pra resolver o bug: mudar esse limdown pra 
-            else estado = 6;
+            else if (hit_block) begin
+              if(hit_block_up) estado = 6;
+              else if(hit_block_down) estado = 7;
+              else if(hit_block_left) estado = 8;
+              else if(hit_block_right) estado = 9;
+            end
+            else estado = 10;
         end
         else if (start && endgame) begin
           estado = 0;
@@ -85,15 +95,15 @@ always @(posedge clock) begin
       end
       1: begin // bateu na borda de cima
         vy_mod = vy_mod * (-1);         // vai pra baixo
-        estado = 6;
+        estado = 10;
       end
       2: begin // bateu na borda da esquerda
         vx_mod = vx_mod * (-1);         // vai pra direita
-        estado = 6;
+        estado = 10;
       end
       3: begin // bateu na borda da direita
         vx_mod = vx_mod * (-1);         // vai pra esquerda
-        estado = 6;
+        estado = 10;
       end
       4: begin // bateu na barra 
         vy_mod = vy_mod * (-1);         // vai pra cima
@@ -105,20 +115,36 @@ always @(posedge clock) begin
           if(vx_mod > 0) vx_mod = vx_mod + 1;
           else vx_mod = vx_mod - 1;
         end
-        estado = 6;
+        estado = 10;
       end
       5: begin // bateu na borda de baixo (endgame)
         estado = 0;
         endgame = 1;
         // apertar em reset ou start novamente
       end
-      6: begin         // meramente continua
+      6: begin // bateu no bloco por cima
+        vy_mod = vy_mod * (-1);         // vai pra baixo
+        estado = 10;
+      end
+      7: begin // bateu no bloco por baixo
+        vy_mod = vy_mod * (-1);         // vai pra cima
+        estado = 10;
+      end
+      8: begin // bateu no bloco pela esquerda
+        vx_mod = vx_mod * (-1);         // vai pra direita
+        estado = 10;
+      end
+      9: begin // bateu no bloco pela direita
+        vx_mod = vx_mod * (-1);         // vai pra esquerda
+        estado = 10;
+      end
+      10: begin         // meramente continua
             if(move) begin
                 x_ball = x_ball + vx_mod;
                 y_ball = y_ball + vy_mod;
                 estado = 0;
             end
-            else estado = 6;
+            else estado = 10;
       end
       default: estado = 0;
     endcase

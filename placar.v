@@ -19,26 +19,26 @@ parameter TAM = 8; // tamanho do placar
 reg [TAM:0] vidas, score;
 
 wire [TAM+(TAM-4)/3:0] decimal_vidas; // qnt de vidas ate o momento
-wire [TAM+(TAM-4)/3:0] decimal_placar; // pontuacao atual
-wire [3:0] d0_vidas, d1_vidas, d0_placar, d1_placar; // são os dígitos (cada um com 4 bits) do resultado (em binário)
+wire [TAM+(TAM-4)/3:0] decimal_score; // pontuacao atual
+wire [3:0] d0_vidas, d1_vidas, d0_score, d1_score; // são os dígitos (cada um com 4 bits) do resultado (em binário)
 wire [6:0] d0_display, d1_display, d4_display, d5_display; // são os dígitos convertidos para o display de 7 segmentos
 
 // para o resultado do placar máximo
 bcd #(9) b1 (.bin(vidas), .bcd(decimal_vidas));
 
 // para o resultado do placar atual
-bcd #(9) b2 (.bin(score), .bcd(decimal_placar));
+bcd #(9) b2 (.bin(score), .bcd(decimal_score));
 
 // verificar isso aqui (na branch main isso ta invertido por algum motivo desconhecido)
 assign d0_vidas = decimal_vidas[3:0];
 assign d1_vidas = decimal_vidas[7:4];
-assign d0_placar = decimal_placar[3:0];
-assign d1_placar = decimal_placar[7:4];
+assign d0_score = decimal_score[3:0];
+assign d1_score = decimal_score[7:4];
 
-cb7s c0_vidas (.numero(d0_vidas),.segmentos(d0_display));
-cb7s c1_vidas (.numero(d1_vidas),.segmentos(d1_display));
-cb7s c0_placar(.numero(d0_placar),.segmentos(d4_display));
-cb7s c1_placar(.numero(d1_placar),.segmentos(d5_display));
+cb7s c0_vidas (.numero(d0_vidas),.segmentos(d4_display));
+cb7s c1_vidas (.numero(d1_vidas),.segmentos(d5_display));
+cb7s c0_score (.numero(d0_score),.segmentos(d0_display));
+cb7s c1_score (.numero(d1_score),.segmentos(d1_display));
 
 assign digito0 = d0_display;
 assign digito1 = (score<10) ? 7'b1111111:d1_display;
@@ -62,32 +62,11 @@ always @(posedge clock) begin
     estado = 0;
   end
   else begin
-    // if(start) begin
-    //   score = 0;
-    //   vidas = vidas;
-    // end
-    // else if(endgame_ball && (vidas > 0))begin
-    //   vidas = vidas - 1;
-    // end
-    // else if(endgame_ball && (vidas == 0)) begin
-    //   vidas = 0;  // fica assim ate dar reset
-    //   // pensar em escrever "OVER" no display
-    // end
-    // else if(hit_block && !somou) begin // se bateu no bloco mas ainda nao somou na pontuacao
-    //   // somar 1 no placar aqui
-    //   score = score + 1;
-    //   somou = 1;
-    // end
-    // else if(!hit_block && somou) begin
-    //   somou = 0;
-    // end
-    // else begin
-    //   score = score;
-    //   vidas = vidas;
-    // end
     case(estado)
       0: begin
         if (start) begin
+          vidas = vidas;
+          score = score;
           if(endgame_ball) estado = 1;
           else if (endgame_block) estado = 3;
           else if (add_score) estado = 4;
