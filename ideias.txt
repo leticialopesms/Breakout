@@ -37,3 +37,7 @@ reg [31:0] pixel[307200];
 12 - pra cada tipo de colisao da bola nos blocos, fazer um or entre todos (ok)
 
 13 - a bola nao colide quando bate na quina do bloco. consertar isso
+
+14 - colocar as cores nos blocos
+
+15 - fazer desenhos para incrementar o visual do jogo

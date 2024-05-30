@@ -151,12 +151,13 @@ move_ball b (
   .endgame(endgame_ball)
 );
 
+// primeira fileira de bloquinhos --------------------------------------------------
 bloco b1 (
   .clock(VGA_CLK),
   .reset(~SW[0]),
   .start(~SW[2]),
   .x_i(64),
-  .y_i(32),
+  .y_i(16),
   .x_ball(x_ball),
   .y_ball(y_ball),
   .next_x(next_x),
@@ -176,7 +177,7 @@ bloco b2 (
   .reset(~SW[0]),
   .start(~SW[2]),
   .x_i(192),
-  .y_i(32),
+  .y_i(16),
   .x_ball(x_ball),
   .y_ball(y_ball),
   .next_x(next_x),
@@ -190,6 +191,169 @@ bloco b2 (
   .endgame(endgame_block2),
   .exist(existe_b2)
 );
+
+bloco b3 (
+  .clock(VGA_CLK),
+  .reset(~SW[0]),
+  .start(~SW[2]),
+  .x_i(320),
+  .y_i(16),
+  .x_ball(x_ball),
+  .y_ball(y_ball),
+  .next_x(next_x),
+  .next_y(next_y),
+  .area(bloquinho3),
+  .hit_block(hit_block3),
+  .hit_block_down(hit_block_down3),
+  .hit_block_up(hit_block_up3),
+  .hit_block_right(hit_block_right3),
+  .hit_block_left(hit_block_left3),
+  .endgame(endgame_block3),
+  .exist(existe_b3)
+);
+
+bloco b4 (
+  .clock(VGA_CLK),
+  .reset(~SW[0]),
+  .start(~SW[2]),
+  .x_i(448),
+  .y_i(16),
+  .x_ball(x_ball),
+  .y_ball(y_ball),
+  .next_x(next_x),
+  .next_y(next_y),
+  .area(bloquinho4),
+  .hit_block(hit_block4),
+  .hit_block_down(hit_block_down4),
+  .hit_block_up(hit_block_up4),
+  .hit_block_right(hit_block_right4),
+  .hit_block_left(hit_block_left4),
+  .endgame(endgame_block4),
+  .exist(existe_b4)
+);
+
+bloco b5 (
+  .clock(VGA_CLK),
+  .reset(~SW[0]),
+  .start(~SW[2]),
+  .x_i(576),
+  .y_i(16),
+  .x_ball(x_ball),
+  .y_ball(y_ball),
+  .next_x(next_x),
+  .next_y(next_y),
+  .area(bloquinho5),
+  .hit_block(hit_block5),
+  .hit_block_down(hit_block_down5),
+  .hit_block_up(hit_block_up5),
+  .hit_block_right(hit_block_right5),
+  .hit_block_left(hit_block_left5),
+  .endgame(endgame_block5),
+  .exist(existe_b5)
+);
+
+
+// segunda fileira de bloquinhos --------------------------------------------
+bloco b6 (
+  .clock(VGA_CLK),
+  .reset(~SW[0]),
+  .start(~SW[2]),
+  .x_i(64),
+  .y_i(48),
+  .x_ball(x_ball),
+  .y_ball(y_ball),
+  .next_x(next_x),
+  .next_y(next_y),
+  .area(bloquinho6),
+  .hit_block(hit_block6),
+  .hit_block_down(hit_block_down6),
+  .hit_block_up(hit_block_up6),
+  .hit_block_right(hit_block_right6),
+  .hit_block_left(hit_block_left6),
+  .endgame(endgame_block6),
+  .exist(existe_b6)
+);
+
+bloco b7 (
+  .clock(VGA_CLK),
+  .reset(~SW[0]),
+  .start(~SW[2]),
+  .x_i(192),
+  .y_i(48),
+  .x_ball(x_ball),
+  .y_ball(y_ball),
+  .next_x(next_x),
+  .next_y(next_y),
+  .area(bloquinho7),
+  .hit_block(hit_block7),
+  .hit_block_down(hit_block_down7),
+  .hit_block_up(hit_block_up7),
+  .hit_block_right(hit_block_right7),
+  .hit_block_left(hit_block_left7),
+  .endgame(endgame_block7),
+  .exist(existe_b7)
+);
+
+bloco b8 (
+  .clock(VGA_CLK),
+  .reset(~SW[0]),
+  .start(~SW[2]),
+  .x_i(320),
+  .y_i(48),
+  .x_ball(x_ball),
+  .y_ball(y_ball),
+  .next_x(next_x),
+  .next_y(next_y),
+  .area(bloquinho8),
+  .hit_block(hit_block8),
+  .hit_block_down(hit_block_down8),
+  .hit_block_up(hit_block_up8),
+  .hit_block_right(hit_block_right8),
+  .hit_block_left(hit_block_left8),
+  .endgame(endgame_block8),
+  .exist(existe_b8)
+);
+
+bloco b9 (
+  .clock(VGA_CLK),
+  .reset(~SW[0]),
+  .start(~SW[2]),
+  .x_i(448),
+  .y_i(48),
+  .x_ball(x_ball),
+  .y_ball(y_ball),
+  .next_x(next_x),
+  .next_y(next_y),
+  .area(bloquinho9),
+  .hit_block(hit_block9),
+  .hit_block_down(hit_block_down9),
+  .hit_block_up(hit_block_up9),
+  .hit_block_right(hit_block_right9),
+  .hit_block_left(hit_block_left9),
+  .endgame(endgame_block9),
+  .exist(existe_b9)
+);
+
+bloco b10 (
+  .clock(VGA_CLK),
+  .reset(~SW[0]),
+  .start(~SW[2]),
+  .x_i(576),
+  .y_i(48),
+  .x_ball(x_ball),
+  .y_ball(y_ball),
+  .next_x(next_x),
+  .next_y(next_y),
+  .area(bloquinho10),
+  .hit_block(hit_block10),
+  .hit_block_down(hit_block_down10),
+  .hit_block_up(hit_block_up10),
+  .hit_block_right(hit_block_right10),
+  .hit_block_left(hit_block_left10),
+  .endgame(endgame_block10),
+  .exist(existe_b10)
+);
+
 
 // divisor de frequência
 always@(posedge CLOCK_50) begin
@@ -215,6 +379,46 @@ always @(posedge VGA_CLK) begin
         blue_reg = 50; // azul
       end
       else if (bloquinho2 && existe_b2) begin
+        red_reg = 100; // vermelho
+        green_reg = 50; // verde
+        blue_reg = 230; // azul
+      end
+      else if (bloquinho3 && existe_b3) begin
+        red_reg = 100; // vermelho
+        green_reg = 50; // verde
+        blue_reg = 230; // azul
+      end
+      else if (bloquinho4 && existe_b4) begin
+        red_reg = 100; // vermelho
+        green_reg = 50; // verde
+        blue_reg = 230; // azul
+      end
+      else if (bloquinho5 && existe_b5) begin
+        red_reg = 100; // vermelho
+        green_reg = 50; // verde
+        blue_reg = 230; // azul
+      end
+      else if (bloquinho6 && existe_b6) begin
+        red_reg = 100; // vermelho
+        green_reg = 50; // verde
+        blue_reg = 230; // azul
+      end
+      else if (bloquinho7 && existe_b7) begin
+        red_reg = 100; // vermelho
+        green_reg = 50; // verde
+        blue_reg = 230; // azul
+      end
+      else if (bloquinho8 && existe_b8) begin
+        red_reg = 100; // vermelho
+        green_reg = 50; // verde
+        blue_reg = 230; // azul
+      end
+      else if (bloquinho9 && existe_b9) begin
+        red_reg = 100; // vermelho
+        green_reg = 50; // verde
+        blue_reg = 230; // azul
+      end
+      else if (bloquinho10 && existe_b10) begin
         red_reg = 100; // vermelho
         green_reg = 50; // verde
         blue_reg = 230; // azul
