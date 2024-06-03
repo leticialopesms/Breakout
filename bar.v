@@ -1,10 +1,13 @@
-module move_bar(
+module bar(
     input clock,
     input reset,
     input left,          // move_left
     input right,         // move_right
+    input [9:0] next_x,
+    input [9:0] next_y,
     output wire [9:0]x,
-    output wire [9:0]y
+    output wire [9:0]y,
+    output wire area
 );
 
 // parametros para os limites do monitor (até onde o quadrado pode ir)
@@ -17,8 +20,8 @@ parameter LIM_RIGHT = (640 - W_BAR);
 reg [3:0] estado;
 
 // coordenadas do centro do quadrado
-reg [9:0] x_pos;
-reg [9:0] y_pos;
+reg [9:0] x_bar;
+reg [9:0] y_bar;
 
 wire move;
 
@@ -27,8 +30,8 @@ timer t (.clock(clock), .reset(reset), .pulse(move));
 always @(posedge clock) begin
   if (reset) begin
     estado = 0;
-    x_pos = 320;
-    y_pos = 464;
+    x_bar = 320;
+    y_bar = 464;
   end
   else begin
   // implementação da máquina de estados aqui
@@ -44,11 +47,11 @@ always @(posedge clock) begin
 
       1: begin
         if (move) begin
-          if (x_pos > LIM_LEFT) begin // caso em que dá pra andar pra esquerda
-            x_pos = x_pos - 4;
+          if (x_bar > LIM_LEFT) begin // caso em que dá pra andar pra esquerda
+            x_bar = x_bar - 4;
           end
           else begin // caso em que chegou no limite da esquerda (vai pra direita)
-            x_pos = x_pos;
+            x_bar = x_bar;
           end
           estado = 0;
         end 
@@ -59,11 +62,11 @@ always @(posedge clock) begin
 
       2: begin
         if (move) begin
-          if (x_pos < LIM_RIGHT) begin // caso em que dá pra andar pra direita
-            x_pos = x_pos + 4;
+          if (x_bar < LIM_RIGHT) begin // caso em que dá pra andar pra direita
+            x_bar = x_bar + 4;
           end
           else begin // caso em que chegou no limite da direita (vai pra esquerda)
-            x_pos = x_pos;
+            x_bar = x_bar;
           end
           estado = 0;
         end
@@ -76,7 +79,8 @@ always @(posedge clock) begin
   end
 end
 
-assign x = x_pos;
-assign y = y_pos;
+assign x = x_bar;
+assign y = y_bar;
+assign area = ((next_x <= x + W_BAR) && (next_x >= x - W_BAR) && (next_y <= y + H_BAR) && (next_y >= y - H_BAR));
 
 endmodule

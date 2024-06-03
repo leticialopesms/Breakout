@@ -1,5 +1,5 @@
 Analysis & Synthesis report for projeto-final
-Mon Jun  3 11:15:16 2024
+Mon Jun  3 11:41:15 2024
 Quartus Prime Version 17.1.0 Build 590 10/25/2017 SJ Lite Edition
 
 
@@ -19,8 +19,8 @@ Quartus Prime Version 17.1.0 Build 590 10/25/2017 SJ Lite Edition
  11. State Machine - |top|bloco:b3|estado
  12. State Machine - |top|bloco:b2|estado
  13. State Machine - |top|bloco:b1|estado
- 14. State Machine - |top|ball:b|estado
- 15. State Machine - |top|move_bar:m|estado
+ 14. State Machine - |top|ball:ball|estado
+ 15. State Machine - |top|bar:bar|estado
  16. State Machine - |top|placar:p|estado
  17. State Machine - |top|placar:p|button:b|estado
  18. Registers Removed During Synthesis
@@ -32,10 +32,10 @@ Quartus Prime Version 17.1.0 Build 590 10/25/2017 SJ Lite Edition
  24. Parameter Settings for User Entity Instance: placar:p|bcd:b1
  25. Parameter Settings for User Entity Instance: placar:p|bcd:b2
  26. Parameter Settings for User Entity Instance: vga:v
- 27. Parameter Settings for User Entity Instance: move_bar:m
- 28. Parameter Settings for User Entity Instance: move_bar:m|timer:t
- 29. Parameter Settings for User Entity Instance: ball:b
- 30. Parameter Settings for User Entity Instance: ball:b|timer:t
+ 27. Parameter Settings for User Entity Instance: bar:bar
+ 28. Parameter Settings for User Entity Instance: bar:bar|timer:t
+ 29. Parameter Settings for User Entity Instance: ball:ball
+ 30. Parameter Settings for User Entity Instance: ball:ball|timer:t
  31. Parameter Settings for User Entity Instance: bloco:b1
  32. Parameter Settings for User Entity Instance: bloco:b2
  33. Parameter Settings for User Entity Instance: bloco:b3
@@ -46,7 +46,7 @@ Quartus Prime Version 17.1.0 Build 590 10/25/2017 SJ Lite Edition
  38. Port Connectivity Checks: "bloco:b3"
  39. Port Connectivity Checks: "bloco:b2"
  40. Port Connectivity Checks: "bloco:b1"
- 41. Port Connectivity Checks: "ball:b"
+ 41. Port Connectivity Checks: "ball:ball"
  42. Port Connectivity Checks: "placar:p|bcd:b2"
  43. Port Connectivity Checks: "placar:p|bcd:b1"
  44. Post-Synthesis Netlist Statistics for Top Partition
@@ -77,7 +77,7 @@ refer to the applicable agreement for further details.
 +-------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                  ;
 +---------------------------------+---------------------------------------------+
-; Analysis & Synthesis Status     ; Successful - Mon Jun  3 11:15:16 2024       ;
+; Analysis & Synthesis Status     ; Successful - Mon Jun  3 11:41:15 2024       ;
 ; Quartus Prime Version           ; 17.1.0 Build 590 10/25/2017 SJ Lite Edition ;
 ; Revision Name                   ; projeto-final                               ;
 ; Top-level Entity Name           ; top                                         ;
@@ -207,22 +207,22 @@ refer to the applicable agreement for further details.
 +----------------------------+-------------+
 
 
-+--------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Analysis & Synthesis Source Files Read                                                                                                                       ;
-+----------------------------------+-----------------+------------------------+----------------------------------------------------------------------+---------+
-; File Name with User-Entered Path ; Used in Netlist ; File Type              ; File Name with Absolute Path                                         ; Library ;
-+----------------------------------+-----------------+------------------------+----------------------------------------------------------------------+---------+
-; ../ball.v                        ; yes             ; User Verilog HDL File  ; /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/ball.v     ;         ;
-; ../bloco.v                       ; yes             ; User Verilog HDL File  ; /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/bloco.v    ;         ;
-; ../vga.v                         ; yes             ; User Verilog HDL File  ; /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/vga.v      ;         ;
-; ../top.v                         ; yes             ; User Verilog HDL File  ; /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/top.v      ;         ;
-; ../timer.v                       ; yes             ; User Verilog HDL File  ; /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/timer.v    ;         ;
-; ../placar.v                      ; yes             ; User Verilog HDL File  ; /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/placar.v   ;         ;
-; ../move_bar.v                    ; yes             ; User Verilog HDL File  ; /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/move_bar.v ;         ;
-; ../cb7s.v                        ; yes             ; User Verilog HDL File  ; /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/cb7s.v     ;         ;
-; ../button.v                      ; yes             ; User Verilog HDL File  ; /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/button.v   ;         ;
-; ../bcd.v                         ; yes             ; User Verilog HDL File  ; /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/bcd.v      ;         ;
-+----------------------------------+-----------------+------------------------+----------------------------------------------------------------------+---------+
++------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Source Files Read                                                                                                                     ;
++----------------------------------+-----------------+------------------------+--------------------------------------------------------------------+---------+
+; File Name with User-Entered Path ; Used in Netlist ; File Type              ; File Name with Absolute Path                                       ; Library ;
++----------------------------------+-----------------+------------------------+--------------------------------------------------------------------+---------+
+; ../bar.v                         ; yes             ; User Verilog HDL File  ; /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/bar.v    ;         ;
+; ../ball.v                        ; yes             ; User Verilog HDL File  ; /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/ball.v   ;         ;
+; ../bloco.v                       ; yes             ; User Verilog HDL File  ; /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/bloco.v  ;         ;
+; ../vga.v                         ; yes             ; User Verilog HDL File  ; /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/vga.v    ;         ;
+; ../top.v                         ; yes             ; User Verilog HDL File  ; /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/top.v    ;         ;
+; ../timer.v                       ; yes             ; User Verilog HDL File  ; /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/timer.v  ;         ;
+; ../placar.v                      ; yes             ; User Verilog HDL File  ; /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/placar.v ;         ;
+; ../cb7s.v                        ; yes             ; User Verilog HDL File  ; /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/cb7s.v   ;         ;
+; ../button.v                      ; yes             ; User Verilog HDL File  ; /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/button.v ;         ;
+; ../bcd.v                         ; yes             ; User Verilog HDL File  ; /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/bcd.v    ;         ;
++----------------------------------+-----------------+------------------------+--------------------------------------------------------------------+---------+
 
 
 +------------------------------------------------------------+
@@ -257,15 +257,15 @@ refer to the applicable agreement for further details.
 +----------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+-----------------------------+-------------+--------------+
 ; Compilation Hierarchy Node ; Combinational ALUTs ; Dedicated Logic Registers ; Block Memory Bits ; DSP Blocks ; Pins ; Virtual Pins ; Full Hierarchy Name         ; Entity Name ; Library Name ;
 +----------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+-----------------------------+-------------+--------------+
-; |top                       ; 595 (177)           ; 178 (20)                  ; 0                 ; 4          ; 72   ; 0            ; |top                        ; top         ; work         ;
-;    |ball:b|                ; 201 (163)           ; 82 (51)                   ; 0                 ; 0          ; 0    ; 0            ; |top|ball:b                 ; ball        ; work         ;
-;       |timer:t|            ; 38 (38)             ; 31 (31)                   ; 0                 ; 0          ; 0    ; 0            ; |top|ball:b|timer:t         ; timer       ; work         ;
+; |top                       ; 595 (71)            ; 178 (20)                  ; 0                 ; 4          ; 72   ; 0            ; |top                        ; top         ; work         ;
+;    |ball:ball|             ; 284 (246)           ; 82 (51)                   ; 0                 ; 4          ; 0    ; 0            ; |top|ball:ball              ; ball        ; work         ;
+;       |timer:t|            ; 38 (38)             ; 31 (31)                   ; 0                 ; 0          ; 0    ; 0            ; |top|ball:ball|timer:t      ; timer       ; work         ;
+;    |bar:bar|               ; 38 (38)             ; 11 (11)                   ; 0                 ; 0          ; 0    ; 0            ; |top|bar:bar                ; bar         ; work         ;
 ;    |bloco:b1|              ; 7 (7)               ; 4 (4)                     ; 0                 ; 0          ; 0    ; 0            ; |top|bloco:b1               ; bloco       ; work         ;
 ;    |bloco:b2|              ; 10 (10)             ; 4 (4)                     ; 0                 ; 0          ; 0    ; 0            ; |top|bloco:b2               ; bloco       ; work         ;
 ;    |bloco:b3|              ; 9 (9)               ; 4 (4)                     ; 0                 ; 0          ; 0    ; 0            ; |top|bloco:b3               ; bloco       ; work         ;
 ;    |bloco:b4|              ; 9 (9)               ; 4 (4)                     ; 0                 ; 0          ; 0    ; 0            ; |top|bloco:b4               ; bloco       ; work         ;
 ;    |bloco:b5|              ; 26 (26)             ; 4 (4)                     ; 0                 ; 0          ; 0    ; 0            ; |top|bloco:b5               ; bloco       ; work         ;
-;    |move_bar:m|            ; 15 (15)             ; 11 (11)                   ; 0                 ; 0          ; 0    ; 0            ; |top|move_bar:m             ; move_bar    ; work         ;
 ;    |placar:p|              ; 89 (31)             ; 25 (22)                   ; 0                 ; 0          ; 0    ; 0            ; |top|placar:p               ; placar      ; work         ;
 ;       |bcd:b1|             ; 14 (14)             ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |top|placar:p|bcd:b1        ; bcd         ; work         ;
 ;       |bcd:b2|             ; 14 (14)             ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |top|placar:p|bcd:b2        ; bcd         ; work         ;
@@ -354,7 +354,7 @@ Encoding Type:  One-Hot
 
 Encoding Type:  One-Hot
 +-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; State Machine - |top|ball:b|estado                                                                                                                                                            ;
+; State Machine - |top|ball:ball|estado                                                                                                                                                         ;
 +---------------+---------------+---------------+---------------+---------------+---------------+---------------+---------------+---------------+---------------+---------------+---------------+
 ; Name          ; estado.001010 ; estado.001001 ; estado.001000 ; estado.000111 ; estado.000110 ; estado.000101 ; estado.000100 ; estado.000011 ; estado.000010 ; estado.000001 ; estado.000000 ;
 +---------------+---------------+---------------+---------------+---------------+---------------+---------------+---------------+---------------+---------------+---------------+---------------+
@@ -374,7 +374,7 @@ Encoding Type:  One-Hot
 
 Encoding Type:  One-Hot
 +-------------------------------------------------------+
-; State Machine - |top|move_bar:m|estado                ;
+; State Machine - |top|bar:bar|estado                   ;
 +-------------+-------------+-------------+-------------+
 ; Name        ; estado.0000 ; estado.0010 ; estado.0001 ;
 +-------------+-------------+-------------+-------------+
@@ -410,112 +410,112 @@ Encoding Type:  One-Hot
 +-----------+-----------+-----------+-----------+
 
 
-+-----------------------------------------------------------------------------------+
-; Registers Removed During Synthesis                                                ;
-+-----------------------------------------+-----------------------------------------+
-; Register name                           ; Reason for Removal                      ;
-+-----------------------------------------+-----------------------------------------+
-; bloco:b5|x_block[0..5]                  ; Stuck at GND due to stuck port data_in  ;
-; bloco:b5|y_block[6..9]                  ; Stuck at GND due to stuck port data_in  ;
-; bloco:b5|y_block[5]                     ; Stuck at VCC due to stuck port data_in  ;
-; bloco:b5|y_block[0..4]                  ; Stuck at GND due to stuck port data_in  ;
-; bloco:b5|x_block[6]                     ; Stuck at VCC due to stuck port data_in  ;
-; bloco:b5|x_block[7,8]                   ; Stuck at GND due to stuck port data_in  ;
-; bloco:b5|x_block[9]                     ; Stuck at VCC due to stuck port data_in  ;
-; bloco:b4|x_block[0..5]                  ; Stuck at GND due to stuck port data_in  ;
-; bloco:b4|y_block[6..9]                  ; Stuck at GND due to stuck port data_in  ;
-; bloco:b4|y_block[5]                     ; Stuck at VCC due to stuck port data_in  ;
-; bloco:b4|y_block[0..4]                  ; Stuck at GND due to stuck port data_in  ;
-; bloco:b4|x_block[6..8]                  ; Stuck at VCC due to stuck port data_in  ;
-; bloco:b4|x_block[9]                     ; Stuck at GND due to stuck port data_in  ;
-; bloco:b3|x_block[0..5]                  ; Stuck at GND due to stuck port data_in  ;
-; bloco:b3|y_block[6..9]                  ; Stuck at GND due to stuck port data_in  ;
-; bloco:b3|y_block[5]                     ; Stuck at VCC due to stuck port data_in  ;
-; bloco:b3|y_block[0..4]                  ; Stuck at GND due to stuck port data_in  ;
-; bloco:b3|x_block[6]                     ; Stuck at VCC due to stuck port data_in  ;
-; bloco:b3|x_block[7]                     ; Stuck at GND due to stuck port data_in  ;
-; bloco:b3|x_block[8]                     ; Stuck at VCC due to stuck port data_in  ;
-; bloco:b3|x_block[9]                     ; Stuck at GND due to stuck port data_in  ;
-; bloco:b2|x_block[0..5]                  ; Stuck at GND due to stuck port data_in  ;
-; bloco:b2|y_block[6..9]                  ; Stuck at GND due to stuck port data_in  ;
-; bloco:b2|y_block[5]                     ; Stuck at VCC due to stuck port data_in  ;
-; bloco:b2|y_block[0..4]                  ; Stuck at GND due to stuck port data_in  ;
-; bloco:b2|x_block[6,7]                   ; Stuck at VCC due to stuck port data_in  ;
-; bloco:b2|x_block[8,9]                   ; Stuck at GND due to stuck port data_in  ;
-; bloco:b1|x_block[0..5]                  ; Stuck at GND due to stuck port data_in  ;
-; bloco:b1|y_block[6..9]                  ; Stuck at GND due to stuck port data_in  ;
-; bloco:b1|y_block[5]                     ; Stuck at VCC due to stuck port data_in  ;
-; bloco:b1|y_block[0..4]                  ; Stuck at GND due to stuck port data_in  ;
-; bloco:b1|x_block[6]                     ; Stuck at VCC due to stuck port data_in  ;
-; bloco:b1|x_block[7..9]                  ; Stuck at GND due to stuck port data_in  ;
-; move_bar:m|x_pos[0,1]                   ; Stuck at GND due to stuck port data_in  ;
-; move_bar:m|y_pos[9]                     ; Stuck at GND due to stuck port data_in  ;
-; move_bar:m|y_pos[6..8]                  ; Stuck at VCC due to stuck port data_in  ;
-; move_bar:m|y_pos[5]                     ; Stuck at GND due to stuck port data_in  ;
-; move_bar:m|y_pos[4]                     ; Stuck at VCC due to stuck port data_in  ;
-; move_bar:m|y_pos[0..3]                  ; Stuck at GND due to stuck port data_in  ;
-; green_reg[0]                            ; Merged with blue_reg[0]                 ;
-; red_reg[0]                              ; Merged with blue_reg[0]                 ;
-; red_reg[2]                              ; Merged with green_reg[4]                ;
-; red_reg[3]                              ; Merged with blue_reg[4]                 ;
-; red_reg[4]                              ; Merged with green_reg[3]                ;
-; move_bar:m|timer:t|contador[18]         ; Merged with ball:b|timer:t|contador[18] ;
-; move_bar:m|timer:t|contador[17]         ; Merged with ball:b|timer:t|contador[17] ;
-; move_bar:m|timer:t|contador[16]         ; Merged with ball:b|timer:t|contador[16] ;
-; move_bar:m|timer:t|contador[15]         ; Merged with ball:b|timer:t|contador[15] ;
-; move_bar:m|timer:t|contador[13]         ; Merged with ball:b|timer:t|contador[13] ;
-; move_bar:m|timer:t|contador[8]          ; Merged with ball:b|timer:t|contador[8]  ;
-; move_bar:m|timer:t|contador[5]          ; Merged with ball:b|timer:t|contador[5]  ;
-; move_bar:m|timer:t|contador[30]         ; Merged with ball:b|timer:t|contador[30] ;
-; move_bar:m|timer:t|contador[29]         ; Merged with ball:b|timer:t|contador[29] ;
-; move_bar:m|timer:t|contador[28]         ; Merged with ball:b|timer:t|contador[28] ;
-; move_bar:m|timer:t|contador[27]         ; Merged with ball:b|timer:t|contador[27] ;
-; move_bar:m|timer:t|contador[26]         ; Merged with ball:b|timer:t|contador[26] ;
-; move_bar:m|timer:t|contador[25]         ; Merged with ball:b|timer:t|contador[25] ;
-; move_bar:m|timer:t|contador[24]         ; Merged with ball:b|timer:t|contador[24] ;
-; move_bar:m|timer:t|contador[23]         ; Merged with ball:b|timer:t|contador[23] ;
-; move_bar:m|timer:t|contador[22]         ; Merged with ball:b|timer:t|contador[22] ;
-; move_bar:m|timer:t|contador[21]         ; Merged with ball:b|timer:t|contador[21] ;
-; move_bar:m|timer:t|contador[20]         ; Merged with ball:b|timer:t|contador[20] ;
-; move_bar:m|timer:t|contador[19]         ; Merged with ball:b|timer:t|contador[19] ;
-; move_bar:m|timer:t|contador[14]         ; Merged with ball:b|timer:t|contador[14] ;
-; move_bar:m|timer:t|contador[12]         ; Merged with ball:b|timer:t|contador[12] ;
-; move_bar:m|timer:t|contador[11]         ; Merged with ball:b|timer:t|contador[11] ;
-; move_bar:m|timer:t|contador[10]         ; Merged with ball:b|timer:t|contador[10] ;
-; move_bar:m|timer:t|contador[9]          ; Merged with ball:b|timer:t|contador[9]  ;
-; move_bar:m|timer:t|contador[7]          ; Merged with ball:b|timer:t|contador[7]  ;
-; move_bar:m|timer:t|contador[6]          ; Merged with ball:b|timer:t|contador[6]  ;
-; move_bar:m|timer:t|contador[4]          ; Merged with ball:b|timer:t|contador[4]  ;
-; move_bar:m|timer:t|contador[3]          ; Merged with ball:b|timer:t|contador[3]  ;
-; move_bar:m|timer:t|contador[2]          ; Merged with ball:b|timer:t|contador[2]  ;
-; move_bar:m|timer:t|contador[1]          ; Merged with ball:b|timer:t|contador[1]  ;
-; move_bar:m|timer:t|contador[0]          ; Merged with ball:b|timer:t|contador[0]  ;
-; ball:b|estado.000110                    ; Lost fanout                             ;
-; bloco:b5|estado~4                       ; Lost fanout                             ;
-; bloco:b5|estado~5                       ; Lost fanout                             ;
-; bloco:b4|estado~4                       ; Lost fanout                             ;
-; bloco:b4|estado~5                       ; Lost fanout                             ;
-; bloco:b3|estado~4                       ; Lost fanout                             ;
-; bloco:b3|estado~5                       ; Lost fanout                             ;
-; bloco:b2|estado~4                       ; Lost fanout                             ;
-; bloco:b2|estado~5                       ; Lost fanout                             ;
-; bloco:b1|estado~4                       ; Lost fanout                             ;
-; bloco:b1|estado~5                       ; Lost fanout                             ;
-; ball:b|estado~13                        ; Lost fanout                             ;
-; ball:b|estado~14                        ; Lost fanout                             ;
-; ball:b|estado~15                        ; Lost fanout                             ;
-; ball:b|estado~16                        ; Lost fanout                             ;
-; ball:b|estado~17                        ; Lost fanout                             ;
-; ball:b|estado~18                        ; Lost fanout                             ;
-; move_bar:m|estado~4                     ; Lost fanout                             ;
-; move_bar:m|estado~5                     ; Lost fanout                             ;
-; placar:p|estado~3                       ; Lost fanout                             ;
-; placar:p|estado~4                       ; Lost fanout                             ;
-; placar:p|estado~6                       ; Lost fanout                             ;
-; placar:p|button:b|estado.10             ; Lost fanout                             ;
-; placar:p|estado.0011                    ; Lost fanout                             ;
-; Total Number of Removed Registers = 172 ;                                         ;
-+-----------------------------------------+-----------------------------------------+
++--------------------------------------------------------------------------------------+
+; Registers Removed During Synthesis                                                   ;
++-----------------------------------------+--------------------------------------------+
+; Register name                           ; Reason for Removal                         ;
++-----------------------------------------+--------------------------------------------+
+; bloco:b5|x_block[0..5]                  ; Stuck at GND due to stuck port data_in     ;
+; bloco:b5|y_block[6..9]                  ; Stuck at GND due to stuck port data_in     ;
+; bloco:b5|y_block[5]                     ; Stuck at VCC due to stuck port data_in     ;
+; bloco:b5|y_block[0..4]                  ; Stuck at GND due to stuck port data_in     ;
+; bloco:b5|x_block[6]                     ; Stuck at VCC due to stuck port data_in     ;
+; bloco:b5|x_block[7,8]                   ; Stuck at GND due to stuck port data_in     ;
+; bloco:b5|x_block[9]                     ; Stuck at VCC due to stuck port data_in     ;
+; bloco:b4|x_block[0..5]                  ; Stuck at GND due to stuck port data_in     ;
+; bloco:b4|y_block[6..9]                  ; Stuck at GND due to stuck port data_in     ;
+; bloco:b4|y_block[5]                     ; Stuck at VCC due to stuck port data_in     ;
+; bloco:b4|y_block[0..4]                  ; Stuck at GND due to stuck port data_in     ;
+; bloco:b4|x_block[6..8]                  ; Stuck at VCC due to stuck port data_in     ;
+; bloco:b4|x_block[9]                     ; Stuck at GND due to stuck port data_in     ;
+; bloco:b3|x_block[0..5]                  ; Stuck at GND due to stuck port data_in     ;
+; bloco:b3|y_block[6..9]                  ; Stuck at GND due to stuck port data_in     ;
+; bloco:b3|y_block[5]                     ; Stuck at VCC due to stuck port data_in     ;
+; bloco:b3|y_block[0..4]                  ; Stuck at GND due to stuck port data_in     ;
+; bloco:b3|x_block[6]                     ; Stuck at VCC due to stuck port data_in     ;
+; bloco:b3|x_block[7]                     ; Stuck at GND due to stuck port data_in     ;
+; bloco:b3|x_block[8]                     ; Stuck at VCC due to stuck port data_in     ;
+; bloco:b3|x_block[9]                     ; Stuck at GND due to stuck port data_in     ;
+; bloco:b2|x_block[0..5]                  ; Stuck at GND due to stuck port data_in     ;
+; bloco:b2|y_block[6..9]                  ; Stuck at GND due to stuck port data_in     ;
+; bloco:b2|y_block[5]                     ; Stuck at VCC due to stuck port data_in     ;
+; bloco:b2|y_block[0..4]                  ; Stuck at GND due to stuck port data_in     ;
+; bloco:b2|x_block[6,7]                   ; Stuck at VCC due to stuck port data_in     ;
+; bloco:b2|x_block[8,9]                   ; Stuck at GND due to stuck port data_in     ;
+; bloco:b1|x_block[0..5]                  ; Stuck at GND due to stuck port data_in     ;
+; bloco:b1|y_block[6..9]                  ; Stuck at GND due to stuck port data_in     ;
+; bloco:b1|y_block[5]                     ; Stuck at VCC due to stuck port data_in     ;
+; bloco:b1|y_block[0..4]                  ; Stuck at GND due to stuck port data_in     ;
+; bloco:b1|x_block[6]                     ; Stuck at VCC due to stuck port data_in     ;
+; bloco:b1|x_block[7..9]                  ; Stuck at GND due to stuck port data_in     ;
+; bar:bar|x_bar[0,1]                      ; Stuck at GND due to stuck port data_in     ;
+; bar:bar|y_bar[9]                        ; Stuck at GND due to stuck port data_in     ;
+; bar:bar|y_bar[6..8]                     ; Stuck at VCC due to stuck port data_in     ;
+; bar:bar|y_bar[5]                        ; Stuck at GND due to stuck port data_in     ;
+; bar:bar|y_bar[4]                        ; Stuck at VCC due to stuck port data_in     ;
+; bar:bar|y_bar[0..3]                     ; Stuck at GND due to stuck port data_in     ;
+; green_reg[0]                            ; Merged with blue_reg[0]                    ;
+; red_reg[0]                              ; Merged with blue_reg[0]                    ;
+; red_reg[2]                              ; Merged with green_reg[4]                   ;
+; red_reg[3]                              ; Merged with blue_reg[4]                    ;
+; red_reg[4]                              ; Merged with green_reg[3]                   ;
+; bar:bar|timer:t|contador[18]            ; Merged with ball:ball|timer:t|contador[18] ;
+; bar:bar|timer:t|contador[17]            ; Merged with ball:ball|timer:t|contador[17] ;
+; bar:bar|timer:t|contador[16]            ; Merged with ball:ball|timer:t|contador[16] ;
+; bar:bar|timer:t|contador[15]            ; Merged with ball:ball|timer:t|contador[15] ;
+; bar:bar|timer:t|contador[13]            ; Merged with ball:ball|timer:t|contador[13] ;
+; bar:bar|timer:t|contador[8]             ; Merged with ball:ball|timer:t|contador[8]  ;
+; bar:bar|timer:t|contador[5]             ; Merged with ball:ball|timer:t|contador[5]  ;
+; bar:bar|timer:t|contador[30]            ; Merged with ball:ball|timer:t|contador[30] ;
+; bar:bar|timer:t|contador[29]            ; Merged with ball:ball|timer:t|contador[29] ;
+; bar:bar|timer:t|contador[28]            ; Merged with ball:ball|timer:t|contador[28] ;
+; bar:bar|timer:t|contador[27]            ; Merged with ball:ball|timer:t|contador[27] ;
+; bar:bar|timer:t|contador[26]            ; Merged with ball:ball|timer:t|contador[26] ;
+; bar:bar|timer:t|contador[25]            ; Merged with ball:ball|timer:t|contador[25] ;
+; bar:bar|timer:t|contador[24]            ; Merged with ball:ball|timer:t|contador[24] ;
+; bar:bar|timer:t|contador[23]            ; Merged with ball:ball|timer:t|contador[23] ;
+; bar:bar|timer:t|contador[22]            ; Merged with ball:ball|timer:t|contador[22] ;
+; bar:bar|timer:t|contador[21]            ; Merged with ball:ball|timer:t|contador[21] ;
+; bar:bar|timer:t|contador[20]            ; Merged with ball:ball|timer:t|contador[20] ;
+; bar:bar|timer:t|contador[19]            ; Merged with ball:ball|timer:t|contador[19] ;
+; bar:bar|timer:t|contador[14]            ; Merged with ball:ball|timer:t|contador[14] ;
+; bar:bar|timer:t|contador[12]            ; Merged with ball:ball|timer:t|contador[12] ;
+; bar:bar|timer:t|contador[11]            ; Merged with ball:ball|timer:t|contador[11] ;
+; bar:bar|timer:t|contador[10]            ; Merged with ball:ball|timer:t|contador[10] ;
+; bar:bar|timer:t|contador[9]             ; Merged with ball:ball|timer:t|contador[9]  ;
+; bar:bar|timer:t|contador[7]             ; Merged with ball:ball|timer:t|contador[7]  ;
+; bar:bar|timer:t|contador[6]             ; Merged with ball:ball|timer:t|contador[6]  ;
+; bar:bar|timer:t|contador[4]             ; Merged with ball:ball|timer:t|contador[4]  ;
+; bar:bar|timer:t|contador[3]             ; Merged with ball:ball|timer:t|contador[3]  ;
+; bar:bar|timer:t|contador[2]             ; Merged with ball:ball|timer:t|contador[2]  ;
+; bar:bar|timer:t|contador[1]             ; Merged with ball:ball|timer:t|contador[1]  ;
+; bar:bar|timer:t|contador[0]             ; Merged with ball:ball|timer:t|contador[0]  ;
+; ball:ball|estado.000110                 ; Lost fanout                                ;
+; bloco:b5|estado~4                       ; Lost fanout                                ;
+; bloco:b5|estado~5                       ; Lost fanout                                ;
+; bloco:b4|estado~4                       ; Lost fanout                                ;
+; bloco:b4|estado~5                       ; Lost fanout                                ;
+; bloco:b3|estado~4                       ; Lost fanout                                ;
+; bloco:b3|estado~5                       ; Lost fanout                                ;
+; bloco:b2|estado~4                       ; Lost fanout                                ;
+; bloco:b2|estado~5                       ; Lost fanout                                ;
+; bloco:b1|estado~4                       ; Lost fanout                                ;
+; bloco:b1|estado~5                       ; Lost fanout                                ;
+; ball:ball|estado~13                     ; Lost fanout                                ;
+; ball:ball|estado~14                     ; Lost fanout                                ;
+; ball:ball|estado~15                     ; Lost fanout                                ;
+; ball:ball|estado~16                     ; Lost fanout                                ;
+; ball:ball|estado~17                     ; Lost fanout                                ;
+; ball:ball|estado~18                     ; Lost fanout                                ;
+; bar:bar|estado~4                        ; Lost fanout                                ;
+; bar:bar|estado~5                        ; Lost fanout                                ;
+; placar:p|estado~3                       ; Lost fanout                                ;
+; placar:p|estado~4                       ; Lost fanout                                ;
+; placar:p|estado~6                       ; Lost fanout                                ;
+; placar:p|button:b|estado.10             ; Lost fanout                                ;
+; placar:p|estado.0011                    ; Lost fanout                                ;
+; Total Number of Removed Registers = 172 ;                                            ;
++-----------------------------------------+--------------------------------------------+
 
 
 +---------------------------------------------------------------------------------+
@@ -542,32 +542,32 @@ Encoding Type:  One-Hot
 +----------------------------------------------+-------+
 
 
-+-----------------------------------------------------------------------------------------------------------------------------------------------+
-; Multiplexer Restructuring Statistics (Restructuring Performed)                                                                                ;
-+--------------------+-----------+---------------+----------------------+------------------------+------------+---------------------------------+
-; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output      ;
-+--------------------+-----------+---------------+----------------------+------------------------+------------+---------------------------------+
-; 3:1                ; 7 bits    ; 14 LEs        ; 7 LEs                ; 7 LEs                  ; Yes        ; |top|placar:p|vidas[4]          ;
-; 3:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |top|placar:p|vidas[1]          ;
-; 3:1                ; 9 bits    ; 18 LEs        ; 0 LEs                ; 18 LEs                 ; Yes        ; |top|placar:p|score[2]          ;
-; 3:1                ; 31 bits   ; 62 LEs        ; 0 LEs                ; 62 LEs                 ; Yes        ; |top|ball:b|timer:t|contador[5] ;
-; 3:1                ; 10 bits   ; 20 LEs        ; 0 LEs                ; 20 LEs                 ; Yes        ; |top|vga:v|x[9]                 ;
-; 4:1                ; 6 bits    ; 12 LEs        ; 12 LEs               ; 0 LEs                  ; Yes        ; |top|green_reg[1]               ;
-; 4:1                ; 10 bits   ; 20 LEs        ; 0 LEs                ; 20 LEs                 ; Yes        ; |top|vga:v|y[1]                 ;
-; 5:1                ; 8 bits    ; 24 LEs        ; 16 LEs               ; 8 LEs                  ; Yes        ; |top|blue_reg[1]                ;
-; 6:1                ; 3 bits    ; 12 LEs        ; 12 LEs               ; 0 LEs                  ; Yes        ; |top|blue_reg[0]                ;
-; 6:1                ; 14 bits   ; 56 LEs        ; 0 LEs                ; 56 LEs                 ; Yes        ; |top|ball:b|x_ball[5]           ;
-; 6:1                ; 6 bits    ; 24 LEs        ; 12 LEs               ; 12 LEs                 ; Yes        ; |top|ball:b|x_ball[8]           ;
-; 7:1                ; 2 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; Yes        ; |top|red_reg[5]                 ;
-; 6:1                ; 6 bits    ; 24 LEs        ; 12 LEs               ; 12 LEs                 ; Yes        ; |top|move_bar:m|x_pos[9]        ;
-; 6:1                ; 2 bits    ; 8 LEs         ; 4 LEs                ; 4 LEs                  ; Yes        ; |top|move_bar:m|x_pos[8]        ;
-; 8:1                ; 9 bits    ; 45 LEs        ; 18 LEs               ; 27 LEs                 ; Yes        ; |top|ball:b|vy_mod[3]           ;
-; 12:1               ; 9 bits    ; 72 LEs        ; 18 LEs               ; 54 LEs                 ; Yes        ; |top|ball:b|vx_mod[9]           ;
-; 3:1                ; 2 bits    ; 4 LEs         ; 4 LEs                ; 0 LEs                  ; No         ; |top|blue_reg                   ;
-; 7:1                ; 10 bits   ; 40 LEs        ; 20 LEs               ; 20 LEs                 ; No         ; |top|ball:b|Add5                ;
-; 13:1               ; 9 bits    ; 72 LEs        ; 72 LEs               ; 0 LEs                  ; No         ; |top|ball:b|estado              ;
-; 15:1               ; 2 bits    ; 20 LEs        ; 20 LEs               ; 0 LEs                  ; No         ; |top|ball:b|estado              ;
-+--------------------+-----------+---------------+----------------------+------------------------+------------+---------------------------------+
++--------------------------------------------------------------------------------------------------------------------------------------------------+
+; Multiplexer Restructuring Statistics (Restructuring Performed)                                                                                   ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+------------------------------------+
+; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output         ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+------------------------------------+
+; 3:1                ; 7 bits    ; 14 LEs        ; 7 LEs                ; 7 LEs                  ; Yes        ; |top|placar:p|vidas[4]             ;
+; 3:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |top|placar:p|vidas[1]             ;
+; 3:1                ; 9 bits    ; 18 LEs        ; 0 LEs                ; 18 LEs                 ; Yes        ; |top|placar:p|score[2]             ;
+; 3:1                ; 31 bits   ; 62 LEs        ; 0 LEs                ; 62 LEs                 ; Yes        ; |top|ball:ball|timer:t|contador[5] ;
+; 3:1                ; 10 bits   ; 20 LEs        ; 0 LEs                ; 20 LEs                 ; Yes        ; |top|vga:v|x[9]                    ;
+; 4:1                ; 6 bits    ; 12 LEs        ; 12 LEs               ; 0 LEs                  ; Yes        ; |top|green_reg[1]                  ;
+; 4:1                ; 10 bits   ; 20 LEs        ; 0 LEs                ; 20 LEs                 ; Yes        ; |top|vga:v|y[1]                    ;
+; 5:1                ; 8 bits    ; 24 LEs        ; 16 LEs               ; 8 LEs                  ; Yes        ; |top|blue_reg[1]                   ;
+; 6:1                ; 3 bits    ; 12 LEs        ; 12 LEs               ; 0 LEs                  ; Yes        ; |top|blue_reg[0]                   ;
+; 6:1                ; 14 bits   ; 56 LEs        ; 0 LEs                ; 56 LEs                 ; Yes        ; |top|ball:ball|x_ball[5]           ;
+; 6:1                ; 6 bits    ; 24 LEs        ; 12 LEs               ; 12 LEs                 ; Yes        ; |top|ball:ball|x_ball[8]           ;
+; 7:1                ; 2 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; Yes        ; |top|red_reg[5]                    ;
+; 6:1                ; 6 bits    ; 24 LEs        ; 12 LEs               ; 12 LEs                 ; Yes        ; |top|bar:bar|x_bar[9]              ;
+; 6:1                ; 2 bits    ; 8 LEs         ; 4 LEs                ; 4 LEs                  ; Yes        ; |top|bar:bar|x_bar[8]              ;
+; 8:1                ; 9 bits    ; 45 LEs        ; 18 LEs               ; 27 LEs                 ; Yes        ; |top|ball:ball|vy_mod[3]           ;
+; 12:1               ; 9 bits    ; 72 LEs        ; 18 LEs               ; 54 LEs                 ; Yes        ; |top|ball:ball|vx_mod[9]           ;
+; 3:1                ; 2 bits    ; 4 LEs         ; 4 LEs                ; 0 LEs                  ; No         ; |top|blue_reg                      ;
+; 7:1                ; 10 bits   ; 40 LEs        ; 20 LEs               ; 20 LEs                 ; No         ; |top|ball:ball|Add5                ;
+; 13:1               ; 9 bits    ; 72 LEs        ; 72 LEs               ; 0 LEs                  ; No         ; |top|ball:ball|estado              ;
+; 15:1               ; 2 bits    ; 20 LEs        ; 20 LEs               ; 0 LEs                  ; No         ; |top|ball:ball|estado              ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+------------------------------------+
 
 
 +---------------------------------------------------------------------+
@@ -635,21 +635,21 @@ Note: In order to hide this table in the UI and the text report file, please set
 Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
 
 
-+---------------------------------------------------------+
-; Parameter Settings for User Entity Instance: move_bar:m ;
-+----------------+-------+--------------------------------+
-; Parameter Name ; Value ; Type                           ;
-+----------------+-------+--------------------------------+
-; H_BAR          ; 8     ; Signed Integer                 ;
-; W_BAR          ; 64    ; Signed Integer                 ;
-; LIM_LEFT       ; 64    ; Signed Integer                 ;
-; LIM_RIGHT      ; 576   ; Signed Integer                 ;
-+----------------+-------+--------------------------------+
++------------------------------------------------------+
+; Parameter Settings for User Entity Instance: bar:bar ;
++----------------+-------+-----------------------------+
+; Parameter Name ; Value ; Type                        ;
++----------------+-------+-----------------------------+
+; H_BAR          ; 8     ; Signed Integer              ;
+; W_BAR          ; 64    ; Signed Integer              ;
+; LIM_LEFT       ; 64    ; Signed Integer              ;
+; LIM_RIGHT      ; 576   ; Signed Integer              ;
++----------------+-------+-----------------------------+
 Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
 
 
 +--------------------------------------------------------------------+
-; Parameter Settings for User Entity Instance: move_bar:m|timer:t    ;
+; Parameter Settings for User Entity Instance: bar:bar|timer:t       ;
 +----------------+---------------------------------+-----------------+
 ; Parameter Name ; Value                           ; Type            ;
 +----------------+---------------------------------+-----------------+
@@ -658,25 +658,25 @@ Note: In order to hide this table in the UI and the text report file, please set
 Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
 
 
-+-----------------------------------------------------+
-; Parameter Settings for User Entity Instance: ball:b ;
-+----------------+-------+----------------------------+
-; Parameter Name ; Value ; Type                       ;
-+----------------+-------+----------------------------+
-; LIM_LEFT       ; 8     ; Signed Integer             ;
-; LIM_RIGHT      ; 632   ; Signed Integer             ;
-; LIM_UP         ; 8     ; Signed Integer             ;
-; LIM_DOWN       ; 472   ; Signed Integer             ;
-; LIM_ENDGAME    ; 456   ; Signed Integer             ;
-; R_BALL         ; 8     ; Signed Integer             ;
-; H_BAR          ; 8     ; Signed Integer             ;
-; W_BAR          ; 64    ; Signed Integer             ;
-+----------------+-------+----------------------------+
++--------------------------------------------------------+
+; Parameter Settings for User Entity Instance: ball:ball ;
++----------------+-------+-------------------------------+
+; Parameter Name ; Value ; Type                          ;
++----------------+-------+-------------------------------+
+; LIM_LEFT       ; 8     ; Signed Integer                ;
+; LIM_RIGHT      ; 632   ; Signed Integer                ;
+; LIM_UP         ; 8     ; Signed Integer                ;
+; LIM_DOWN       ; 472   ; Signed Integer                ;
+; LIM_ENDGAME    ; 456   ; Signed Integer                ;
+; R_BALL         ; 8     ; Signed Integer                ;
+; H_BAR          ; 8     ; Signed Integer                ;
+; W_BAR          ; 64    ; Signed Integer                ;
++----------------+-------+-------------------------------+
 Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
 
 
 +--------------------------------------------------------------------+
-; Parameter Settings for User Entity Instance: ball:b|timer:t        ;
+; Parameter Settings for User Entity Instance: ball:ball|timer:t     ;
 +----------------+---------------------------------+-----------------+
 ; Parameter Name ; Value                           ; Type            ;
 +----------------+---------------------------------+-----------------+
@@ -839,7 +839,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 
 
 +-------------------------------------------------------------------------------------------------------------------+
-; Port Connectivity Checks: "ball:b"                                                                                ;
+; Port Connectivity Checks: "ball:ball"                                                                             ;
 +---------+--------+----------+-------------------------------------------------------------------------------------+
 ; Port    ; Type   ; Severity ; Details                                                                             ;
 +---------+--------+----------+-------------------------------------------------------------------------------------+
@@ -925,10 +925,12 @@ Note: In order to hide this table in the UI and the text report file, please set
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 17.1.0 Build 590 10/25/2017 SJ Lite Edition
-    Info: Processing started: Mon Jun  3 11:15:09 2024
+    Info: Processing started: Mon Jun  3 11:41:08 2024
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off projeto-final -c projeto-final
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (20030): Parallel compilation is enabled and will use 12 of the 12 processors detected
+Info (12021): Found 1 design units, including 1 entities, in source file /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/bar.v
+    Info (12023): Found entity 1: bar File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/bar.v Line: 1
 Info (12021): Found 1 design units, including 1 entities, in source file /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/ball.v
     Info (12023): Found entity 1: ball File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/ball.v Line: 1
 Info (12021): Found 1 design units, including 1 entities, in source file /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/bloco.v
@@ -941,21 +943,19 @@ Info (12021): Found 1 design units, including 1 entities, in source file /home/e
     Info (12023): Found entity 1: timer File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/timer.v Line: 1
 Info (12021): Found 1 design units, including 1 entities, in source file /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/placar.v
     Info (12023): Found entity 1: placar File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/placar.v Line: 1
-Info (12021): Found 1 design units, including 1 entities, in source file /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/move_bar.v
-    Info (12023): Found entity 1: move_bar File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/move_bar.v Line: 1
 Info (12021): Found 1 design units, including 1 entities, in source file /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/cb7s.v
     Info (12023): Found entity 1: cb7s File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/cb7s.v Line: 1
 Info (12021): Found 1 design units, including 1 entities, in source file /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/button.v
     Info (12023): Found entity 1: button File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/button.v Line: 1
 Info (12021): Found 1 design units, including 1 entities, in source file /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/bcd.v
     Info (12023): Found entity 1: bcd File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/bcd.v Line: 3
-Warning (10236): Verilog HDL Implicit Net warning at ball.v(51): created implicit net for "hit_center" File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/ball.v Line: 51
-Warning (10236): Verilog HDL Implicit Net warning at ball.v(52): created implicit net for "hit_left" File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/ball.v Line: 52
-Warning (10236): Verilog HDL Implicit Net warning at ball.v(53): created implicit net for "hit_right" File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/ball.v Line: 53
-Warning (10236): Verilog HDL Implicit Net warning at top.v(92): created implicit net for "hit_block_down" File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/top.v Line: 92
-Warning (10236): Verilog HDL Implicit Net warning at top.v(93): created implicit net for "hit_block_up" File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/top.v Line: 93
-Warning (10236): Verilog HDL Implicit Net warning at top.v(94): created implicit net for "hit_block_right" File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/top.v Line: 94
-Warning (10236): Verilog HDL Implicit Net warning at top.v(95): created implicit net for "hit_block_left" File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/top.v Line: 95
+Warning (10236): Verilog HDL Implicit Net warning at ball.v(54): created implicit net for "hit_center" File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/ball.v Line: 54
+Warning (10236): Verilog HDL Implicit Net warning at ball.v(55): created implicit net for "hit_left" File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/ball.v Line: 55
+Warning (10236): Verilog HDL Implicit Net warning at ball.v(56): created implicit net for "hit_right" File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/ball.v Line: 56
+Warning (10236): Verilog HDL Implicit Net warning at top.v(92): created implicit net for "hit_block_d" File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/top.v Line: 92
+Warning (10236): Verilog HDL Implicit Net warning at top.v(93): created implicit net for "hit_block_u" File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/top.v Line: 93
+Warning (10236): Verilog HDL Implicit Net warning at top.v(94): created implicit net for "hit_block_r" File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/top.v Line: 94
+Warning (10236): Verilog HDL Implicit Net warning at top.v(95): created implicit net for "hit_block_l" File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/top.v Line: 95
 Info (12127): Elaborating entity "top" for the top level hierarchy
 Warning (10036): Verilog HDL or VHDL warning at top.v(61): object "endgame" assigned a value but never read File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/top.v Line: 61
 Warning (10858): Verilog HDL warning at top.v(64): object hit_block6 used but never assigned File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/top.v Line: 64
@@ -963,59 +963,59 @@ Warning (10858): Verilog HDL warning at top.v(64): object hit_block7 used but ne
 Warning (10858): Verilog HDL warning at top.v(64): object hit_block8 used but never assigned File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/top.v Line: 64
 Warning (10858): Verilog HDL warning at top.v(64): object hit_block9 used but never assigned File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/top.v Line: 64
 Warning (10858): Verilog HDL warning at top.v(64): object hit_block10 used but never assigned File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/top.v Line: 64
-Warning (10858): Verilog HDL warning at top.v(70): object hit_block_down6 used but never assigned File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/top.v Line: 70
-Warning (10858): Verilog HDL warning at top.v(70): object hit_block_up6 used but never assigned File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/top.v Line: 70
-Warning (10858): Verilog HDL warning at top.v(70): object hit_block_right6 used but never assigned File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/top.v Line: 70
-Warning (10858): Verilog HDL warning at top.v(70): object hit_block_left6 used but never assigned File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/top.v Line: 70
-Warning (10858): Verilog HDL warning at top.v(71): object hit_block_down7 used but never assigned File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/top.v Line: 71
-Warning (10858): Verilog HDL warning at top.v(71): object hit_block_up7 used but never assigned File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/top.v Line: 71
-Warning (10858): Verilog HDL warning at top.v(71): object hit_block_right7 used but never assigned File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/top.v Line: 71
-Warning (10858): Verilog HDL warning at top.v(71): object hit_block_left7 used but never assigned File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/top.v Line: 71
-Warning (10858): Verilog HDL warning at top.v(72): object hit_block_down8 used but never assigned File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/top.v Line: 72
-Warning (10858): Verilog HDL warning at top.v(72): object hit_block_up8 used but never assigned File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/top.v Line: 72
-Warning (10858): Verilog HDL warning at top.v(72): object hit_block_right8 used but never assigned File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/top.v Line: 72
-Warning (10858): Verilog HDL warning at top.v(72): object hit_block_left8 used but never assigned File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/top.v Line: 72
-Warning (10858): Verilog HDL warning at top.v(73): object hit_block_down9 used but never assigned File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/top.v Line: 73
-Warning (10858): Verilog HDL warning at top.v(73): object hit_block_up9 used but never assigned File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/top.v Line: 73
-Warning (10858): Verilog HDL warning at top.v(73): object hit_block_right9 used but never assigned File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/top.v Line: 73
-Warning (10858): Verilog HDL warning at top.v(73): object hit_block_left9 used but never assigned File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/top.v Line: 73
-Warning (10858): Verilog HDL warning at top.v(74): object hit_block_down10 used but never assigned File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/top.v Line: 74
-Warning (10858): Verilog HDL warning at top.v(74): object hit_block_up10 used but never assigned File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/top.v Line: 74
-Warning (10858): Verilog HDL warning at top.v(74): object hit_block_right10 used but never assigned File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/top.v Line: 74
-Warning (10858): Verilog HDL warning at top.v(74): object hit_block_left10 used but never assigned File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/top.v Line: 74
+Warning (10858): Verilog HDL warning at top.v(70): object hit_block_d6 used but never assigned File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/top.v Line: 70
+Warning (10858): Verilog HDL warning at top.v(70): object hit_block_u6 used but never assigned File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/top.v Line: 70
+Warning (10858): Verilog HDL warning at top.v(70): object hit_block_r6 used but never assigned File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/top.v Line: 70
+Warning (10858): Verilog HDL warning at top.v(70): object hit_block_l6 used but never assigned File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/top.v Line: 70
+Warning (10858): Verilog HDL warning at top.v(71): object hit_block_d7 used but never assigned File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/top.v Line: 71
+Warning (10858): Verilog HDL warning at top.v(71): object hit_block_u7 used but never assigned File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/top.v Line: 71
+Warning (10858): Verilog HDL warning at top.v(71): object hit_block_r7 used but never assigned File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/top.v Line: 71
+Warning (10858): Verilog HDL warning at top.v(71): object hit_block_l7 used but never assigned File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/top.v Line: 71
+Warning (10858): Verilog HDL warning at top.v(72): object hit_block_d8 used but never assigned File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/top.v Line: 72
+Warning (10858): Verilog HDL warning at top.v(72): object hit_block_u8 used but never assigned File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/top.v Line: 72
+Warning (10858): Verilog HDL warning at top.v(72): object hit_block_r8 used but never assigned File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/top.v Line: 72
+Warning (10858): Verilog HDL warning at top.v(72): object hit_block_l8 used but never assigned File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/top.v Line: 72
+Warning (10858): Verilog HDL warning at top.v(73): object hit_block_d9 used but never assigned File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/top.v Line: 73
+Warning (10858): Verilog HDL warning at top.v(73): object hit_block_u9 used but never assigned File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/top.v Line: 73
+Warning (10858): Verilog HDL warning at top.v(73): object hit_block_r9 used but never assigned File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/top.v Line: 73
+Warning (10858): Verilog HDL warning at top.v(73): object hit_block_l9 used but never assigned File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/top.v Line: 73
+Warning (10858): Verilog HDL warning at top.v(74): object hit_block_d10 used but never assigned File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/top.v Line: 74
+Warning (10858): Verilog HDL warning at top.v(74): object hit_block_u10 used but never assigned File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/top.v Line: 74
+Warning (10858): Verilog HDL warning at top.v(74): object hit_block_r10 used but never assigned File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/top.v Line: 74
+Warning (10858): Verilog HDL warning at top.v(74): object hit_block_l10 used but never assigned File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/top.v Line: 74
 Warning (10858): Verilog HDL warning at top.v(79): object endgame_block6 used but never assigned File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/top.v Line: 79
 Warning (10858): Verilog HDL warning at top.v(79): object endgame_block7 used but never assigned File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/top.v Line: 79
 Warning (10858): Verilog HDL warning at top.v(79): object endgame_block8 used but never assigned File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/top.v Line: 79
 Warning (10858): Verilog HDL warning at top.v(79): object endgame_block9 used but never assigned File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/top.v Line: 79
 Warning (10858): Verilog HDL warning at top.v(79): object endgame_block10 used but never assigned File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/top.v Line: 79
-Warning (10230): Verilog HDL assignment warning at top.v(316): truncated value with size 32 to match size of target (8) File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/top.v Line: 316
-Warning (10230): Verilog HDL assignment warning at top.v(317): truncated value with size 32 to match size of target (8) File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/top.v Line: 317
-Warning (10230): Verilog HDL assignment warning at top.v(318): truncated value with size 32 to match size of target (8) File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/top.v Line: 318
+Warning (10230): Verilog HDL assignment warning at top.v(322): truncated value with size 32 to match size of target (8) File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/top.v Line: 322
+Warning (10230): Verilog HDL assignment warning at top.v(323): truncated value with size 32 to match size of target (8) File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/top.v Line: 323
+Warning (10230): Verilog HDL assignment warning at top.v(324): truncated value with size 32 to match size of target (8) File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/top.v Line: 324
 Warning (10030): Net "hit_block6" at top.v(64) has no driver or initial value, using a default initial value '0' File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/top.v Line: 64
 Warning (10030): Net "hit_block7" at top.v(64) has no driver or initial value, using a default initial value '0' File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/top.v Line: 64
 Warning (10030): Net "hit_block8" at top.v(64) has no driver or initial value, using a default initial value '0' File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/top.v Line: 64
 Warning (10030): Net "hit_block9" at top.v(64) has no driver or initial value, using a default initial value '0' File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/top.v Line: 64
 Warning (10030): Net "hit_block10" at top.v(64) has no driver or initial value, using a default initial value '0' File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/top.v Line: 64
-Warning (10030): Net "hit_block_down6" at top.v(70) has no driver or initial value, using a default initial value '0' File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/top.v Line: 70
-Warning (10030): Net "hit_block_up6" at top.v(70) has no driver or initial value, using a default initial value '0' File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/top.v Line: 70
-Warning (10030): Net "hit_block_right6" at top.v(70) has no driver or initial value, using a default initial value '0' File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/top.v Line: 70
-Warning (10030): Net "hit_block_left6" at top.v(70) has no driver or initial value, using a default initial value '0' File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/top.v Line: 70
-Warning (10030): Net "hit_block_down7" at top.v(71) has no driver or initial value, using a default initial value '0' File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/top.v Line: 71
-Warning (10030): Net "hit_block_up7" at top.v(71) has no driver or initial value, using a default initial value '0' File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/top.v Line: 71
-Warning (10030): Net "hit_block_right7" at top.v(71) has no driver or initial value, using a default initial value '0' File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/top.v Line: 71
-Warning (10030): Net "hit_block_left7" at top.v(71) has no driver or initial value, using a default initial value '0' File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/top.v Line: 71
-Warning (10030): Net "hit_block_down8" at top.v(72) has no driver or initial value, using a default initial value '0' File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/top.v Line: 72
-Warning (10030): Net "hit_block_up8" at top.v(72) has no driver or initial value, using a default initial value '0' File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/top.v Line: 72
-Warning (10030): Net "hit_block_right8" at top.v(72) has no driver or initial value, using a default initial value '0' File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/top.v Line: 72
-Warning (10030): Net "hit_block_left8" at top.v(72) has no driver or initial value, using a default initial value '0' File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/top.v Line: 72
-Warning (10030): Net "hit_block_down9" at top.v(73) has no driver or initial value, using a default initial value '0' File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/top.v Line: 73
-Warning (10030): Net "hit_block_up9" at top.v(73) has no driver or initial value, using a default initial value '0' File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/top.v Line: 73
-Warning (10030): Net "hit_block_right9" at top.v(73) has no driver or initial value, using a default initial value '0' File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/top.v Line: 73
-Warning (10030): Net "hit_block_left9" at top.v(73) has no driver or initial value, using a default initial value '0' File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/top.v Line: 73
-Warning (10030): Net "hit_block_down10" at top.v(74) has no driver or initial value, using a default initial value '0' File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/top.v Line: 74
-Warning (10030): Net "hit_block_up10" at top.v(74) has no driver or initial value, using a default initial value '0' File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/top.v Line: 74
-Warning (10030): Net "hit_block_right10" at top.v(74) has no driver or initial value, using a default initial value '0' File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/top.v Line: 74
-Warning (10030): Net "hit_block_left10" at top.v(74) has no driver or initial value, using a default initial value '0' File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/top.v Line: 74
+Warning (10030): Net "hit_block_d6" at top.v(70) has no driver or initial value, using a default initial value '0' File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/top.v Line: 70
+Warning (10030): Net "hit_block_u6" at top.v(70) has no driver or initial value, using a default initial value '0' File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/top.v Line: 70
+Warning (10030): Net "hit_block_r6" at top.v(70) has no driver or initial value, using a default initial value '0' File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/top.v Line: 70
+Warning (10030): Net "hit_block_l6" at top.v(70) has no driver or initial value, using a default initial value '0' File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/top.v Line: 70
+Warning (10030): Net "hit_block_d7" at top.v(71) has no driver or initial value, using a default initial value '0' File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/top.v Line: 71
+Warning (10030): Net "hit_block_u7" at top.v(71) has no driver or initial value, using a default initial value '0' File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/top.v Line: 71
+Warning (10030): Net "hit_block_r7" at top.v(71) has no driver or initial value, using a default initial value '0' File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/top.v Line: 71
+Warning (10030): Net "hit_block_l7" at top.v(71) has no driver or initial value, using a default initial value '0' File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/top.v Line: 71
+Warning (10030): Net "hit_block_d8" at top.v(72) has no driver or initial value, using a default initial value '0' File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/top.v Line: 72
+Warning (10030): Net "hit_block_u8" at top.v(72) has no driver or initial value, using a default initial value '0' File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/top.v Line: 72
+Warning (10030): Net "hit_block_r8" at top.v(72) has no driver or initial value, using a default initial value '0' File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/top.v Line: 72
+Warning (10030): Net "hit_block_l8" at top.v(72) has no driver or initial value, using a default initial value '0' File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/top.v Line: 72
+Warning (10030): Net "hit_block_d9" at top.v(73) has no driver or initial value, using a default initial value '0' File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/top.v Line: 73
+Warning (10030): Net "hit_block_u9" at top.v(73) has no driver or initial value, using a default initial value '0' File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/top.v Line: 73
+Warning (10030): Net "hit_block_r9" at top.v(73) has no driver or initial value, using a default initial value '0' File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/top.v Line: 73
+Warning (10030): Net "hit_block_l9" at top.v(73) has no driver or initial value, using a default initial value '0' File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/top.v Line: 73
+Warning (10030): Net "hit_block_d10" at top.v(74) has no driver or initial value, using a default initial value '0' File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/top.v Line: 74
+Warning (10030): Net "hit_block_u10" at top.v(74) has no driver or initial value, using a default initial value '0' File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/top.v Line: 74
+Warning (10030): Net "hit_block_r10" at top.v(74) has no driver or initial value, using a default initial value '0' File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/top.v Line: 74
+Warning (10030): Net "hit_block_l10" at top.v(74) has no driver or initial value, using a default initial value '0' File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/top.v Line: 74
 Warning (10030): Net "endgame_block6" at top.v(79) has no driver or initial value, using a default initial value '0' File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/top.v Line: 79
 Warning (10030): Net "endgame_block7" at top.v(79) has no driver or initial value, using a default initial value '0' File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/top.v Line: 79
 Warning (10030): Net "endgame_block8" at top.v(79) has no driver or initial value, using a default initial value '0' File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/top.v Line: 79
@@ -1032,30 +1032,30 @@ Warning (10230): Verilog HDL assignment warning at vga.v(38): truncated value wi
 Warning (10230): Verilog HDL assignment warning at vga.v(41): truncated value with size 32 to match size of target (10) File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/vga.v Line: 41
 Warning (10230): Verilog HDL assignment warning at vga.v(49): truncated value with size 32 to match size of target (1) File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/vga.v Line: 49
 Warning (10230): Verilog HDL assignment warning at vga.v(50): truncated value with size 32 to match size of target (1) File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/vga.v Line: 50
-Info (12128): Elaborating entity "move_bar" for hierarchy "move_bar:m" File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/top.v Line: 135
-Info (10264): Verilog HDL Case Statement information at move_bar.v(38): all case item expressions in this case statement are onehot File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/move_bar.v Line: 38
-Warning (10230): Verilog HDL assignment warning at move_bar.v(48): truncated value with size 32 to match size of target (10) File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/move_bar.v Line: 48
-Warning (10230): Verilog HDL assignment warning at move_bar.v(63): truncated value with size 32 to match size of target (10) File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/move_bar.v Line: 63
-Info (12128): Elaborating entity "timer" for hierarchy "move_bar:m|timer:t" File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/move_bar.v Line: 25
+Info (12128): Elaborating entity "bar" for hierarchy "bar:bar" File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/top.v Line: 138
+Info (10264): Verilog HDL Case Statement information at bar.v(41): all case item expressions in this case statement are onehot File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/bar.v Line: 41
+Warning (10230): Verilog HDL assignment warning at bar.v(51): truncated value with size 32 to match size of target (10) File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/bar.v Line: 51
+Warning (10230): Verilog HDL assignment warning at bar.v(66): truncated value with size 32 to match size of target (10) File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/bar.v Line: 66
+Info (12128): Elaborating entity "timer" for hierarchy "bar:bar|timer:t" File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/bar.v Line: 28
 Warning (10230): Verilog HDL assignment warning at timer.v(20): truncated value with size 32 to match size of target (31) File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/timer.v Line: 20
-Info (12128): Elaborating entity "ball" for hierarchy "ball:b" File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/top.v Line: 152
-Warning (10036): Verilog HDL or VHDL warning at ball.v(51): object "hit_center" assigned a value but never read File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/ball.v Line: 51
-Warning (10230): Verilog HDL assignment warning at ball.v(63): truncated value with size 32 to match size of target (10) File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/ball.v Line: 63
-Warning (10230): Verilog HDL assignment warning at ball.v(93): truncated value with size 32 to match size of target (10) File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/ball.v Line: 93
-Warning (10230): Verilog HDL assignment warning at ball.v(97): truncated value with size 32 to match size of target (10) File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/ball.v Line: 97
-Warning (10230): Verilog HDL assignment warning at ball.v(101): truncated value with size 32 to match size of target (10) File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/ball.v Line: 101
-Warning (10230): Verilog HDL assignment warning at ball.v(105): truncated value with size 32 to match size of target (10) File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/ball.v Line: 105
-Warning (10230): Verilog HDL assignment warning at ball.v(109): truncated value with size 32 to match size of target (10) File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/ball.v Line: 109
-Warning (10230): Verilog HDL assignment warning at ball.v(111): truncated value with size 32 to match size of target (10) File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/ball.v Line: 111
+Info (12128): Elaborating entity "ball" for hierarchy "ball:ball" File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/top.v Line: 158
+Warning (10036): Verilog HDL or VHDL warning at ball.v(54): object "hit_center" assigned a value but never read File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/ball.v Line: 54
+Warning (10230): Verilog HDL assignment warning at ball.v(66): truncated value with size 32 to match size of target (10) File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/ball.v Line: 66
+Warning (10230): Verilog HDL assignment warning at ball.v(96): truncated value with size 32 to match size of target (10) File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/ball.v Line: 96
+Warning (10230): Verilog HDL assignment warning at ball.v(100): truncated value with size 32 to match size of target (10) File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/ball.v Line: 100
+Warning (10230): Verilog HDL assignment warning at ball.v(104): truncated value with size 32 to match size of target (10) File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/ball.v Line: 104
+Warning (10230): Verilog HDL assignment warning at ball.v(108): truncated value with size 32 to match size of target (10) File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/ball.v Line: 108
 Warning (10230): Verilog HDL assignment warning at ball.v(112): truncated value with size 32 to match size of target (10) File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/ball.v Line: 112
+Warning (10230): Verilog HDL assignment warning at ball.v(114): truncated value with size 32 to match size of target (10) File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/ball.v Line: 114
 Warning (10230): Verilog HDL assignment warning at ball.v(115): truncated value with size 32 to match size of target (10) File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/ball.v Line: 115
-Warning (10230): Verilog HDL assignment warning at ball.v(116): truncated value with size 32 to match size of target (10) File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/ball.v Line: 116
-Warning (10230): Verilog HDL assignment warning at ball.v(126): truncated value with size 32 to match size of target (10) File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/ball.v Line: 126
-Warning (10230): Verilog HDL assignment warning at ball.v(130): truncated value with size 32 to match size of target (10) File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/ball.v Line: 130
-Warning (10230): Verilog HDL assignment warning at ball.v(134): truncated value with size 32 to match size of target (10) File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/ball.v Line: 134
-Warning (10230): Verilog HDL assignment warning at ball.v(138): truncated value with size 32 to match size of target (10) File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/ball.v Line: 138
-Info (12128): Elaborating entity "bloco" for hierarchy "bloco:b1" File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/top.v Line: 172
-Warning (10230): Verilog HDL assignment warning at bloco.v(50): truncated value with size 32 to match size of target (1) File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/bloco.v Line: 50
+Warning (10230): Verilog HDL assignment warning at ball.v(118): truncated value with size 32 to match size of target (10) File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/ball.v Line: 118
+Warning (10230): Verilog HDL assignment warning at ball.v(119): truncated value with size 32 to match size of target (10) File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/ball.v Line: 119
+Warning (10230): Verilog HDL assignment warning at ball.v(129): truncated value with size 32 to match size of target (10) File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/ball.v Line: 129
+Warning (10230): Verilog HDL assignment warning at ball.v(133): truncated value with size 32 to match size of target (10) File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/ball.v Line: 133
+Warning (10230): Verilog HDL assignment warning at ball.v(137): truncated value with size 32 to match size of target (10) File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/ball.v Line: 137
+Warning (10230): Verilog HDL assignment warning at ball.v(141): truncated value with size 32 to match size of target (10) File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/ball.v Line: 141
+Info (12128): Elaborating entity "bloco" for hierarchy "bloco:b1" File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/top.v Line: 178
+Warning (10230): Verilog HDL assignment warning at bloco.v(64): truncated value with size 32 to match size of target (1) File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/bloco.v Line: 64
 Warning (12241): 7 hierarchies have connectivity warnings - see the Connectivity Checks report folder
 Warning (13024): Output pins are stuck at VCC or GND
     Warning (13410): Pin "VGA_SYNC_N" is stuck at GND File: /home/ec2022/ra184423/MC613/2024s1-mc613-projeto-elektras/top.v Line: 11
@@ -1080,9 +1080,9 @@ Info (21057): Implemented 713 device resources after synthesis - the final resou
     Info (21061): Implemented 637 logic cells
     Info (21062): Implemented 4 DSP elements
 Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 111 warnings
-    Info: Peak virtual memory: 1284 megabytes
-    Info: Processing ended: Mon Jun  3 11:15:16 2024
+    Info: Peak virtual memory: 1280 megabytes
+    Info: Processing ended: Mon Jun  3 11:41:15 2024
     Info: Elapsed time: 00:00:07
-    Info: Total CPU time (on all processors): 00:00:15
+    Info: Total CPU time (on all processors): 00:00:14
 
 

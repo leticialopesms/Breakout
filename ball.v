@@ -4,15 +4,18 @@ module ball(
     input start,
     input [9:0] x_bar,
     input [9:0] y_bar,
+    input [9:0] next_x,
+    input [9:0] next_y,
     input hit_block,
-    input hit_block_up,
-    input hit_block_down,
-    input hit_block_left,
-    input hit_block_right,
-    output wire [9:0] x_p,
-    output wire [9:0] y_p,
+    input hit_block_u,
+    input hit_block_d,
+    input hit_block_l,
+    input hit_block_r,
+    output wire [9:0] x,
+    output wire [9:0] y,
     output wire hit_bar,
-    output reg endgame
+    output reg endgame,
+    output wire area
 );
 
 // parametros para os limites do monitor (até onde o quadrado pode ir)
@@ -74,10 +77,10 @@ always @(posedge clock) begin
             else if(x_ball >= LIM_RIGHT) estado = 3;      // bateu na direita
             else if(y_ball >= LIM_ENDGAME) estado = 5;       // ENDGAME!
             else if (hit_block) begin
-              if(hit_block_up) estado = 6;
-              else if(hit_block_down) estado = 7;
-              else if(hit_block_left) estado = 8;
-              else if(hit_block_right) estado = 9;
+              if(hit_block_u) estado = 6;
+              else if(hit_block_d) estado = 7;
+              else if(hit_block_l) estado = 8;
+              else if(hit_block_r) estado = 9;
             end
             else estado = 10;
         end
@@ -151,7 +154,8 @@ always @(posedge clock) begin
   end
 end
 
-assign x_p = x_ball;
-assign y_p = y_ball;
+assign x = x_ball;
+assign y = y_ball;
+assign area = (((x - next_x) * (x - next_x) + (y - next_y) * (y - next_y)) <= R_BALL*R_BALL);
 
 endmodule

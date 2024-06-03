@@ -312,13 +312,13 @@ set_location_assignment PIN_E12 -to VGA_R[6]
 set_location_assignment PIN_F13 -to VGA_R[7]
 set_location_assignment PIN_C10 -to VGA_SYNC_N
 set_location_assignment PIN_D11 -to VGA_VS
+set_global_assignment -name VERILOG_FILE ../bar.v
 set_global_assignment -name VERILOG_FILE ../ball.v
 set_global_assignment -name VERILOG_FILE ../bloco.v
 set_global_assignment -name VERILOG_FILE ../vga.v
 set_global_assignment -name VERILOG_FILE ../top.v
 set_global_assignment -name VERILOG_FILE ../timer.v
 set_global_assignment -name VERILOG_FILE ../placar.v
-set_global_assignment -name VERILOG_FILE ../move_bar.v
 set_global_assignment -name VERILOG_FILE ../cb7s.v
 set_global_assignment -name VERILOG_FILE ../button.v
 set_global_assignment -name VERILOG_FILE ../bcd.v

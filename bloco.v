@@ -10,10 +10,10 @@ module bloco(
     input [9:0] next_y,
     output wire area,
     output wire hit_block,
-    output wire hit_block_up,
-    output wire hit_block_down,
-    output wire hit_block_right,
-    output wire hit_block_left,
+    output wire hit_block_u,
+    output wire hit_block_d,
+    output wire hit_block_l,
+    output wire hit_block_r,
     output wire endgame,
     output reg exist
 );
@@ -43,23 +43,25 @@ reg [9:0] y_block;
 assign area = ((next_x <= x_block + W_BLOCK) && (next_x >= x_block - W_BLOCK) && (next_y <= y_block + H_BLOCK) && (next_y >= y_block - H_BLOCK));
 
 // verificar isso aqui
-// assign hit_block_up = ((y_ball == (y_block-H_BLOCK-R_BALL)) && (x_ball >= x_block-W_BLOCK) && (x_ball <= x_block+W_BLOCK));
-// assign hit_block_down = ((y_ball == (y_block+H_BLOCK+R_BALL)) && (x_ball >= x_block-W_BLOCK) && (x_ball <= x_block+W_BLOCK));
-// assign hit_block_right = ((x_ball == x_block+W_BLOCK+R_BALL) && (y_ball >= y_block-H_BLOCK) && (y_ball <= y_block+H_BLOCK));
-// assign hit_block_left = ((x_ball == x_block-W_BLOCK-R_BALL) && (y_ball >= y_block-H_BLOCK) && (y_ball <= y_block+H_BLOCK));
-assign hit_block = (exist) ? (hit_block_down || hit_block_up || hit_block_left || hit_block_right) : 0;
-
+// assign hit_block_u = ((y_ball == (y_block-H_BLOCK-R_BALL)) && (x_ball >= x_block-W_BLOCK) && (x_ball <= x_block+W_BLOCK));
+// assign hit_block_d = ((y_ball == (y_block+H_BLOCK+R_BALL)) && (x_ball >= x_block-W_BLOCK) && (x_ball <= x_block+W_BLOCK));
+// assign hit_block_r = ((x_ball == x_block+W_BLOCK+R_BALL) && (y_ball >= y_block-H_BLOCK) && (y_ball <= y_block+H_BLOCK));
+// assign hit_block_l = ((x_ball == x_block-W_BLOCK-R_BALL) && (y_ball >= y_block-H_BLOCK) && (y_ball <= y_block+H_BLOCK));
 // assign hit_block = (exist) ? (x_ball-R_BALL<=x_block + W_BLOCK  && (x_ball >= x_block - W_BLOCK) && (y_ball <= y_block + H_BLOCK) && (y_ball >= y_block - H_BLOCK)) : 0;
-assign hit_block_up = ((y_ball == (y_block-H_BLOCK-R_BALL)) && (((x_ball >= x_block-W_BLOCK) && (x_ball <= x_block)) || ((x_ball >= x_block) && (x_ball <= x_block+W_BLOCK))));
-assign hit_block_down = ((y_ball == (y_block+H_BLOCK+R_BALL)) && 
-             ((x_ball >= x_block-W_BLOCK) && (x_ball <= x_block) ||
-              (x_ball >= x_block) && (x_ball <= x_block+W_BLOCK)));
-assign hit_block_right = ((x_ball == (x_block+W_BLOCK+R_BALL)) && 
-              ((y_ball >= y_block-H_BLOCK) && (y_ball <= y_block) ||
-               (y_ball >= y_block) && (y_ball <= y_block+H_BLOCK)));
-assign hit_block_left = ((x_ball == (x_block-W_BLOCK-R_BALL)) && 
-             ((y_ball >= y_block-H_BLOCK) && (y_ball <= y_block) ||
-              (y_ball >= y_block) && (y_ball <= y_block+H_BLOCK)));
+
+assign hit_block_u = ((y_ball == (y_block-H_BLOCK-R_BALL)) &&
+                      (((x_ball >= x_block-W_BLOCK) && (x_ball <= x_block)) ||
+                      ((x_ball >= x_block) && (x_ball <= x_block+W_BLOCK))));
+assign hit_block_d = ((y_ball == (y_block+H_BLOCK+R_BALL)) &&
+                      (((x_ball >= x_block-W_BLOCK) && (x_ball <= x_block)) ||
+                      ((x_ball >= x_block) && (x_ball <= x_block+W_BLOCK))));
+assign hit_block_l = ((x_ball == (x_block-W_BLOCK-R_BALL)) &&
+                      (((y_ball >= y_block-H_BLOCK) && (y_ball <= y_block)) ||
+                      ((y_ball >= y_block) && (y_ball <= y_block+H_BLOCK))));
+assign hit_block_r = ((x_ball == (x_block+W_BLOCK+R_BALL)) &&
+                      (((y_ball >= y_block-H_BLOCK) && (y_ball <= y_block)) ||
+                      ((y_ball >= y_block) && (y_ball <= y_block+H_BLOCK))));
+assign hit_block = (exist) ? (hit_block_d || hit_block_u || hit_block_l || hit_block_r) : 0;
 
 assign endgame = (y_block >= (480-16));
 
