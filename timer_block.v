@@ -1,10 +1,11 @@
-module timer (
+module timer_block (
     input clock,
     input reset,
     output pulse
 );
 
-parameter [30:0] PULSE_TIME = 500_000;
+// verificar se ta uma velocidade adequada
+parameter [30:0] PULSE_TIME = 250_000_000;
 reg [30:0] contador;
 
 assign pulse = (contador == PULSE_TIME);

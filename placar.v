@@ -46,7 +46,7 @@ assign digito4 = d4_display;
 assign digito5 = (vidas<10) ? 7'b1111111:d5_display;
 
 wire add_score; // flag pra verificar se deve somar 1 na pontuacao atual
-reg [5:0] estado; // estado da máquina de estados
+reg [3:0] estado; // estado da máquina de estados
 
 button b (
   .clock(clock),
@@ -70,14 +70,13 @@ always @(posedge clock) begin
           if(endgame_ball) estado = 1;
           else if (endgame_block) estado = 3;
           else if (add_score) estado = 4;
-          else if (score == 10) estado = 5; // considerando 10 blocos no total aqui
           else estado = 0;
         end
         else estado = 0;
       end
       1: begin  // jogador perdeu 1 vida
         vidas = vidas - 1;
-        if (vidas > 0) estado = 2; // tratando o caso de não ter mais vidas aqui
+        if (vidas > 0) estado = 2;
         else estado = 3;
       end
       2: begin  // jogador perdeu 1 vida e ainda tem mais
@@ -91,10 +90,6 @@ always @(posedge clock) begin
       4: begin  // jogador acertou um bloco
         score = score + 1;
         estado = 0;
-      end
-      5: begin // jogador ganhou o jogo, eliminando todos os blocos
-        // imprimir YOU WIN no display
-        estado = 5;
       end
       default: estado = 0;
     endcase
