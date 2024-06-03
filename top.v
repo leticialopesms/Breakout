@@ -16,6 +16,17 @@ module top(
     output wire [6:0] HEX5          //  digito 5 - digito da esquerda
 );
 
+// parametros para os limites do monitor (até onde o quadrado pode ir)
+parameter LIM_LEFT = R_BALL;
+parameter LIM_RIGHT = 640 - R_BALL;
+parameter LIM_UP = R_BALL;
+parameter LIM_DOWN = 480 - R_BALL;
+
+// parametros para os tamanhos da bola, barra e bloco
+parameter R_BALL = 8;   // raio da bolinha
+parameter H_BAR = 8;    // metade da altura da barra
+parameter W_BAR = 64;   // metade da largura da barra
+
 // --- wires e regs --- //
 
 // regs cores
@@ -72,9 +83,9 @@ wire endgame_block1, endgame_block2, endgame_block3, endgame_block4, endgame_blo
 // --- atribuições --- //
 
 // atribuições para os elementos do jogo
-// assign barrinha = ((next_x <= x_bar + W_BAR) && (next_x >= x_bar - W_BAR) && (next_y <= y_bar + H_BAR) && (next_y >= y_bar - H_BAR));
-// assign bolinha = (((x_ball - next_x) * (x_ball - next_x) + (y_ball - next_y) * (y_ball - next_y)) <= R_BALL*R_BALL);
-assign lavinha = (next_y >= 480 - 16); // ver ideias.txt !! (para fazer ondinhas)
+assign barrinha = ((next_x <= x_bar + W_BAR) && (next_x >= x_bar - W_BAR) && (next_y <= y_bar + H_BAR) && (next_y >= y_bar - H_BAR));
+assign bolinha = (((x_ball - next_x) * (x_ball - next_x) + (y_ball - next_y) * (y_ball - next_y)) <= R_BALL*R_BALL);
+assign lavinha = (next_y >= 480 - 16);
 
 // atribuições para hit_block
 assign hit_block = (hit_block1 || hit_block2 || hit_block3 || hit_block4 || hit_block5 || hit_block6 || hit_block7 || hit_block8 || hit_block9 || hit_block10);
@@ -119,40 +130,33 @@ move_bar m (
   .reset(~SW[0]),
   .left(KEY[1]),
   .right(KEY[0]),
-  .next_x(next_x),
-  .next_y(next_y),
   .x(x_bar),
-  .y(y_bar),
-  .posicao(barrinha)
+  .y(y_bar)
 );
 
-move_ball b (
+ball b (
   .clock(VGA_CLK),
   .reset(~SW[0]),
   .start(~SW[2]),
   .x_bar(x_bar),
   .y_bar(y_bar),
-  .next_x(next_x),
-  .next_y(next_y),
   .hit_block(hit_block),
   .hit_block_down(hit_block_down),
   .hit_block_up(hit_block_up),
   .hit_block_right(hit_block_right),
   .hit_block_left(hit_block_left),
-  .x(x_ball),
-  .y(y_ball),
+  .x_p(x_ball),
+  .y_p(y_ball),
   .hit_bar(hit_bar),
-  .endgame(endgame_ball),
-  .posicao(bolinha)
+  .endgame(endgame_ball)
 );
 
-// primeira fileira de bloquinhos --------------------------------------------------
 bloco b1 (
   .clock(VGA_CLK),
   .reset(~SW[0]),
   .start(~SW[2]),
   .x_i(64),
-  .y_i(16),
+  .y_i(32),
   .x_ball(x_ball),
   .y_ball(y_ball),
   .next_x(next_x),
@@ -172,7 +176,7 @@ bloco b2 (
   .reset(~SW[0]),
   .start(~SW[2]),
   .x_i(192),
-  .y_i(16),
+  .y_i(32),
   .x_ball(x_ball),
   .y_ball(y_ball),
   .next_x(next_x),
@@ -192,7 +196,7 @@ bloco b3 (
   .reset(~SW[0]),
   .start(~SW[2]),
   .x_i(320),
-  .y_i(16),
+  .y_i(32),
   .x_ball(x_ball),
   .y_ball(y_ball),
   .next_x(next_x),
@@ -212,7 +216,7 @@ bloco b4 (
   .reset(~SW[0]),
   .start(~SW[2]),
   .x_i(448),
-  .y_i(16),
+  .y_i(32),
   .x_ball(x_ball),
   .y_ball(y_ball),
   .next_x(next_x),
@@ -232,7 +236,7 @@ bloco b5 (
   .reset(~SW[0]),
   .start(~SW[2]),
   .x_i(576),
-  .y_i(16),
+  .y_i(32),
   .x_ball(x_ball),
   .y_ball(y_ball),
   .next_x(next_x),
@@ -245,108 +249,6 @@ bloco b5 (
   .hit_block_left(hit_block_left5),
   .endgame(endgame_block5),
   .exist(existe_b5)
-);
-
-
-// segunda fileira de bloquinhos --------------------------------------------
-bloco b6 (
-  .clock(VGA_CLK),
-  .reset(~SW[0]),
-  .start(~SW[2]),
-  .x_i(64),
-  .y_i(48),
-  .x_ball(x_ball),
-  .y_ball(y_ball),
-  .next_x(next_x),
-  .next_y(next_y),
-  .area(bloquinho6),
-  .hit_block(hit_block6),
-  .hit_block_down(hit_block_down6),
-  .hit_block_up(hit_block_up6),
-  .hit_block_right(hit_block_right6),
-  .hit_block_left(hit_block_left6),
-  .endgame(endgame_block6),
-  .exist(existe_b6)
-);
-
-bloco b7 (
-  .clock(VGA_CLK),
-  .reset(~SW[0]),
-  .start(~SW[2]),
-  .x_i(192),
-  .y_i(48),
-  .x_ball(x_ball),
-  .y_ball(y_ball),
-  .next_x(next_x),
-  .next_y(next_y),
-  .area(bloquinho7),
-  .hit_block(hit_block7),
-  .hit_block_down(hit_block_down7),
-  .hit_block_up(hit_block_up7),
-  .hit_block_right(hit_block_right7),
-  .hit_block_left(hit_block_left7),
-  .endgame(endgame_block7),
-  .exist(existe_b7)
-);
-
-bloco b8 (
-  .clock(VGA_CLK),
-  .reset(~SW[0]),
-  .start(~SW[2]),
-  .x_i(320),
-  .y_i(48),
-  .x_ball(x_ball),
-  .y_ball(y_ball),
-  .next_x(next_x),
-  .next_y(next_y),
-  .area(bloquinho8),
-  .hit_block(hit_block8),
-  .hit_block_down(hit_block_down8),
-  .hit_block_up(hit_block_up8),
-  .hit_block_right(hit_block_right8),
-  .hit_block_left(hit_block_left8),
-  .endgame(endgame_block8),
-  .exist(existe_b8)
-);
-
-bloco b9 (
-  .clock(VGA_CLK),
-  .reset(~SW[0]),
-  .start(~SW[2]),
-  .x_i(448),
-  .y_i(48),
-  .x_ball(x_ball),
-  .y_ball(y_ball),
-  .next_x(next_x),
-  .next_y(next_y),
-  .area(bloquinho9),
-  .hit_block(hit_block9),
-  .hit_block_down(hit_block_down9),
-  .hit_block_up(hit_block_up9),
-  .hit_block_right(hit_block_right9),
-  .hit_block_left(hit_block_left9),
-  .endgame(endgame_block9),
-  .exist(existe_b9)
-);
-
-bloco b10 (
-  .clock(VGA_CLK),
-  .reset(~SW[0]),
-  .start(~SW[2]),
-  .x_i(576),
-  .y_i(48),
-  .x_ball(x_ball),
-  .y_ball(y_ball),
-  .next_x(next_x),
-  .next_y(next_y),
-  .area(bloquinho10),
-  .hit_block(hit_block10),
-  .hit_block_down(hit_block_down10),
-  .hit_block_up(hit_block_up10),
-  .hit_block_right(hit_block_right10),
-  .hit_block_left(hit_block_left10),
-  .endgame(endgame_block10),
-  .exist(existe_b10)
 );
 
 
@@ -379,44 +281,19 @@ always @(posedge VGA_CLK) begin
         blue_reg = 230; // azul
       end
       else if (bloquinho3 && existe_b3) begin
-        red_reg = 10; // vermelho
-        green_reg = 230; // verde
+        red_reg = 200; // vermelho
+        green_reg = 100; // verde
         blue_reg = 50; // azul
       end
       else if (bloquinho4 && existe_b4) begin
-        red_reg = 100; // vermelho
-        green_reg = 50; // verde
-        blue_reg = 230; // azul
+        red_reg = 50; // vermelho
+        green_reg = 200; // verde
+        blue_reg = 100; // azul
       end
       else if (bloquinho5 && existe_b5) begin
-        red_reg = 10; // vermelho
-        green_reg = 230; // verde
-        blue_reg = 50; // azul
-      end
-      else if (bloquinho6 && existe_b6) begin
         red_reg = 100; // vermelho
         green_reg = 50; // verde
-        blue_reg = 230; // azul
-      end
-      else if (bloquinho7 && existe_b7) begin
-        red_reg = 10; // vermelho
-        green_reg = 230; // verde
-        blue_reg = 50; // azul
-      end
-      else if (bloquinho8 && existe_b8) begin
-        red_reg = 100; // vermelho
-        green_reg = 50; // verde
-        blue_reg = 230; // azul
-      end
-      else if (bloquinho9 && existe_b9) begin
-        red_reg = 10; // vermelho
-        green_reg = 230; // verde
-        blue_reg = 50; // azul
-      end
-      else if (bloquinho10 && existe_b10) begin
-        red_reg = 100; // vermelho
-        green_reg = 50; // verde
-        blue_reg = 230; // azul
+        blue_reg = 200; // azul
       end
       else if (lavinha && !barrinha) begin
         red_reg = 255; // vermelho
