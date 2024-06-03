@@ -36,8 +36,37 @@ reg [31:0] pixel[307200];
 
 12 - pra cada tipo de colisao da bola nos blocos, fazer um or entre todos (ok)
 
-13 - a bola nao colide quando bate na quina do bloco. consertar isso
+13 - a bola nao colide quando bate na quina do bloco. consertar isso!
 
 14 - colocar as cores nos blocos
 
 15 - fazer desenhos para incrementar o visual do jogo
+
+16 - verificar questão dos parâmetros
+
+
+---------------------------------------------------------------------------------------------
+
+// ideia do chat gpt para fazer ondas na lava:
+
+// Parâmetros para a onda senoidal pré-calculada
+parameter [5:0] sin_wave [0:31] = {0, 1, 2, 3, 4, 5, 6, 5, 4, 3, 2, 1, 0, -1, -2, -3, -4, -5, -6, -5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5, 6};
+
+assign lavinha = (next_y >= 474 + sin_wave[next_x[4:0]]);
+
+---------------------------------------------------------------------------------------------
+
+
+
+---------------------------------------------------------------------------------------------
+
+// ideia para aproveitar 
+
+// Parâmetros para a onda senoidal pré-calculada
+parameter [5:0] sin_wave [0:31] = {0, 1, 2, 3, 4, 5, 6, 5, 4, 3, 2, 1, 0, -1, -2, -3, -4, -5, -6, -5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5, 6};
+
+assign lavinha = (next_y >= 474 + sin_wave[next_x[4:0]]);
+
+---------------------------------------------------------------------------------------------
+
+

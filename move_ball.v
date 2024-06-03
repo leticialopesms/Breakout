@@ -4,15 +4,18 @@ module move_ball(
     input start,
     input [9:0] x_bar,
     input [9:0] y_bar,
+    input [9:0] next_x,
+    input [9:0] next_y,
     input hit_block,
     input hit_block_up,
     input hit_block_down,
     input hit_block_left,
     input hit_block_right,
-    output wire [9:0] x_p,
-    output wire [9:0] y_p,
+    output wire [9:0] x,
+    output wire [9:0] y,
     output wire hit_bar,
-    output reg endgame
+    output reg endgame,
+    output posicao
 );
 
 // parametros para os limites do monitor (até onde o quadrado pode ir)
@@ -39,12 +42,14 @@ reg [9:0] vy_mod;   // modulo da velocidade em y
 // Ideia: colocar velocidade máx para a bolinha
 
 wire move;
+wire posicao;
 
 timer t (
   .clock(clock),
   .reset(reset),
   .pulse(move)
 );
+
 
 // colocar os parametros pros tamanhos da bola/barra
 assign hit_bar = ((y_ball >= LIM_DOWN - (2*H_BAR + 8)) && (x_ball >= x_bar - W_BAR) && (x_ball <= x_bar + W_BAR));
@@ -59,8 +64,8 @@ always @(posedge clock) begin
     estado = 0;
     x_ball = 320;
     y_ball = 240;
-    vx_mod = 2;
-    vy_mod = -2;
+    vx_mod = 4;
+    vy_mod = -4;
   end
   else begin
   // implementação da máquina de estados aqui
@@ -89,8 +94,8 @@ always @(posedge clock) begin
           estado = 0;
           x_ball = 320;
           y_ball = 240;
-          vx_mod = 2;
-          vy_mod = -2;
+          vx_mod = 4;
+          vy_mod = -4;
         end
       end
       1: begin // bateu na borda de cima
@@ -151,7 +156,8 @@ always @(posedge clock) begin
   end
 end
 
-assign x_p = x_ball;
-assign y_p = y_ball;
+assign x = x_ball;
+assign y = y_ball;
+assign posicao = (((x - next_x) * (x - next_x) + (y - next_y) * (y - next_y)) <= R_BALL*R_BALL);
 
 endmodule

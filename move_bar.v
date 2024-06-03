@@ -3,8 +3,11 @@ module move_bar(
     input reset,
     input left,          // move_left
     input right,         // move_right
-    output wire [9:0]x,
-    output wire [9:0]y
+    input [9:0] next_x,
+    input [9:0] next_y,
+    output [9:0] x,
+    output [9:0] y,
+    output posicao
 );
 
 // parametros para os limites do monitor (até onde o quadrado pode ir)
@@ -20,7 +23,11 @@ reg [3:0] estado;
 reg [9:0] x_pos;
 reg [9:0] y_pos;
 
+
 wire move;
+wire posicao;
+wire [9:0] x;
+wire [9:0] y;
 
 timer t (.clock(clock), .reset(reset), .pulse(move));
 
@@ -45,7 +52,7 @@ always @(posedge clock) begin
       1: begin
         if (move) begin
           if (x_pos > LIM_LEFT) begin // caso em que dá pra andar pra esquerda
-            x_pos = x_pos - 4;
+            x_pos = x_pos - 8;
           end
           else begin // caso em que chegou no limite da esquerda (vai pra direita)
             x_pos = x_pos;
@@ -60,7 +67,7 @@ always @(posedge clock) begin
       2: begin
         if (move) begin
           if (x_pos < LIM_RIGHT) begin // caso em que dá pra andar pra direita
-            x_pos = x_pos + 4;
+            x_pos = x_pos + 8;
           end
           else begin // caso em que chegou no limite da direita (vai pra esquerda)
             x_pos = x_pos;
@@ -78,5 +85,6 @@ end
 
 assign x = x_pos;
 assign y = y_pos;
+assign posicao = ((next_x <= x + W_BAR) && (next_x >= x - W_BAR) && (next_y <= y + H_BAR) && (next_y >= y - H_BAR));
 
 endmodule

@@ -16,17 +16,6 @@ module top(
     output wire [6:0] HEX5          //  digito 5 - digito da esquerda
 );
 
-// parametros para os limites do monitor (até onde o quadrado pode ir)
-parameter LIM_LEFT = R_BALL;
-parameter LIM_RIGHT = 640 - R_BALL;
-parameter LIM_UP = R_BALL;
-parameter LIM_DOWN = 480 - R_BALL;
-
-// parametros para os tamanhos da bola, barra e bloco
-parameter R_BALL = 8;   // raio da bolinha
-parameter H_BAR = 8;    // metade da altura da barra
-parameter W_BAR = 64;   // metade da largura da barra
-
 // --- wires e regs --- //
 
 // regs cores
@@ -83,9 +72,9 @@ wire endgame_block1, endgame_block2, endgame_block3, endgame_block4, endgame_blo
 // --- atribuições --- //
 
 // atribuições para os elementos do jogo
-assign barrinha = ((next_x <= x_bar + W_BAR) && (next_x >= x_bar - W_BAR) && (next_y <= y_bar + H_BAR) && (next_y >= y_bar - H_BAR));
-assign bolinha = (((x_ball - next_x) * (x_ball - next_x) + (y_ball - next_y) * (y_ball - next_y)) <= R_BALL*R_BALL);
-assign lavinha = (next_y >= 480 - 16);
+// assign barrinha = ((next_x <= x_bar + W_BAR) && (next_x >= x_bar - W_BAR) && (next_y <= y_bar + H_BAR) && (next_y >= y_bar - H_BAR));
+// assign bolinha = (((x_ball - next_x) * (x_ball - next_x) + (y_ball - next_y) * (y_ball - next_y)) <= R_BALL*R_BALL);
+assign lavinha = (next_y >= 480 - 16); // ver ideias.txt !! (para fazer ondinhas)
 
 // atribuições para hit_block
 assign hit_block = (hit_block1 || hit_block2 || hit_block3 || hit_block4 || hit_block5 || hit_block6 || hit_block7 || hit_block8 || hit_block9 || hit_block10);
@@ -130,8 +119,11 @@ move_bar m (
   .reset(~SW[0]),
   .left(KEY[1]),
   .right(KEY[0]),
+  .next_x(next_x),
+  .next_y(next_y),
   .x(x_bar),
-  .y(y_bar)
+  .y(y_bar),
+  .posicao(barrinha)
 );
 
 move_ball b (
@@ -140,15 +132,18 @@ move_ball b (
   .start(~SW[2]),
   .x_bar(x_bar),
   .y_bar(y_bar),
+  .next_x(next_x),
+  .next_y(next_y),
   .hit_block(hit_block),
   .hit_block_down(hit_block_down),
   .hit_block_up(hit_block_up),
   .hit_block_right(hit_block_right),
   .hit_block_left(hit_block_left),
-  .x_p(x_ball),
-  .y_p(y_ball),
+  .x(x_ball),
+  .y(y_ball),
   .hit_bar(hit_bar),
-  .endgame(endgame_ball)
+  .endgame(endgame_ball),
+  .posicao(bolinha)
 );
 
 // primeira fileira de bloquinhos --------------------------------------------------
@@ -384,9 +379,9 @@ always @(posedge VGA_CLK) begin
         blue_reg = 230; // azul
       end
       else if (bloquinho3 && existe_b3) begin
-        red_reg = 100; // vermelho
-        green_reg = 50; // verde
-        blue_reg = 230; // azul
+        red_reg = 10; // vermelho
+        green_reg = 230; // verde
+        blue_reg = 50; // azul
       end
       else if (bloquinho4 && existe_b4) begin
         red_reg = 100; // vermelho
@@ -394,9 +389,9 @@ always @(posedge VGA_CLK) begin
         blue_reg = 230; // azul
       end
       else if (bloquinho5 && existe_b5) begin
-        red_reg = 100; // vermelho
-        green_reg = 50; // verde
-        blue_reg = 230; // azul
+        red_reg = 10; // vermelho
+        green_reg = 230; // verde
+        blue_reg = 50; // azul
       end
       else if (bloquinho6 && existe_b6) begin
         red_reg = 100; // vermelho
@@ -404,9 +399,9 @@ always @(posedge VGA_CLK) begin
         blue_reg = 230; // azul
       end
       else if (bloquinho7 && existe_b7) begin
-        red_reg = 100; // vermelho
-        green_reg = 50; // verde
-        blue_reg = 230; // azul
+        red_reg = 10; // vermelho
+        green_reg = 230; // verde
+        blue_reg = 50; // azul
       end
       else if (bloquinho8 && existe_b8) begin
         red_reg = 100; // vermelho
@@ -414,9 +409,9 @@ always @(posedge VGA_CLK) begin
         blue_reg = 230; // azul
       end
       else if (bloquinho9 && existe_b9) begin
-        red_reg = 100; // vermelho
-        green_reg = 50; // verde
-        blue_reg = 230; // azul
+        red_reg = 10; // vermelho
+        green_reg = 230; // verde
+        blue_reg = 50; // azul
       end
       else if (bloquinho10 && existe_b10) begin
         red_reg = 100; // vermelho
