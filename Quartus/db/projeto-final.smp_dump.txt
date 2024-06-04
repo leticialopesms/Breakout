@@ -1,33 +1,38 @@
 
 State Machine - |top|bloco:b5|estado
-Name estado.0000 estado.0010 estado.0001 
-estado.0000 0 0 0 
-estado.0001 1 0 1 
-estado.0010 1 1 0 
+Name estado.0011 estado.0010 estado.0001 estado.0000 
+estado.0000 0 0 0 0 
+estado.0001 0 0 1 1 
+estado.0010 0 1 0 1 
+estado.0011 1 0 0 1 
 
 State Machine - |top|bloco:b4|estado
-Name estado.0000 estado.0010 estado.0001 
-estado.0000 0 0 0 
-estado.0001 1 0 1 
-estado.0010 1 1 0 
+Name estado.0011 estado.0010 estado.0001 estado.0000 
+estado.0000 0 0 0 0 
+estado.0001 0 0 1 1 
+estado.0010 0 1 0 1 
+estado.0011 1 0 0 1 
 
 State Machine - |top|bloco:b3|estado
-Name estado.0000 estado.0010 estado.0001 
-estado.0000 0 0 0 
-estado.0001 1 0 1 
-estado.0010 1 1 0 
+Name estado.0011 estado.0010 estado.0001 estado.0000 
+estado.0000 0 0 0 0 
+estado.0001 0 0 1 1 
+estado.0010 0 1 0 1 
+estado.0011 1 0 0 1 
 
 State Machine - |top|bloco:b2|estado
-Name estado.0000 estado.0010 estado.0001 
-estado.0000 0 0 0 
-estado.0001 1 0 1 
-estado.0010 1 1 0 
+Name estado.0011 estado.0010 estado.0001 estado.0000 
+estado.0000 0 0 0 0 
+estado.0001 0 0 1 1 
+estado.0010 0 1 0 1 
+estado.0011 1 0 0 1 
 
 State Machine - |top|bloco:b1|estado
-Name estado.0000 estado.0010 estado.0001 
-estado.0000 0 0 0 
-estado.0001 1 0 1 
-estado.0010 1 1 0 
+Name estado.0011 estado.0010 estado.0001 estado.0000 
+estado.0000 0 0 0 0 
+estado.0001 0 0 1 1 
+estado.0010 0 1 0 1 
+estado.0011 1 0 0 1 
 
 State Machine - |top|ball:ball|estado
 Name estado.001010 estado.001001 estado.001000 estado.000111 estado.000110 estado.000101 estado.000100 estado.000011 estado.000010 estado.000001 estado.000000 

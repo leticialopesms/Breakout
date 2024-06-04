@@ -30,14 +30,14 @@ reg [3:0] estado;
 reg [9:0] x_block;
 reg [9:0] y_block;
 
-// wire move;
+wire move;
 
 // preisamos de um timer pq o bloco vai se mover (descer)
-// timer_block t (
-//   .clock(clock),
-//   .reset(reset),
-//   .pulse(move)
-// );
+timer t (
+  .clock(clock),
+  .reset(reset),
+  .pulse(move)
+);
 
 // area do bloco
 assign area = ((next_x <= x_block + W_BLOCK) && (next_x >= x_block - W_BLOCK) && (next_y <= y_block + H_BLOCK) && (next_y >= y_block - H_BLOCK));
@@ -94,6 +94,10 @@ always @(posedge clock) begin
       2: begin
         exist = 0;
         estado = 0;
+      end
+      3: begin
+        if(move) y_block = y_block + 1;
+        else estado = 3;
       end
       default: estado = 0;
     endcase
