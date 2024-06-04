@@ -65,8 +65,8 @@ always @(posedge clock) begin
     case(estado)
       0: begin
         if (start) begin
-          vidas = vidas;
-          score = score;
+          // vidas = vidas;
+          // score = score;
           if(endgame_ball) estado = 1;
           else if (endgame_block) estado = 3;
           else if (add_score) estado = 4;

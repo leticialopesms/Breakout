@@ -69,7 +69,6 @@ wire existe;
 wire existe_b1, existe_b2, existe_b3, existe_b4, existe_b5, existe_b6, existe_b7, existe_b8, existe_b9, existe_b10;
 
 // Flags para identificar se os blocos chegaram ao final da tela
-wire endgame_block;
 wire endgame_block1, endgame_block2, endgame_block3, endgame_block4, endgame_block5, endgame_block6, endgame_block7, endgame_block8, endgame_block9, endgame_block10;
 
 // ----------------------------------- //
@@ -77,7 +76,44 @@ wire endgame_block1, endgame_block2, endgame_block3, endgame_block4, endgame_blo
 // ----------------------------------- //
 
 // Área da lava
-assign lavinha = (next_y >= 480 - 16);
+//assign lavinha = (next_y >= 480 - 16);
+
+wire [5:0] sin_wave [0:31];
+assign sin_wave[0] = 0;
+assign sin_wave[1] = 1;
+assign sin_wave[2] = 2;
+assign sin_wave[3] = 3;
+assign sin_wave[4] = 4;
+assign sin_wave[5] = 5;
+assign sin_wave[6] = 6;
+assign sin_wave[7] = 5;
+assign sin_wave[8] = 4;
+assign sin_wave[9] = 3;
+assign sin_wave[10] = 2;
+assign sin_wave[11] = 1;
+assign sin_wave[12] = 0;
+assign sin_wave[13] = -1;
+assign sin_wave[14] = -2;
+assign sin_wave[15] = -3;
+assign sin_wave[16] = -4;
+assign sin_wave[17] = -5;
+assign sin_wave[18] = -6;
+assign sin_wave[19] = -5;
+assign sin_wave[20] = -4;
+assign sin_wave[21] = -3;
+assign sin_wave[22] = -2;
+assign sin_wave[23] = -1;
+assign sin_wave[24] = 0;
+assign sin_wave[25] = 1;
+assign sin_wave[26] = 2;
+assign sin_wave[27] = 3;
+assign sin_wave[28] = 4;
+assign sin_wave[29] = 5;
+assign sin_wave[30] = 6;
+assign sin_wave[31] = 5;
+
+//assign lavinha = ((next_y >= (460 + sin_wave[next_x[4:0]])) || ((next_y<(440 + sin_wave[next_x[4:0]])) && (next_y>(440 - sin_wave[next_x[4:0]])))); // extrai os 5 bits menos significativos de x
+assign lavinha = ((next_y >= (460 + sin_wave[next_x[4:0]])) || (next_y >= 470));
 
 // Atribuições para hit_block
 assign hit_block_d = (hit_block_d1 || hit_block_d2 || hit_block_d3 || hit_block_d4 || hit_block_d5 || hit_block_d6 || hit_block_d7 || hit_block_d8 || hit_block_d9 || hit_block_d10);
@@ -97,9 +133,9 @@ assign endgame = (endgame_block || endgame_ball);
 
 placar p(
   .clock(VGA_CLK),
-  .reset(~SW[0]),
+  .reset(~KEY[3]),
   .hit_block(hit_block),
-  .start(~SW[2]),
+  .start(~SW[0]),
   .endgame_ball(endgame_ball),
   .endgame_block(endgame_block),
   .digito0(HEX0),
@@ -110,7 +146,7 @@ placar p(
 
 vga v (
   .clock(VGA_CLK),
-  .reset(~SW[0]),
+  .reset(~KEY[3]),
   .next_x(next_x),
   .next_y(next_y),
   .vga_hs(VGA_HS),
@@ -122,7 +158,7 @@ vga v (
 
 bar bar (
   .clock(VGA_CLK),
-  .reset(~SW[0]),
+  .reset(~KEY[3]),
   .left(KEY[1]),
   .right(KEY[0]),
   .next_x(next_x),
@@ -134,8 +170,8 @@ bar bar (
 
 ball ball (
   .clock(VGA_CLK),
-  .reset(~SW[0]),
-  .start(~SW[2]),
+  .reset(~KEY[3]),
+  .start(~SW[0]),
   .x_bar(x_bar),
   .y_bar(y_bar),
   .next_x(next_x),
@@ -154,8 +190,8 @@ ball ball (
 
 bloco b1 (
   .clock(VGA_CLK),
-  .reset(~SW[0]),
-  .start(~SW[2]),
+  .reset(~KEY[3]),
+  .start(~SW[0]),
   .x_i(64),
   .y_i(32),
   .x_ball(x_ball),
@@ -174,8 +210,8 @@ bloco b1 (
 
 bloco b2 (
   .clock(VGA_CLK),
-  .reset(~SW[0]),
-  .start(~SW[2]),
+  .reset(~KEY[3]),
+  .start(~SW[0]),
   .x_i(192),
   .y_i(32),
   .x_ball(x_ball),
@@ -194,8 +230,8 @@ bloco b2 (
 
 bloco b3 (
   .clock(VGA_CLK),
-  .reset(~SW[0]),
-  .start(~SW[2]),
+  .reset(~KEY[3]),
+  .start(~SW[0]),
   .x_i(320),
   .y_i(32),
   .x_ball(x_ball),
@@ -214,8 +250,8 @@ bloco b3 (
 
 bloco b4 (
   .clock(VGA_CLK),
-  .reset(~SW[0]),
-  .start(~SW[2]),
+  .reset(~KEY[3]),
+  .start(~SW[0]),
   .x_i(448),
   .y_i(32),
   .x_ball(x_ball),
@@ -234,8 +270,8 @@ bloco b4 (
 
 bloco b5 (
   .clock(VGA_CLK),
-  .reset(~SW[0]),
-  .start(~SW[2]),
+  .reset(~KEY[3]),
+  .start(~SW[0]),
   .x_i(576),
   .y_i(32),
   .x_ball(x_ball),
@@ -263,7 +299,7 @@ end
 
 // Lógica de cores para cada elemento
 always @(posedge VGA_CLK) begin
-  if (!SW[0]) begin
+  if (!KEY[3]) begin
     red_reg = 0; // vermelho
     green_reg = 0; // verde
     blue_reg = 0; // azul

@@ -1,11 +1,11 @@
-Fitter Status : Successful - Mon Jun  3 11:41:36 2024
+Fitter Status : Successful - Tue Jun  4 11:45:59 2024
 Quartus Prime Version : 17.1.0 Build 590 10/25/2017 SJ Lite Edition
 Revision Name : projeto-final
 Top-level Entity Name : top
 Family : Cyclone V
 Device : 5CSEMA5F31C6
 Timing Models : Final
-Logic utilization (in ALMs) : 387 / 32,070 ( 1 % )
+Logic utilization (in ALMs) : 396 / 32,070 ( 1 % )
 Total registers : 178
 Total pins : 72 / 457 ( 16 % )
 Total virtual pins : 0
