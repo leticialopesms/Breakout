@@ -25,7 +25,7 @@ reg [9:0] y_bar;
 
 wire move;
 
-timer t (.clock(clock), .reset(reset), .pulse(move));
+timer_ball t (.clock(clock), .reset(reset), .pulse(move));
 
 always @(posedge clock) begin
   if (reset) begin

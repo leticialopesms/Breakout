@@ -4,8 +4,7 @@ module timer_block (
     output pulse
 );
 
-// verificar se ta uma velocidade adequada
-parameter [30:0] PULSE_TIME = 250_000_000;
+parameter [30:0] PULSE_TIME = 10_000_000;
 reg [30:0] contador;
 
 assign pulse = (contador == PULSE_TIME);

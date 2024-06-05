@@ -43,7 +43,7 @@ reg [9:0] vy_mod;   // modulo da velocidade em y
 
 wire move;
 
-timer t (
+timer_ball t (
   .clock(clock),
   .reset(reset),
   .pulse(move)
@@ -62,8 +62,8 @@ always @(posedge clock) begin
     estado = 0;
     x_ball = 320;
     y_ball = 240;
-    vx_mod = 2;
-    vy_mod = -2;
+    // vx_mod = 8;
+    // vy_mod = -8;
   end
   else begin
   // implementação da máquina de estados aqui

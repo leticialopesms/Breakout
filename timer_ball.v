@@ -1,4 +1,4 @@
-module timer (
+module timer_ball (
     input clock,
     input reset,
     output pulse

@@ -33,7 +33,7 @@ reg [9:0] y_block;
 wire move;
 
 // preisamos de um timer pq o bloco vai se mover (descer)
-timer t (
+timer_block t (
   .clock(clock),
   .reset(reset),
   .pulse(move)
@@ -42,28 +42,37 @@ timer t (
 // area do bloco
 assign area = ((next_x <= x_block + W_BLOCK) && (next_x >= x_block - W_BLOCK) && (next_y <= y_block + H_BLOCK) && (next_y >= y_block - H_BLOCK));
 
-// verificar isso aqui
-// assign hit_block_u = ((y_ball == (y_block-H_BLOCK-R_BALL)) && (x_ball >= x_block-W_BLOCK) && (x_ball <= x_block+W_BLOCK));
-// assign hit_block_d = ((y_ball == (y_block+H_BLOCK+R_BALL)) && (x_ball >= x_block-W_BLOCK) && (x_ball <= x_block+W_BLOCK));
-// assign hit_block_r = ((x_ball == x_block+W_BLOCK+R_BALL) && (y_ball >= y_block-H_BLOCK) && (y_ball <= y_block+H_BLOCK));
-// assign hit_block_l = ((x_ball == x_block-W_BLOCK-R_BALL) && (y_ball >= y_block-H_BLOCK) && (y_ball <= y_block+H_BLOCK));
+// versao original
+// assign hit_block_u = ((y_ball == (y_block-H_BLOCK-R_BALL-2)) && (x_ball >= x_block-W_BLOCK-2) && (x_ball <= x_block+W_BLOCK+2));
+// assign hit_block_d = ((y_ball == (y_block+H_BLOCK+R_BALL+2)) && (x_ball >= x_block-W_BLOCK-2) && (x_ball <= x_block+W_BLOCK+2));
+// assign hit_block_r = ((x_ball == x_block+W_BLOCK+R_BALL+2) && (y_ball >= y_block-H_BLOCK-2) && (y_ball <= y_block+H_BLOCK+2));
+// assign hit_block_l = ((x_ball == x_block-W_BLOCK-R_BALL-2) && (y_ball >= y_block-H_BLOCK-2) && (y_ball <= y_block+H_BLOCK+2));
 // assign hit_block = (exist) ? (x_ball-R_BALL<=x_block + W_BLOCK  && (x_ball >= x_block - W_BLOCK) && (y_ball <= y_block + H_BLOCK) && (y_ball >= y_block - H_BLOCK)) : 0;
 
-assign hit_block_u = ((y_ball == (y_block-H_BLOCK-R_BALL)) &&
-                      (((x_ball >= x_block-W_BLOCK) && (x_ball <= x_block)) ||
-                      ((x_ball >= x_block) && (x_ball <= x_block+W_BLOCK))));
-assign hit_block_d = ((y_ball == (y_block+H_BLOCK+R_BALL)) &&
-                      (((x_ball >= x_block-W_BLOCK) && (x_ball <= x_block)) ||
-                      ((x_ball >= x_block) && (x_ball <= x_block+W_BLOCK))));
-assign hit_block_l = ((x_ball == (x_block-W_BLOCK-R_BALL)) &&
-                      (((y_ball >= y_block-H_BLOCK) && (y_ball <= y_block)) ||
-                      ((y_ball >= y_block) && (y_ball <= y_block+H_BLOCK))));
-assign hit_block_r = ((x_ball == (x_block+W_BLOCK+R_BALL)) &&
-                      (((y_ball >= y_block-H_BLOCK) && (y_ball <= y_block)) ||
-                      ((y_ball >= y_block) && (y_ball <= y_block+H_BLOCK))));
+
+// versao modificada
+assign hit_block_u = ((y_ball >= (y_block-H_BLOCK-R_BALL-2)) && (y_ball <= (y_block-H_BLOCK-2)) && (x_ball >= x_block-W_BLOCK-2) && (x_ball <= x_block+W_BLOCK+2));
+assign hit_block_d = ((y_ball <= (y_block+H_BLOCK+R_BALL+2)) && (y_ball >= (y_block+H_BLOCK+2)) && (x_ball >= x_block-W_BLOCK-2) && (x_ball <= x_block+W_BLOCK+2));
+assign hit_block_l = ((x_ball >= x_block-W_BLOCK-R_BALL-2) && (x_ball <= x_block-W_BLOCK-2) && (y_ball >= y_block-H_BLOCK-2) && (y_ball <= y_block+H_BLOCK+2));
+assign hit_block_r = ((x_ball <= x_block+W_BLOCK+R_BALL+2) && (x_ball >= x_block+W_BLOCK+2) && (y_ball >= y_block-H_BLOCK-2) && (y_ball <= y_block+H_BLOCK+2));
+
+
+// assign hit_block_u = ((y_ball == (y_block-H_BLOCK-R_BALL)) &&
+//                       (((x_ball >= x_block-W_BLOCK) && (x_ball <= x_block)) ||
+//                       ((x_ball >= x_block) && (x_ball <= x_block+W_BLOCK))));
+// assign hit_block_d = ((y_ball == (y_block+H_BLOCK+R_BALL)) &&
+//                       (((x_ball >= x_block-W_BLOCK) && (x_ball <= x_block)) ||
+//                       ((x_ball >= x_block) && (x_ball <= x_block+W_BLOCK))));
+// assign hit_block_l = ((x_ball == (x_block-W_BLOCK-R_BALL)) &&
+//                       (((y_ball >= y_block-H_BLOCK) && (y_ball <= y_block)) ||
+//                       ((y_ball >= y_block) && (y_ball <= y_block+H_BLOCK))));
+// assign hit_block_r = ((x_ball == (x_block+W_BLOCK+R_BALL)) &&
+//                       (((y_ball >= y_block-H_BLOCK) && (y_ball <= y_block)) ||
+//                       ((y_ball >= y_block) && (y_ball <= y_block+H_BLOCK))));
+
 assign hit_block = (exist) ? (hit_block_d || hit_block_u || hit_block_l || hit_block_r) : 0;
 
-assign endgame = (y_block >= (480-16));
+assign endgame = (y_block >= (480-26));
 
 
 
@@ -78,17 +87,17 @@ always @(posedge clock) begin
   else begin
     case(estado)
       0: begin
-        x_block = x_block;             // MUDAR PARA CADA BLOCO!
-        y_block = y_block;
+        // x_block = x_block;             // MUDAR PARA CADA BLOCO!
+        // y_block = y_block;
         if(start) begin
           if (hit_block) estado = 1;
-          else estado = 0;
+          else estado = 3;
         end
         else estado = 0;
       end
       1: begin
         // esperando a bolinha bater e voltar
-        exist = 1;
+        // exist = 1;
         estado = 2;
       end
       2: begin
@@ -96,8 +105,15 @@ always @(posedge clock) begin
         estado = 0;
       end
       3: begin
-        if(move) y_block = y_block + 1;
-        else estado = 3;
+        if (exist) begin
+          if (hit_block) estado = 1;
+          else if(move) begin
+            y_block = y_block + 1;
+            estado = 0;
+          end
+          else estado = 3;
+        end
+        else estado = 0;
       end
       default: estado = 0;
     endcase
