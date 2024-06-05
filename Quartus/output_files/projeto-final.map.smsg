@@ -1,0 +1,2 @@
+Info (10281): Verilog HDL Declaration information at game_over.v(13): object "MSG_X" differs only in case from object "msg_x" in the same scope File: /home/ec2022/ra186087/Documents/2024s1-mc613-projeto-elektras/game_over.v Line: 13
+Info (10281): Verilog HDL Declaration information at game_over.v(14): object "MSG_Y" differs only in case from object "msg_y" in the same scope File: /home/ec2022/ra186087/Documents/2024s1-mc613-projeto-elektras/game_over.v Line: 14

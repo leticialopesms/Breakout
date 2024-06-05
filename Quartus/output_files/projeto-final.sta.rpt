@@ -1,5 +1,5 @@
 TimeQuest Timing Analyzer report for projeto-final
-Wed Jun  5 15:51:09 2024
+Wed Jun  5 18:04:26 2024
 Quartus Prime Version 17.1.0 Build 590 10/25/2017 SJ Lite Edition
 
 
@@ -99,22 +99,22 @@ refer to the applicable agreement for further details.
 ; Number detected on machine ; 20          ;
 ; Maximum allowed            ; 12          ;
 ;                            ;             ;
-; Average used               ; 1.58        ;
+; Average used               ; 2.00        ;
 ; Maximum used               ; 12          ;
 ;                            ;             ;
 ; Usage by Processor         ; % Time Used ;
 ;     Processor 1            ; 100.0%      ;
-;     Processor 2            ;   7.1%      ;
-;     Processor 3            ;   7.0%      ;
-;     Processor 4            ;   7.0%      ;
-;     Processor 5            ;   4.7%      ;
-;     Processor 6            ;   4.7%      ;
-;     Processor 7            ;   4.7%      ;
-;     Processor 8            ;   4.7%      ;
-;     Processor 9            ;   4.7%      ;
-;     Processor 10           ;   4.6%      ;
-;     Processor 11           ;   4.6%      ;
-;     Processor 12           ;   4.6%      ;
+;     Processor 2            ;  12.2%      ;
+;     Processor 3            ;  12.1%      ;
+;     Processor 4            ;  12.1%      ;
+;     Processor 5            ;   8.0%      ;
+;     Processor 6            ;   8.0%      ;
+;     Processor 7            ;   7.9%      ;
+;     Processor 8            ;   7.9%      ;
+;     Processor 9            ;   7.9%      ;
+;     Processor 10           ;   7.9%      ;
+;     Processor 11           ;   7.9%      ;
+;     Processor 12           ;   7.9%      ;
 +----------------------------+-------------+
 
 
@@ -133,7 +133,7 @@ refer to the applicable agreement for further details.
 +-----------+-----------------+--------------+------+
 ; Fmax      ; Restricted Fmax ; Clock Name   ; Note ;
 +-----------+-----------------+--------------+------+
-; 70.36 MHz ; 70.36 MHz       ; VGA_CLK~reg0 ;      ;
+; 70.82 MHz ; 70.82 MHz       ; VGA_CLK~reg0 ;      ;
 +-----------+-----------------+--------------+------+
 This panel reports FMAX for every clock in the design, regardless of the user-specified clock periods.  FMAX is only computed for paths where the source and destination registers or ports are driven by the same clock.  Paths of different clocks, including generated clocks, are ignored.  For paths between a clock and its inversion, FMAX is computed as if the rising and falling edges are scaled along with FMAX, such that the duty cycle (in terms of a percentage) is maintained. Altera recommends that you always use clock constraints and other slack reports for sign-off analysis.
 
@@ -149,8 +149,8 @@ HTML report is unavailable in plain text report export.
 +--------------+---------+---------------+
 ; Clock        ; Slack   ; End Point TNS ;
 +--------------+---------+---------------+
-; VGA_CLK~reg0 ; -13.212 ; -1545.824     ;
-; CLOCK_50     ; -3.168  ; -3.168        ;
+; VGA_CLK~reg0 ; -13.121 ; -2698.488     ;
+; CLOCK_50     ; -2.659  ; -2.659        ;
 +--------------+---------+---------------+
 
 
@@ -159,8 +159,8 @@ HTML report is unavailable in plain text report export.
 +--------------+-------+---------------+
 ; Clock        ; Slack ; End Point TNS ;
 +--------------+-------+---------------+
-; VGA_CLK~reg0 ; 0.259 ; 0.000         ;
-; CLOCK_50     ; 1.067 ; 0.000         ;
+; VGA_CLK~reg0 ; 0.249 ; 0.000         ;
+; CLOCK_50     ; 1.024 ; 0.000         ;
 +--------------+-------+---------------+
 
 
@@ -181,8 +181,8 @@ No paths to report.
 +--------------+--------+---------------------------+
 ; Clock        ; Slack  ; End Point TNS             ;
 +--------------+--------+---------------------------+
-; CLOCK_50     ; -0.767 ; -1.292                    ;
-; VGA_CLK~reg0 ; -0.394 ; -169.712                  ;
+; CLOCK_50     ; -0.681 ; -1.120                    ;
+; VGA_CLK~reg0 ; -0.475 ; -271.455                  ;
 +--------------+--------+---------------------------+
 
 
@@ -197,7 +197,7 @@ No synchronizer chains to report.
 +-----------+-----------------+--------------+------+
 ; Fmax      ; Restricted Fmax ; Clock Name   ; Note ;
 +-----------+-----------------+--------------+------+
-; 69.35 MHz ; 69.35 MHz       ; VGA_CLK~reg0 ;      ;
+; 70.77 MHz ; 70.77 MHz       ; VGA_CLK~reg0 ;      ;
 +-----------+-----------------+--------------+------+
 This panel reports FMAX for every clock in the design, regardless of the user-specified clock periods.  FMAX is only computed for paths where the source and destination registers or ports are driven by the same clock.  Paths of different clocks, including generated clocks, are ignored.  For paths between a clock and its inversion, FMAX is computed as if the rising and falling edges are scaled along with FMAX, such that the duty cycle (in terms of a percentage) is maintained. Altera recommends that you always use clock constraints and other slack reports for sign-off analysis.
 
@@ -207,8 +207,8 @@ This panel reports FMAX for every clock in the design, regardless of the user-sp
 +--------------+---------+---------------+
 ; Clock        ; Slack   ; End Point TNS ;
 +--------------+---------+---------------+
-; VGA_CLK~reg0 ; -13.420 ; -1521.499     ;
-; CLOCK_50     ; -3.092  ; -3.092        ;
+; VGA_CLK~reg0 ; -13.131 ; -2652.012     ;
+; CLOCK_50     ; -2.479  ; -2.479        ;
 +--------------+---------+---------------+
 
 
@@ -217,8 +217,8 @@ This panel reports FMAX for every clock in the design, regardless of the user-sp
 +--------------+-------+---------------+
 ; Clock        ; Slack ; End Point TNS ;
 +--------------+-------+---------------+
-; VGA_CLK~reg0 ; 0.238 ; 0.000         ;
-; CLOCK_50     ; 1.049 ; 0.000         ;
+; VGA_CLK~reg0 ; 0.230 ; 0.000         ;
+; CLOCK_50     ; 0.891 ; 0.000         ;
 +--------------+-------+---------------+
 
 
@@ -239,8 +239,8 @@ No paths to report.
 +--------------+--------+--------------------------+
 ; Clock        ; Slack  ; End Point TNS            ;
 +--------------+--------+--------------------------+
-; CLOCK_50     ; -0.788 ; -1.362                   ;
-; VGA_CLK~reg0 ; -0.394 ; -170.655                 ;
+; CLOCK_50     ; -0.684 ; -1.154                   ;
+; VGA_CLK~reg0 ; -0.464 ; -262.945                 ;
 +--------------+--------+--------------------------+
 
 
@@ -255,8 +255,8 @@ No synchronizer chains to report.
 +--------------+--------+---------------+
 ; Clock        ; Slack  ; End Point TNS ;
 +--------------+--------+---------------+
-; VGA_CLK~reg0 ; -6.875 ; -831.142      ;
-; CLOCK_50     ; -2.605 ; -2.605        ;
+; VGA_CLK~reg0 ; -7.012 ; -1491.778     ;
+; CLOCK_50     ; -1.999 ; -1.999        ;
 +--------------+--------+---------------+
 
 
@@ -266,7 +266,7 @@ No synchronizer chains to report.
 ; Clock        ; Slack ; End Point TNS ;
 +--------------+-------+---------------+
 ; VGA_CLK~reg0 ; 0.086 ; 0.000         ;
-; CLOCK_50     ; 1.195 ; 0.000         ;
+; CLOCK_50     ; 0.976 ; 0.000         ;
 +--------------+-------+---------------+
 
 
@@ -287,8 +287,8 @@ No paths to report.
 +--------------+--------+---------------------------+
 ; Clock        ; Slack  ; End Point TNS             ;
 +--------------+--------+---------------------------+
-; CLOCK_50     ; -0.708 ; -1.065                    ;
-; VGA_CLK~reg0 ; -0.114 ; -10.243                   ;
+; CLOCK_50     ; -0.609 ; -0.867                    ;
+; VGA_CLK~reg0 ; -0.205 ; -20.073                   ;
 +--------------+--------+---------------------------+
 
 
@@ -303,8 +303,8 @@ No synchronizer chains to report.
 +--------------+--------+---------------+
 ; Clock        ; Slack  ; End Point TNS ;
 +--------------+--------+---------------+
-; VGA_CLK~reg0 ; -6.423 ; -744.007      ;
-; CLOCK_50     ; -2.230 ; -2.230        ;
+; VGA_CLK~reg0 ; -6.449 ; -1325.039     ;
+; CLOCK_50     ; -1.632 ; -1.632        ;
 +--------------+--------+---------------+
 
 
@@ -314,7 +314,7 @@ No synchronizer chains to report.
 ; Clock        ; Slack ; End Point TNS ;
 +--------------+-------+---------------+
 ; VGA_CLK~reg0 ; 0.068 ; 0.000         ;
-; CLOCK_50     ; 0.954 ; 0.000         ;
+; CLOCK_50     ; 0.638 ; 0.000         ;
 +--------------+-------+---------------+
 
 
@@ -335,8 +335,8 @@ No paths to report.
 +--------------+--------+--------------------------+
 ; Clock        ; Slack  ; End Point TNS            ;
 +--------------+--------+--------------------------+
-; CLOCK_50     ; -0.691 ; -1.039                   ;
-; VGA_CLK~reg0 ; -0.061 ; -3.117                   ;
+; CLOCK_50     ; -0.589 ; -0.835                   ;
+; VGA_CLK~reg0 ; -0.144 ; -6.506                   ;
 +--------------+--------+--------------------------+
 
 
@@ -351,12 +351,12 @@ No synchronizer chains to report.
 +------------------+-----------+-------+----------+---------+---------------------+
 ; Clock            ; Setup     ; Hold  ; Recovery ; Removal ; Minimum Pulse Width ;
 +------------------+-----------+-------+----------+---------+---------------------+
-; Worst-case Slack ; -13.420   ; 0.068 ; N/A      ; N/A     ; -0.788              ;
-;  CLOCK_50        ; -3.168    ; 0.954 ; N/A      ; N/A     ; -0.788              ;
-;  VGA_CLK~reg0    ; -13.420   ; 0.068 ; N/A      ; N/A     ; -0.394              ;
-; Design-wide TNS  ; -1548.992 ; 0.0   ; 0.0      ; 0.0     ; -172.017            ;
-;  CLOCK_50        ; -3.168    ; 0.000 ; N/A      ; N/A     ; -1.362              ;
-;  VGA_CLK~reg0    ; -1545.824 ; 0.000 ; N/A      ; N/A     ; -170.655            ;
+; Worst-case Slack ; -13.131   ; 0.068 ; N/A      ; N/A     ; -0.684              ;
+;  CLOCK_50        ; -2.659    ; 0.638 ; N/A      ; N/A     ; -0.684              ;
+;  VGA_CLK~reg0    ; -13.131   ; 0.068 ; N/A      ; N/A     ; -0.475              ;
+; Design-wide TNS  ; -2701.147 ; 0.0   ; 0.0      ; 0.0     ; -272.575            ;
+;  CLOCK_50        ; -2.659    ; 0.000 ; N/A      ; N/A     ; -1.154              ;
+;  VGA_CLK~reg0    ; -2698.488 ; 0.000 ; N/A      ; N/A     ; -271.455            ;
 +------------------+-----------+-------+----------+---------+---------------------+
 
 
@@ -714,7 +714,7 @@ No synchronizer chains to report.
 ; From Clock   ; To Clock     ; RR Paths  ; FR Paths ; RF Paths ; FF Paths ;
 +--------------+--------------+-----------+----------+----------+----------+
 ; VGA_CLK~reg0 ; CLOCK_50     ; 1         ; 1        ; 0        ; 0        ;
-; VGA_CLK~reg0 ; VGA_CLK~reg0 ; 285676129 ; 0        ; 0        ; 0        ;
+; VGA_CLK~reg0 ; VGA_CLK~reg0 ; 286413303 ; 0        ; 0        ; 0        ;
 +--------------+--------------+-----------+----------+----------+----------+
 Entries labeled "false path" only account for clock-to-clock false paths and not path-based false paths. As a result, actual path counts may be lower than reported.
 
@@ -725,7 +725,7 @@ Entries labeled "false path" only account for clock-to-clock false paths and not
 ; From Clock   ; To Clock     ; RR Paths  ; FR Paths ; RF Paths ; FF Paths ;
 +--------------+--------------+-----------+----------+----------+----------+
 ; VGA_CLK~reg0 ; CLOCK_50     ; 1         ; 1        ; 0        ; 0        ;
-; VGA_CLK~reg0 ; VGA_CLK~reg0 ; 285676129 ; 0        ; 0        ; 0        ;
+; VGA_CLK~reg0 ; VGA_CLK~reg0 ; 286413303 ; 0        ; 0        ; 0        ;
 +--------------+--------------+-----------+----------+----------+----------+
 Entries labeled "false path" only account for clock-to-clock false paths and not path-based false paths. As a result, actual path counts may be lower than reported.
 
@@ -750,7 +750,7 @@ No non-DPA dedicated SERDES Receiver circuitry present in device or used in desi
 ; Illegal Clocks                  ; 0     ; 0    ;
 ; Unconstrained Clocks            ; 0     ; 0    ;
 ; Unconstrained Input Ports       ; 4     ; 4    ;
-; Unconstrained Input Port Paths  ; 333   ; 333  ;
+; Unconstrained Input Port Paths  ; 515   ; 515  ;
 ; Unconstrained Output Ports      ; 56    ; 56   ;
 ; Unconstrained Output Port Paths ; 777   ; 777  ;
 +---------------------------------+-------+------+
@@ -924,7 +924,7 @@ No non-DPA dedicated SERDES Receiver circuitry present in device or used in desi
 Info: *******************************************************************
 Info: Running Quartus Prime TimeQuest Timing Analyzer
     Info: Version 17.1.0 Build 590 10/25/2017 SJ Lite Edition
-    Info: Processing started: Wed Jun  5 15:51:03 2024
+    Info: Processing started: Wed Jun  5 18:04:19 2024
 Info: Command: quartus_sta projeto-final -c projeto-final
 Info: qsta_default_script.tcl version: #3
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
@@ -942,96 +942,96 @@ Info: Found TIMEQUEST_REPORT_SCRIPT_INCLUDE_DEFAULT_ANALYSIS = ON
 Info: Analyzing Slow 1100mV 85C Model
 Critical Warning (332148): Timing requirements not met
     Info (11105): For recommendations on closing timing, run Report Timing Closure Recommendations in the TimeQuest Timing Analyzer.
-Info (332146): Worst-case setup slack is -13.212
+Info (332146): Worst-case setup slack is -13.121
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):   -13.212           -1545.824 VGA_CLK~reg0 
-    Info (332119):    -3.168              -3.168 CLOCK_50 
-Info (332146): Worst-case hold slack is 0.259
+    Info (332119):   -13.121           -2698.488 VGA_CLK~reg0 
+    Info (332119):    -2.659              -2.659 CLOCK_50 
+Info (332146): Worst-case hold slack is 0.249
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):     0.259               0.000 VGA_CLK~reg0 
-    Info (332119):     1.067               0.000 CLOCK_50 
+    Info (332119):     0.249               0.000 VGA_CLK~reg0 
+    Info (332119):     1.024               0.000 CLOCK_50 
 Info (332140): No Recovery paths to report
 Info (332140): No Removal paths to report
-Info (332146): Worst-case minimum pulse width slack is -0.767
+Info (332146): Worst-case minimum pulse width slack is -0.681
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):    -0.767              -1.292 CLOCK_50 
-    Info (332119):    -0.394            -169.712 VGA_CLK~reg0 
+    Info (332119):    -0.681              -1.120 CLOCK_50 
+    Info (332119):    -0.475            -271.455 VGA_CLK~reg0 
 Info: Analyzing Slow 1100mV 0C Model
 Info (334003): Started post-fitting delay annotation
 Info (334004): Delay annotation completed successfully
 Info (332123): Deriving Clock Uncertainty. Please refer to report_sdc in TimeQuest to see clock uncertainties.
 Critical Warning (332148): Timing requirements not met
     Info (11105): For recommendations on closing timing, run Report Timing Closure Recommendations in the TimeQuest Timing Analyzer.
-Info (332146): Worst-case setup slack is -13.420
+Info (332146): Worst-case setup slack is -13.131
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):   -13.420           -1521.499 VGA_CLK~reg0 
-    Info (332119):    -3.092              -3.092 CLOCK_50 
-Info (332146): Worst-case hold slack is 0.238
+    Info (332119):   -13.131           -2652.012 VGA_CLK~reg0 
+    Info (332119):    -2.479              -2.479 CLOCK_50 
+Info (332146): Worst-case hold slack is 0.230
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):     0.238               0.000 VGA_CLK~reg0 
-    Info (332119):     1.049               0.000 CLOCK_50 
+    Info (332119):     0.230               0.000 VGA_CLK~reg0 
+    Info (332119):     0.891               0.000 CLOCK_50 
 Info (332140): No Recovery paths to report
 Info (332140): No Removal paths to report
-Info (332146): Worst-case minimum pulse width slack is -0.788
+Info (332146): Worst-case minimum pulse width slack is -0.684
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):    -0.788              -1.362 CLOCK_50 
-    Info (332119):    -0.394            -170.655 VGA_CLK~reg0 
+    Info (332119):    -0.684              -1.154 CLOCK_50 
+    Info (332119):    -0.464            -262.945 VGA_CLK~reg0 
 Info: Analyzing Fast 1100mV 85C Model
 Info (334003): Started post-fitting delay annotation
 Info (334004): Delay annotation completed successfully
 Info (332123): Deriving Clock Uncertainty. Please refer to report_sdc in TimeQuest to see clock uncertainties.
 Critical Warning (332148): Timing requirements not met
     Info (11105): For recommendations on closing timing, run Report Timing Closure Recommendations in the TimeQuest Timing Analyzer.
-Info (332146): Worst-case setup slack is -6.875
+Info (332146): Worst-case setup slack is -7.012
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):    -6.875            -831.142 VGA_CLK~reg0 
-    Info (332119):    -2.605              -2.605 CLOCK_50 
+    Info (332119):    -7.012           -1491.778 VGA_CLK~reg0 
+    Info (332119):    -1.999              -1.999 CLOCK_50 
 Info (332146): Worst-case hold slack is 0.086
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
     Info (332119):     0.086               0.000 VGA_CLK~reg0 
-    Info (332119):     1.195               0.000 CLOCK_50 
+    Info (332119):     0.976               0.000 CLOCK_50 
 Info (332140): No Recovery paths to report
 Info (332140): No Removal paths to report
-Info (332146): Worst-case minimum pulse width slack is -0.708
+Info (332146): Worst-case minimum pulse width slack is -0.609
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):    -0.708              -1.065 CLOCK_50 
-    Info (332119):    -0.114             -10.243 VGA_CLK~reg0 
+    Info (332119):    -0.609              -0.867 CLOCK_50 
+    Info (332119):    -0.205             -20.073 VGA_CLK~reg0 
 Info: Analyzing Fast 1100mV 0C Model
 Info (332123): Deriving Clock Uncertainty. Please refer to report_sdc in TimeQuest to see clock uncertainties.
 Critical Warning (332148): Timing requirements not met
     Info (11105): For recommendations on closing timing, run Report Timing Closure Recommendations in the TimeQuest Timing Analyzer.
-Info (332146): Worst-case setup slack is -6.423
+Info (332146): Worst-case setup slack is -6.449
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):    -6.423            -744.007 VGA_CLK~reg0 
-    Info (332119):    -2.230              -2.230 CLOCK_50 
+    Info (332119):    -6.449           -1325.039 VGA_CLK~reg0 
+    Info (332119):    -1.632              -1.632 CLOCK_50 
 Info (332146): Worst-case hold slack is 0.068
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
     Info (332119):     0.068               0.000 VGA_CLK~reg0 
-    Info (332119):     0.954               0.000 CLOCK_50 
+    Info (332119):     0.638               0.000 CLOCK_50 
 Info (332140): No Recovery paths to report
 Info (332140): No Removal paths to report
-Info (332146): Worst-case minimum pulse width slack is -0.691
+Info (332146): Worst-case minimum pulse width slack is -0.589
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):    -0.691              -1.039 CLOCK_50 
-    Info (332119):    -0.061              -3.117 VGA_CLK~reg0 
+    Info (332119):    -0.589              -0.835 CLOCK_50 
+    Info (332119):    -0.144              -6.506 VGA_CLK~reg0 
 Info (332102): Design is not fully constrained for setup requirements
 Info (332102): Design is not fully constrained for hold requirements
 Info: Quartus Prime TimeQuest Timing Analyzer was successful. 0 errors, 6 warnings
-    Info: Peak virtual memory: 1526 megabytes
-    Info: Processing ended: Wed Jun  5 15:51:09 2024
-    Info: Elapsed time: 00:00:06
-    Info: Total CPU time (on all processors): 00:00:06
+    Info: Peak virtual memory: 1544 megabytes
+    Info: Processing ended: Wed Jun  5 18:04:26 2024
+    Info: Elapsed time: 00:00:07
+    Info: Total CPU time (on all processors): 00:00:11
 
 

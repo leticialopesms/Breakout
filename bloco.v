@@ -2,6 +2,7 @@ module bloco(
     input clock,
     input reset,
     input start,
+    input endgame,
     input [9:0] x_i,
     input [9:0] y_i,
     input [9:0] x_ball,
@@ -14,7 +15,7 @@ module bloco(
     output wire hit_block_d,
     output wire hit_block_l,
     output wire hit_block_r,
-    output wire endgame,
+    output wire endgame_block,
     output reg exist
 );
 
@@ -22,7 +23,7 @@ module bloco(
 parameter R_BALL = 8;   // raio da bolinha
 parameter H_BAR = 8;    // metade da altura da barra
 parameter W_BAR = 64;   // metade da largura da barra
-parameter H_BLOCK = 32;  // metade da altura do bloco
+parameter H_BLOCK = 16;  // metade da altura do bloco
 parameter W_BLOCK = 64; // metade da largura do bloco
 
 // variável estado para a máquina de estados
@@ -42,54 +43,28 @@ timer_block t (
 // area do bloco
 assign area = ((next_x <= x_block + W_BLOCK) && (next_x >= x_block - W_BLOCK) && (next_y <= y_block + H_BLOCK) && (next_y >= y_block - H_BLOCK));
 
-// versao original
-// assign hit_block_u = ((y_ball == (y_block-H_BLOCK-R_BALL-2)) && (x_ball >= x_block-W_BLOCK-2) && (x_ball <= x_block+W_BLOCK+2));
-// assign hit_block_d = ((y_ball == (y_block+H_BLOCK+R_BALL+2)) && (x_ball >= x_block-W_BLOCK-2) && (x_ball <= x_block+W_BLOCK+2));
-// assign hit_block_r = ((x_ball == x_block+W_BLOCK+R_BALL+2) && (y_ball >= y_block-H_BLOCK-2) && (y_ball <= y_block+H_BLOCK+2));
-// assign hit_block_l = ((x_ball == x_block-W_BLOCK-R_BALL-2) && (y_ball >= y_block-H_BLOCK-2) && (y_ball <= y_block+H_BLOCK+2));
-// assign hit_block = (exist) ? (x_ball-R_BALL<=x_block + W_BLOCK  && (x_ball >= x_block - W_BLOCK) && (y_ball <= y_block + H_BLOCK) && (y_ball >= y_block - H_BLOCK)) : 0;
-
-
 // versao modificada
-assign hit_block_u = ((y_ball >= (y_block-H_BLOCK-R_BALL-2)) && (y_ball <= (y_block-H_BLOCK-2)) && (x_ball >= x_block-W_BLOCK-2) && (x_ball <= x_block+W_BLOCK+2));
-assign hit_block_d = ((y_ball <= (y_block+H_BLOCK+R_BALL+2)) && (y_ball >= (y_block+H_BLOCK+2)) && (x_ball >= x_block-W_BLOCK-2) && (x_ball <= x_block+W_BLOCK+2));
-assign hit_block_l = ((x_ball >= x_block-W_BLOCK-R_BALL-2) && (x_ball <= x_block-W_BLOCK-2) && (y_ball >= y_block-H_BLOCK-2) && (y_ball <= y_block+H_BLOCK+2));
-assign hit_block_r = ((x_ball <= x_block+W_BLOCK+R_BALL+2) && (x_ball >= x_block+W_BLOCK+2) && (y_ball >= y_block-H_BLOCK-2) && (y_ball <= y_block+H_BLOCK+2));
-
-
-// assign hit_block_u = ((y_ball == (y_block-H_BLOCK-R_BALL)) &&
-//                       (((x_ball >= x_block-W_BLOCK) && (x_ball <= x_block)) ||
-//                       ((x_ball >= x_block) && (x_ball <= x_block+W_BLOCK))));
-// assign hit_block_d = ((y_ball == (y_block+H_BLOCK+R_BALL)) &&
-//                       (((x_ball >= x_block-W_BLOCK) && (x_ball <= x_block)) ||
-//                       ((x_ball >= x_block) && (x_ball <= x_block+W_BLOCK))));
-// assign hit_block_l = ((x_ball == (x_block-W_BLOCK-R_BALL)) &&
-//                       (((y_ball >= y_block-H_BLOCK) && (y_ball <= y_block)) ||
-//                       ((y_ball >= y_block) && (y_ball <= y_block+H_BLOCK))));
-// assign hit_block_r = ((x_ball == (x_block+W_BLOCK+R_BALL)) &&
-//                       (((y_ball >= y_block-H_BLOCK) && (y_ball <= y_block)) ||
-//                       ((y_ball >= y_block) && (y_ball <= y_block+H_BLOCK))));
+assign hit_block_u = ((y_ball >= (y_block-H_BLOCK-R_BALL+2)) && (y_ball <= (y_block-H_BLOCK+2)) && (x_ball >= x_block-W_BLOCK+2) && (x_ball <= x_block+W_BLOCK-2));
+assign hit_block_d = ((y_ball <= (y_block+H_BLOCK+R_BALL-2)) && (y_ball >= (y_block+H_BLOCK-2)) && (x_ball >= x_block-W_BLOCK+2) && (x_ball <= x_block+W_BLOCK-2));
+assign hit_block_l = ((x_ball >= x_block-W_BLOCK-R_BALL+2) && (x_ball <= x_block-W_BLOCK+2) && (y_ball >= y_block-H_BLOCK+2) && (y_ball <= y_block+H_BLOCK-2));
+assign hit_block_r = ((x_ball <= x_block+W_BLOCK+R_BALL-2) && (x_ball >= x_block+W_BLOCK-2) && (y_ball >= y_block-H_BLOCK+2) && (y_ball <= y_block+H_BLOCK-2));
 
 assign hit_block = (exist) ? (hit_block_d || hit_block_u || hit_block_l || hit_block_r) : 0;
 
-assign endgame = (y_block >= (480-26));
-
+assign endgame_block = (y_block >= (480-26)); // verificar aqui
 
 
 always @(posedge clock) begin
   if (reset) begin
-    // endgame = 0;
     exist = 1;
     estado = 0;
-    x_block = x_i;             // MUDAR PARA CADA BLOCO!
+    x_block = x_i;             
     y_block = y_i;
   end
   else begin
     case(estado)
       0: begin
-        // x_block = x_block;             // MUDAR PARA CADA BLOCO!
-        // y_block = y_block;
-        if(start) begin
+        if(start && !endgame) begin
           if (hit_block) estado = 1;
           else estado = 3;
         end

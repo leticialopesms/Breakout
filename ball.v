@@ -2,6 +2,7 @@ module ball(
     input clock,
     input reset,
     input start,
+    input endgame,
     input [9:0] x_bar,
     input [9:0] y_bar,
     input [9:0] next_x,
@@ -14,7 +15,7 @@ module ball(
     output wire [9:0] x,
     output wire [9:0] y,
     output wire hit_bar,
-    output reg endgame,
+    output reg endgame_ball,
     output wire area
 );
 
@@ -58,7 +59,7 @@ assign hit_right = ((x_ball >= x_bar + 32) && (x_ball <= x_bar + W_BAR));
 
 always @(posedge clock) begin
   if (reset) begin
-    endgame = 0;
+    endgame_ball = 0;
     estado = 0;
     x_ball = 320;
     y_ball = 240;
@@ -88,7 +89,7 @@ always @(posedge clock) begin
           estado = 0;
         end
         else begin
-          endgame = 0;
+          endgame_ball = 0;
           estado = 0;
           x_ball = 320;
           y_ball = 240;
@@ -120,9 +121,9 @@ always @(posedge clock) begin
         end
         estado = 10;
       end
-      5: begin // bateu na borda de baixo (endgame)
+      5: begin // bateu na borda de baixo (endgame_ball)
         estado = 0;
-        endgame = 1;
+        endgame_ball = 1;
         // apertar em reset ou start novamente
       end
       6: begin // bateu no bloco por cima

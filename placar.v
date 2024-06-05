@@ -5,6 +5,7 @@ module placar(
   input endgame_ball,     // booleano que indica se o jogador perdeu
   input endgame_block,    // booleano que indica se o bloco chegou ao final da tela
   input start,            // booleano que indica se vai comecar outro jogo
+  output [5:0] vidas_restantes,
   output [6:0] digito0,   // digito da direita
   output [6:0] digito1,
   output [6:0] digito4,
@@ -13,8 +14,8 @@ module placar(
 
 // 3 dígitos da direita = pontuacao atual
 // 3 dígitos da esquerda = vidas 
+  parameter TAM = 8; // tamanho do placar
 
-parameter TAM = 8; // tamanho do placar
 
 reg [TAM:0] vidas, score;
 
@@ -58,7 +59,7 @@ button b (
 always @(posedge clock) begin
   if(reset) begin
     score = 0;
-    vidas = 10;
+    vidas = 3;
     estado = 0;
   end
   else begin
@@ -96,5 +97,6 @@ always @(posedge clock) begin
   end
 end
 
+assign vidas_restantes = vidas[5:0];
 
 endmodule
