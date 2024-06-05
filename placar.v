@@ -1,81 +1,98 @@
 module placar(
   input clock,
   input reset,
-  input hit_bar,        // booleano que indica se a bolinha bateu na barra
-  input start,        // booleano que indica se acabou o jogo
-  output [6:0] digito0, // digito da direita
+  input hit_block,        // booleano que indica se a bolinha bateu em um bloco
+  input endgame_ball,     // booleano que indica se o jogador perdeu
+  input endgame_block,    // booleano que indica se o bloco chegou ao final da tela
+  input start,            // booleano que indica se vai comecar outro jogo
+  output [6:0] digito0,   // digito da direita
   output [6:0] digito1,
   output [6:0] digito4,
-  output [6:0] digito5 // digito da esquerda
+  output [6:0] digito5    // digito da esquerda
 );
 
-// implementar o placar do jogo. o placar deve ser incrementado a cada vez que a bola tocar na barra. 
-// o placar máximo deve ser atualizado se o placar atual for maior que o placar máximo.
-
-// 3 dígitos da direita = placar atual
-// 3 dígitos da esquerda = placar máximo
+// 3 dígitos da direita = pontuacao atual
+// 3 dígitos da esquerda = vidas 
 
 parameter TAM = 8; // tamanho do placar
 
-reg [TAM:0] display_max, display_curr;
+reg [TAM:0] vidas, score;
 
-wire [TAM+(TAM-4)/3:0] decimal_max; // placar máximo até o momento
-wire [TAM+(TAM-4)/3:0] decimal_placar; // placar atual
-wire [3:0] d0_max, d1_max, d0_placar, d1_placar; // são os dígitos (cada um com 4 bits) do resultado (em binário)
+wire [TAM+(TAM-4)/3:0] decimal_vidas; // qnt de vidas ate o momento
+wire [TAM+(TAM-4)/3:0] decimal_score; // pontuacao atual
+wire [3:0] d0_vidas, d1_vidas, d0_score, d1_score; // são os dígitos (cada um com 4 bits) do resultado (em binário)
 wire [6:0] d0_display, d1_display, d4_display, d5_display; // são os dígitos convertidos para o display de 7 segmentos
 
 // para o resultado do placar máximo
-bcd #(9) b1 (.bin(display_max), .bcd(decimal_max));
+bcd #(9) b1 (.bin(vidas), .bcd(decimal_vidas));
 
 // para o resultado do placar atual
-bcd #(9) b2 (.bin(display_curr), .bcd(decimal_placar));
+bcd #(9) b2 (.bin(score), .bcd(decimal_score));
 
-// ver se isso aqui está certo
-assign d0_max = decimal_placar[3:0];
-assign d1_max = decimal_placar[7:4];
-assign d0_placar = decimal_max[3:0];
-assign d1_placar = decimal_max[7:4];
+// verificar isso aqui (na branch main isso ta invertido por algum motivo desconhecido)
+assign d0_vidas = decimal_vidas[3:0];
+assign d1_vidas = decimal_vidas[7:4];
+assign d0_score = decimal_score[3:0];
+assign d1_score = decimal_score[7:4];
 
-cb7s c0_max(.numero(d0_max),.segmentos(d0_display));
-cb7s c1_max(.numero(d1_max),.segmentos(d1_display));
-cb7s c0_placar(.numero(d0_placar),.segmentos(d4_display));
-cb7s c1_placar(.numero(d1_placar),.segmentos(d5_display));
+cb7s c0_vidas (.numero(d0_vidas),.segmentos(d4_display));
+cb7s c1_vidas (.numero(d1_vidas),.segmentos(d5_display));
+cb7s c0_score (.numero(d0_score),.segmentos(d0_display));
+cb7s c1_score (.numero(d1_score),.segmentos(d1_display));
 
 assign digito0 = d0_display;
-assign digito1 = (display_curr<10) ? 7'b1111111:d1_display;
+assign digito1 = (score<10) ? 7'b1111111:d1_display;
 assign digito4 = d4_display;
-assign digito5 = (display_max<10) ? 7'b1111111:d5_display;
+assign digito5 = (vidas<10) ? 7'b1111111:d5_display;
 
-reg somou; // flag pra verificar se já somou 1 no placar atual
+wire add_score; // flag pra verificar se deve somar 1 na pontuacao atual
+reg [3:0] estado; // estado da máquina de estados
+
+button b (
+  .clock(clock),
+  .reset(reset),
+  .entrada(hit_block),
+  .saida(add_score)
+);
 
 always @(posedge clock) begin
-  // implementar lógica de somar 1 no placar atual e ver se precisa
-  // atualizar o placar máximo
-  if(reset) begin 
-    somou = 0;
-    display_curr = 0;
-    display_max = 0;
+  if(reset) begin
+    score = 0;
+    vidas = 10;
+    estado = 0;
   end
   else begin
-    if(display_curr > display_max) begin
-      display_max = display_curr;
-    end
-    if(start) begin
-      display_curr = 0;   // não muda display_max aqui 
-    end
-    else if(hit_bar && !somou) begin // se bateu na barra mas ainda n somou no placar
-      // somar 1 no placar aqui
-      display_curr = display_curr + 1;
-      somou = 1;
-    end
-    else if(!hit_bar && somou) begin
-      somou = 0;
-    end
-    else begin
-      display_curr = display_curr;
-    end
-    // tomar cuidado pra não mostrar zeros à esquerda
-    // ideia pra resolver isso: mandar sinal x pra placa quando for zero à esquerda
+    case(estado)
+      0: begin
+        if (start) begin
+          // vidas = vidas;
+          // score = score;
+          if(endgame_ball) estado = 1;
+          else if (endgame_block) estado = 3;
+          else if (add_score) estado = 4;
+          else estado = 0;
+        end
+        else estado = 0;
+      end
+      1: begin  // jogador perdeu 1 vida
+        vidas = vidas - 1;
+        if (vidas > 0) estado = 2;
+        else estado = 3;
+      end
+      2: begin  // jogador perdeu 1 vida e ainda tem mais
+        if (!start) estado = 0;
+        else estado = 2;
+      end
+      3: begin  // jogador perdeu todas as vidas
+        // imprimir OVER no display
+        estado = 3;
+      end
+      4: begin  // jogador acertou um bloco
+        score = score + 1;
+        estado = 0;
+      end
+      default: estado = 0;
+    endcase
   end
 end
 

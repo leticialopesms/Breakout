@@ -4,7 +4,7 @@ module timer (
     output pulse
 );
 
-parameter [30:0] PULSE_TIME = 250_000;
+parameter [30:0] PULSE_TIME = 500_000;
 reg [30:0] contador;
 
 assign pulse = (contador == PULSE_TIME);

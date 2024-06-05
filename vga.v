@@ -56,6 +56,5 @@ module vga (
     
     assign next_x = x-H_PULSE-H_BACK;
     assign next_y = y-V_PULSE-V_BACK;
-    // modifcar next_x e next_y para serem incrementados apenas quando active for 1
 
 endmodule
