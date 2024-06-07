@@ -25,6 +25,8 @@ parameter LIM_RIGHT = 640 - R_BALL;
 parameter LIM_UP = R_BALL;
 parameter LIM_DOWN = 480 - R_BALL;
 parameter LIM_ENDGAME = 480 - 8 - 2*H_BAR;
+parameter LIM_VX = 20;
+parameter LIM_VY = 20;
 
 // parametros para os tamanhos da bola e da barra
 parameter R_BALL = 8;   // raio da bolinha
@@ -112,12 +114,16 @@ always @(posedge clock) begin
       4: begin // bateu na barra 
         vy_mod = vy_mod * (-1);         // vai pra cima
         if (hit_left) begin
-          if(vx_mod > 0) vx_mod = vx_mod - 1;
-          else vx_mod = vx_mod + 1;
+          if(vx_mod < LIM_VX) begin
+            if(vx_mod > 0) vx_mod = vx_mod - 1;
+            else vx_mod = vx_mod + 1;
+          end
         end
         else if (hit_right) begin
-          if(vx_mod > 0) vx_mod = vx_mod + 1;
-          else vx_mod = vx_mod - 1;
+          if(vy_mod < LIM_VY) begin
+            if(vy_mod > 0) vy_mod = vy_mod - 1;
+            else vy_mod = vy_mod + 1;
+          end
         end
         estado = 10;
       end

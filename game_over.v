@@ -5,8 +5,7 @@ module game_over(
     input [9:0] pixel_y,
     output reg [7:0] red,
     output reg [7:0] green,
-    output reg [7:0] blue,
-    output reg [2:0] active
+    output reg [7:0] blue
     );
 
     // Posições e tamanhos da mensagem "GAME OVER"
@@ -20,13 +19,13 @@ module game_over(
 
     initial begin
         // G
-        font_rom[0] = 128'h0F1818181E18180F;
+        font_rom[0] = 128'h1E33331F03030303;
         // A
-        font_rom[1] = 128'h1E33333F33333333;
+        font_rom[1] = 128'h0E33333E33333333;
         // M
         font_rom[2] = 128'h333333333F3F3333;
         // E
-        font_rom[3] = 128'h3F1818181F181818;
+        font_rom[3] = 128'h3F03033F03030303;
         // (space)
         font_rom[4] = 128'h0000000000000000;
         // O
@@ -34,7 +33,7 @@ module game_over(
         // V
         font_rom[6] = 128'h3333333333331E0C;
         // R
-        font_rom[7] = 128'h1F33331F3B33331F;
+        font_rom[7] = 128'h1F33331F0B0B0B0B;
     end
 
     // Calcula a posição na mensagem
@@ -46,23 +45,23 @@ module game_over(
             red = 8'b00000000;
             green = 8'b00000000;
             blue = 8'b00000000;
-            active = 0;
         end
         else if (pixel_x >= MSG_X && pixel_x < MSG_X + 64 && pixel_y >= MSG_Y && pixel_y < MSG_Y + 16) begin
             // Verifique o caractere e o pixel correspondente
-            if (font_rom[msg_x[5:3]][msg_y[3:0] * 8 + msg_x[2:0]]) begin
+            if (font_rom[msg_x[6:3]][msg_y[3:0] * 8 + msg_x[2:0]]) begin
                 red = 8'b11111111;  // Branco
                 green = 8'b11111111;  // Branco
                 blue = 8'b11111111;  // Branco
-                active = 1;
             end
             else begin
-                // rgb = 3'b000;  // Preto
-                active = 0;
+                red = 8'b00000000;  // Preto
+                green = 8'b00000000;  // Preto
+                blue = 8'b00000000;  // Preto
             end
         end else begin
-            // rgb = 3'b000;  // Preto
-            active = 0;
+            red = 8'b00000000;  // Preto
+            green = 8'b00000000;  // Preto
+            blue = 8'b00000000;  // Preto
         end
     end
 endmodule

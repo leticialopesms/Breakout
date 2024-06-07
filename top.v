@@ -153,8 +153,7 @@ game_over go (
   .pixel_y(next_y),
   .red(red_over),
   .green(green_over),
-  .blue(blue_over),
-  .active(over)
+  .blue(blue_over)
 );
 
 placar p(
@@ -638,7 +637,7 @@ always @(posedge VGA_CLK) begin
       green_reg = 255; // verde
       blue_reg = 255; // azul
     end
-    else if ((endgame_block || endgame_vidas) && over) begin
+    else if ((endgame_block || endgame_vidas)) begin
       red_reg = red_over;
       green_reg = green_over;
       blue_reg = blue_over;
