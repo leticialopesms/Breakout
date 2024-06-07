@@ -50,7 +50,10 @@ wire bloquinho1, bloquinho2, bloquinho3, bloquinho4, bloquinho5,
      bloquinho11, bloquinho12, bloquinho13, bloquinho14, bloquinho15;
 wire lavinha;
 wire over;
-wire [8:0] vidas;
+wire [5:0] vidas;
+wire [5:0] pontos;
+wire game_over;
+wire you_win;
 
 // Flags de parada
 wire hit_bar;
@@ -127,6 +130,7 @@ assign sin_wave[29] = 5;
 assign sin_wave[30] = 6;
 assign sin_wave[31] = 5;
 
+
 assign lavinha = ((next_y >= (460 + sin_wave[next_x[4:0]])) || (next_y >= 470));
 
 // Atribuições para hit_block
@@ -140,7 +144,138 @@ assign hit_block = (hit_block1 || hit_block2 || hit_block3 || hit_block4 || hit_
 assign endgame_vidas = (vidas == 0);
 assign endgame_block = (endgame_block1 || endgame_block2 || endgame_block3 || endgame_block4 || endgame_block5 || endgame_block6 || endgame_block7 || endgame_block8 || endgame_block9 || endgame_block10 || endgame_block11 || endgame_block12 || endgame_block13 || endgame_block14 || endgame_block15);
 assign endgame = (endgame_block || endgame_ball || endgame_vidas);
+assign game_over = (endgame_vidas || endgame_block);
+assign you_win = (pontos == 15);
 
+
+// ---------------------------------- //
+// ------------- ALWAYS ------------- //
+// ---------------------------------- //
+
+// Divisor de frequência para o VGA
+always@(posedge CLOCK_50) begin
+    VGA_CLK = ~VGA_CLK;
+end
+
+// Lógica de cores para cada elemento
+always @(posedge VGA_CLK) begin
+  if (!KEY[3]) begin
+    red_reg = 0; // vermelho
+    green_reg = 0; // verde
+    blue_reg = 0; // azul
+  end
+  else begin
+    if (game_over) begin
+      red_reg = red_over;
+      green_reg = green_over;
+      blue_reg = blue_over;
+    end
+    else if (you_win) begin
+      red_reg = 200;
+      green_reg = 200;
+      blue_reg = 200;
+    end
+    else if (bolinha) begin
+      red_reg = 255; // vermelho
+      green_reg = 255; // verde
+      blue_reg = 255; // azul
+    end
+    else if (bloquinho1 && existe_b1) begin
+      red_reg = 10; // vermelho
+      green_reg = 230; // verde
+      blue_reg = 50; // azul
+    end
+    else if (bloquinho2 && existe_b2) begin
+      red_reg = 100; // vermelho
+      green_reg = 50; // verde
+      blue_reg = 230; // azul
+    end
+    else if (bloquinho3 && existe_b3) begin
+      red_reg = 200; // vermelho
+      green_reg = 100; // verde
+      blue_reg = 50; // azul
+    end
+    else if (bloquinho4 && existe_b4) begin
+      red_reg = 50; // vermelho
+      green_reg = 200; // verde
+      blue_reg = 100; // azul
+    end
+    else if (bloquinho5 && existe_b5) begin
+      red_reg = 100; // vermelho
+      green_reg = 50; // verde
+      blue_reg = 200; // azul
+    end
+    else if (bloquinho6 && existe_b6) begin
+      red_reg = 200; // vermelho
+      green_reg = 100; // verde
+      blue_reg = 50; // azul
+    end
+    else if (bloquinho7 && existe_b7) begin
+      red_reg = 50; // vermelho
+      green_reg = 200; // verde
+      blue_reg = 100; // azul
+    end
+    else if (bloquinho8 && existe_b8) begin
+      red_reg = 100; // vermelho
+      green_reg = 50; // verde
+      blue_reg = 200; // azul
+    end
+    else if (bloquinho9 && existe_b9) begin
+      red_reg = 200; // vermelho
+      green_reg = 100; // verde
+      blue_reg = 50; // azul
+    end
+    else if (bloquinho10 && existe_b10) begin
+      red_reg = 50; // vermelho
+      green_reg = 200; // verde
+      blue_reg = 100; // azul
+    end
+    else if (bloquinho11 && existe_b11) begin
+      red_reg = 100; // vermelho
+      green_reg = 50; // verde
+      blue_reg = 200; // azul
+    end
+    else if (bloquinho12 && existe_b12) begin
+      red_reg = 200; // vermelho
+      green_reg = 100; // verde
+      blue_reg = 50; // azul
+    end
+    else if (bloquinho13 && existe_b13) begin
+      red_reg = 50; // vermelho
+      green_reg = 200; // verde
+      blue_reg = 100; // azul
+    end
+    else if (bloquinho14 && existe_b14) begin
+      red_reg = 100; // vermelho
+      green_reg = 50; // verde
+      blue_reg = 200; // azul
+    end
+    else if (bloquinho15 && existe_b15) begin
+      red_reg = 200; // vermelho
+      green_reg = 100; // verde
+      blue_reg = 50; // azul
+    end
+    else if (lavinha && !barrinha) begin
+      red_reg = 200; // vermelho
+      green_reg = 25; // verde
+      blue_reg = 25; // azul
+    end
+    else if (barrinha) begin
+      red_reg = 255; // vermelho
+      green_reg = 255; // verde
+      blue_reg = 255; // azul
+    end
+    else begin
+      red_reg = 0; // vermelho
+      green_reg = 0; // verde
+      blue_reg = 0; // azul
+    end
+  end
+end
+
+assign VGA_R = (active)?red_reg:0;
+assign VGA_G = (active)?green_reg:0;
+assign VGA_B = (active)?blue_reg:0;
 
 // ----------------------------------- //
 // ------------- MODULES ------------- //
@@ -164,6 +299,7 @@ placar p(
   .endgame_ball(endgame_ball),
   .endgame_block(endgame_block),
   .vidas_restantes(vidas),
+  .pontuacao_atual(pontos),
   .digito0(HEX0),
   .digito1(HEX1),
   .digito4(HEX4),
@@ -529,129 +665,5 @@ bloco b15 (
   .exist(existe_b15),
   .endgame(endgame)
 );
-
-// ---------------------------------- //
-// ------------- ALWAYS ------------- //
-// ---------------------------------- //
-
-// Divisor de frequência para o VGA
-always@(posedge CLOCK_50) begin
-    VGA_CLK = ~VGA_CLK;
-end
-
-// Lógica de cores para cada elemento
-always @(posedge VGA_CLK) begin
-  if (!KEY[3]) begin
-    red_reg = 0; // vermelho
-    green_reg = 0; // verde
-    blue_reg = 0; // azul
-  end
-  else begin
-    if (bolinha) begin
-      red_reg = 255; // vermelho
-      green_reg = 255; // verde
-      blue_reg = 255; // azul
-    end
-    else if (bloquinho1 && existe_b1) begin
-      red_reg = 10; // vermelho
-      green_reg = 230; // verde
-      blue_reg = 50; // azul
-    end
-    else if (bloquinho2 && existe_b2) begin
-      red_reg = 100; // vermelho
-      green_reg = 50; // verde
-      blue_reg = 230; // azul
-    end
-    else if (bloquinho3 && existe_b3) begin
-      red_reg = 200; // vermelho
-      green_reg = 100; // verde
-      blue_reg = 50; // azul
-    end
-    else if (bloquinho4 && existe_b4) begin
-      red_reg = 50; // vermelho
-      green_reg = 200; // verde
-      blue_reg = 100; // azul
-    end
-    else if (bloquinho5 && existe_b5) begin
-      red_reg = 100; // vermelho
-      green_reg = 50; // verde
-      blue_reg = 200; // azul
-    end
-    else if (bloquinho6 && existe_b6) begin
-      red_reg = 200; // vermelho
-      green_reg = 100; // verde
-      blue_reg = 50; // azul
-    end
-    else if (bloquinho7 && existe_b7) begin
-      red_reg = 50; // vermelho
-      green_reg = 200; // verde
-      blue_reg = 100; // azul
-    end
-    else if (bloquinho8 && existe_b8) begin
-      red_reg = 100; // vermelho
-      green_reg = 50; // verde
-      blue_reg = 200; // azul
-    end
-    else if (bloquinho9 && existe_b9) begin
-      red_reg = 200; // vermelho
-      green_reg = 100; // verde
-      blue_reg = 50; // azul
-    end
-    else if (bloquinho10 && existe_b10) begin
-      red_reg = 50; // vermelho
-      green_reg = 200; // verde
-      blue_reg = 100; // azul
-    end
-    else if (bloquinho11 && existe_b11) begin
-      red_reg = 100; // vermelho
-      green_reg = 50; // verde
-      blue_reg = 200; // azul
-    end
-    else if (bloquinho12 && existe_b12) begin
-      red_reg = 200; // vermelho
-      green_reg = 100; // verde
-      blue_reg = 50; // azul
-    end
-    else if (bloquinho13 && existe_b13) begin
-      red_reg = 50; // vermelho
-      green_reg = 200; // verde
-      blue_reg = 100; // azul
-    end
-    else if (bloquinho14 && existe_b14) begin
-      red_reg = 100; // vermelho
-      green_reg = 50; // verde
-      blue_reg = 200; // azul
-    end
-    else if (bloquinho15 && existe_b15) begin
-      red_reg = 200; // vermelho
-      green_reg = 100; // verde
-      blue_reg = 50; // azul
-    end
-    else if (lavinha && !barrinha) begin
-      red_reg = 255; // vermelho
-      green_reg = 25; // verde
-      blue_reg = 25; // azul
-    end
-    else if (barrinha) begin
-      red_reg = 255; // vermelho
-      green_reg = 255; // verde
-      blue_reg = 255; // azul
-    end
-    else if ((endgame_block || endgame_vidas)) begin
-      red_reg = red_over;
-      green_reg = green_over;
-      blue_reg = blue_over;
-    end
-    else begin
-      red_reg = 0; // vermelho
-      green_reg = 0; // verde
-      blue_reg = 0; // azul
-    end
-  end
-end
-
-assign VGA_R = (active)?red_reg:0;
-assign VGA_G = (active)?green_reg:0;
-assign VGA_B = (active)?blue_reg:0;
 
 endmodule

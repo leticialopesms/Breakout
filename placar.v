@@ -6,6 +6,7 @@ module placar(
   input endgame_block,    // booleano que indica se o bloco chegou ao final da tela
   input start,            // booleano que indica se vai comecar outro jogo
   output [5:0] vidas_restantes,
+  output [5:0] pontuacao_atual,
   output [6:0] digito0,   // digito da direita
   output [6:0] digito1,
   output [6:0] digito4,
@@ -98,5 +99,6 @@ always @(posedge clock) begin
 end
 
 assign vidas_restantes = vidas[5:0];
+assign pontuacao_atual = score[5:0];
 
 endmodule

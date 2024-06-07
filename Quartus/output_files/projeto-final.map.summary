@@ -1,17 +1,12 @@
-Analysis & Synthesis Status : Successful - Fri Jun  7 10:48:57 2024
+Analysis & Synthesis Status : Failed - Fri Jun  7 11:44:07 2024
 Quartus Prime Version : 17.1.0 Build 590 10/25/2017 SJ Lite Edition
 Revision Name : projeto-final
 Top-level Entity Name : top
 Family : Cyclone V
-Logic utilization (in ALMs) : N/A
-Total registers : 412
-Total pins : 72
-Total virtual pins : 0
-Total block memory bits : 0
-Total DSP Blocks : 4
-Total HSSI RX PCSs : 0
-Total HSSI PMA RX Deserializers : 0
-Total HSSI TX PCSs : 0
-Total HSSI PMA TX Serializers : 0
-Total PLLs : 0
-Total DLLs : 0
+Logic utilization (in ALMs) : N/A until Partition Merge
+Total registers : N/A until Partition Merge
+Total pins : N/A until Partition Merge
+Total virtual pins : N/A until Partition Merge
+Total block memory bits : N/A until Partition Merge
+Total PLLs : N/A until Partition Merge
+Total DLLs : N/A until Partition Merge
