@@ -1,5 +1,5 @@
 Flow report for projeto-final
-Wed Jun  5 18:04:28 2024
+Mon Jun 10 11:19:37 2024
 Quartus Prime Version 17.1.0 Build 590 10/25/2017 SJ Lite Edition
 
 
@@ -40,16 +40,16 @@ refer to the applicable agreement for further details.
 +-------------------------------------------------------------------------------+
 ; Flow Summary                                                                  ;
 +---------------------------------+---------------------------------------------+
-; Flow Status                     ; Successful - Wed Jun  5 18:04:28 2024       ;
+; Flow Status                     ; Successful - Mon Jun 10 11:19:37 2024       ;
 ; Quartus Prime Version           ; 17.1.0 Build 590 10/25/2017 SJ Lite Edition ;
 ; Revision Name                   ; projeto-final                               ;
 ; Top-level Entity Name           ; top                                         ;
 ; Family                          ; Cyclone V                                   ;
 ; Device                          ; 5CSEMA5F31C6                                ;
 ; Timing Models                   ; Final                                       ;
-; Logic utilization (in ALMs)     ; 1,890 / 32,070 ( 6 % )                      ;
-; Total registers                 ; 413                                         ;
-; Total pins                      ; 72 / 457 ( 16 % )                           ;
+; Logic utilization (in ALMs)     ; 2,367 / 32,070 ( 7 % )                      ;
+; Total registers                 ; 489                                         ;
+; Total pins                      ; 62 / 457 ( 14 % )                           ;
 ; Total virtual pins              ; 0                                           ;
 ; Total block memory bits         ; 0 / 4,065,280 ( 0 % )                       ;
 ; Total DSP Blocks                ; 4 / 87 ( 5 % )                              ;
@@ -67,7 +67,7 @@ refer to the applicable agreement for further details.
 +-------------------+---------------------+
 ; Option            ; Setting             ;
 +-------------------+---------------------+
-; Start date & time ; 06/05/2024 18:03:29 ;
+; Start date & time ; 06/10/2024 11:18:32 ;
 ; Main task         ; Compilation         ;
 ; Revision Name     ; projeto-final       ;
 +-------------------+---------------------+
@@ -78,7 +78,7 @@ refer to the applicable agreement for further details.
 +-------------------------------------+----------------------------------------+---------------+-------------+----------------+
 ; Assignment Name                     ; Value                                  ; Default Value ; Entity Name ; Section Id     ;
 +-------------------------------------+----------------------------------------+---------------+-------------+----------------+
-; COMPILER_SIGNATURE_ID               ; 251776451538970.171762140953636        ; --            ; --          ; --             ;
+; COMPILER_SIGNATURE_ID               ; 31239359189418.171802911239518         ; --            ; --          ; --             ;
 ; EDA_OUTPUT_DATA_FORMAT              ; Verilog Hdl                            ; --            ; --          ; eda_simulation ;
 ; EDA_SIMULATION_TOOL                 ; ModelSim-Altera (Verilog)              ; <None>        ; --          ; --             ;
 ; EDA_TIME_SCALE                      ; 1 ps                                   ; --            ; --          ; eda_simulation ;
@@ -99,26 +99,26 @@ refer to the applicable agreement for further details.
 +---------------------------+--------------+-------------------------+---------------------+------------------------------------+
 ; Module Name               ; Elapsed Time ; Average Processors Used ; Peak Virtual Memory ; Total CPU Time (on all processors) ;
 +---------------------------+--------------+-------------------------+---------------------+------------------------------------+
-; Analysis & Synthesis      ; 00:00:09     ; 1.0                     ; 1332 MB             ; 00:00:17                           ;
-; Fitter                    ; 00:00:33     ; 1.4                     ; 3172 MB             ; 00:02:55                           ;
-; Assembler                 ; 00:00:03     ; 1.0                     ; 1193 MB             ; 00:00:03                           ;
-; TimeQuest Timing Analyzer ; 00:00:07     ; 2.0                     ; 1544 MB             ; 00:00:11                           ;
-; EDA Netlist Writer        ; 00:00:02     ; 1.0                     ; 1383 MB             ; 00:00:01                           ;
-; Total                     ; 00:00:54     ; --                      ; --                  ; 00:03:27                           ;
+; Analysis & Synthesis      ; 00:00:11     ; 1.0                     ; 1306 MB             ; 00:00:20                           ;
+; Fitter                    ; 00:00:40     ; 1.5                     ; 3179 MB             ; 00:03:40                           ;
+; Assembler                 ; 00:00:04     ; 1.0                     ; 1192 MB             ; 00:00:04                           ;
+; TimeQuest Timing Analyzer ; 00:00:06     ; 2.5                     ; 1556 MB             ; 00:00:12                           ;
+; EDA Netlist Writer        ; 00:00:01     ; 1.0                     ; 1389 MB             ; 00:00:01                           ;
+; Total                     ; 00:01:02     ; --                      ; --                  ; 00:04:17                           ;
 +---------------------------+--------------+-------------------------+---------------------+------------------------------------+
 
 
-+-------------------------------------------------------------------------------------------------+
-; Flow OS Summary                                                                                 ;
-+---------------------------+------------------------+-------------+-------------+----------------+
-; Module Name               ; Machine Hostname       ; OS Name     ; OS Version  ; Processor type ;
-+---------------------------+------------------------+-------------+-------------+----------------+
-; Analysis & Synthesis      ; kiss.lab.ic.unicamp.br ; Fedora Core ; Fedora Core ; x86_64         ;
-; Fitter                    ; kiss.lab.ic.unicamp.br ; Fedora Core ; Fedora Core ; x86_64         ;
-; Assembler                 ; kiss.lab.ic.unicamp.br ; Fedora Core ; Fedora Core ; x86_64         ;
-; TimeQuest Timing Analyzer ; kiss.lab.ic.unicamp.br ; Fedora Core ; Fedora Core ; x86_64         ;
-; EDA Netlist Writer        ; kiss.lab.ic.unicamp.br ; Fedora Core ; Fedora Core ; x86_64         ;
-+---------------------------+------------------------+-------------+-------------+----------------+
++---------------------------------------------------------------------------------------------------+
+; Flow OS Summary                                                                                   ;
++---------------------------+--------------------------+-------------+-------------+----------------+
+; Module Name               ; Machine Hostname         ; OS Name     ; OS Version  ; Processor type ;
++---------------------------+--------------------------+-------------+-------------+----------------+
+; Analysis & Synthesis      ; mickey.lab.ic.unicamp.br ; Fedora Core ; Fedora Core ; x86_64         ;
+; Fitter                    ; mickey.lab.ic.unicamp.br ; Fedora Core ; Fedora Core ; x86_64         ;
+; Assembler                 ; mickey.lab.ic.unicamp.br ; Fedora Core ; Fedora Core ; x86_64         ;
+; TimeQuest Timing Analyzer ; mickey.lab.ic.unicamp.br ; Fedora Core ; Fedora Core ; x86_64         ;
+; EDA Netlist Writer        ; mickey.lab.ic.unicamp.br ; Fedora Core ; Fedora Core ; x86_64         ;
++---------------------------+--------------------------+-------------+-------------+----------------+
 
 
 ------------

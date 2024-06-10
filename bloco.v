@@ -3,6 +3,7 @@ module bloco(
     input reset,
     input start,
     input endgame,
+    input hit_lava,
     input [9:0] x_i,
     input [9:0] y_i,
     input [9:0] x_ball,
@@ -25,9 +26,10 @@ parameter H_BAR = 8;    // metade da altura da barra
 parameter W_BAR = 64;   // metade da largura da barra
 parameter H_BLOCK = 16;  // metade da altura do bloco
 parameter W_BLOCK = 64; // metade da largura do bloco
+parameter V_BLOCK = 2;  // velocidade do bloco
 
 // variável estado para a máquina de estados
-reg [3:0] estado;
+reg [5:0] estado;
 reg [9:0] x_block;
 reg [9:0] y_block;
 
@@ -64,10 +66,7 @@ always @(posedge clock) begin
   else begin
     case(estado)
       0: begin
-        if(start && !endgame) begin
-          if (hit_block) estado = 1;
-          else estado = 3;
-        end
+        if(start) estado = 4;
         else estado = 0;
       end
       1: begin
@@ -77,20 +76,31 @@ always @(posedge clock) begin
       end
       2: begin
         exist = 0;
-        estado = 0;
+        estado = 4;
       end
       3: begin
         if (exist) begin
-          if (hit_block) estado = 1;
+          if (endgame) estado = 5;
+          else if (hit_lava) estado = 0;
+          else if (hit_block) estado = 1;
           else if(move) begin
-            y_block = y_block + 1;
-            estado = 0;
+            y_block = y_block + V_BLOCK;
+            estado = 4;
           end
           else estado = 3;
         end
-        else estado = 0;
+        else estado = 5;
       end
-      default: estado = 0;
+      4: begin
+        if (endgame) estado = 5;
+        else if (hit_lava) estado = 0;
+        else if (hit_block) estado = 1;
+        else estado = 3;
+      end
+      5: begin
+        estado = 5;
+      end
+      default: estado = 4;
     endcase
   end
 end

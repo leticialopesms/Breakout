@@ -15,7 +15,7 @@ module ball(
     output wire [9:0] x,
     output wire [9:0] y,
     output wire hit_bar,
-    output reg endgame_ball,
+    output reg hit_lava,
     output wire area
 );
 
@@ -25,6 +25,8 @@ parameter LIM_RIGHT = 640 - R_BALL;
 parameter LIM_UP = R_BALL;
 parameter LIM_DOWN = 480 - R_BALL;
 parameter LIM_ENDGAME = 480 - 8 - 2*H_BAR;
+parameter LIM_VX = 20;
+parameter LIM_VY = 20;
 
 // parametros para os tamanhos da bola e da barra
 parameter R_BALL = 8;   // raio da bolinha
@@ -59,10 +61,10 @@ assign hit_right = ((x_ball >= x_bar + 32) && (x_ball <= x_bar + W_BAR));
 
 always @(posedge clock) begin
   if (reset) begin
-    endgame_ball = 0;
+    hit_lava = 0;
     estado = 0;
     x_ball = 320;
-    y_ball = 240;
+    y_ball = 420;
     // vx_mod = 8;
     // vy_mod = -8;
   end
@@ -71,31 +73,15 @@ always @(posedge clock) begin
   // colocar os estados nos leds
     case(estado)
       0: begin
-        if(start && !endgame) begin
-            if(hit_bar) estado = 4;                       // bateu na barra
-            else if(y_ball <= LIM_UP) estado = 1;         // bateu em cima
-            else if(x_ball <= LIM_LEFT) estado = 2;       // bateu na esquerda
-            else if(x_ball >= LIM_RIGHT) estado = 3;      // bateu na direita
-            else if(y_ball >= LIM_ENDGAME) estado = 5;       // ENDGAME!
-            else if (hit_block) begin
-              if(hit_block_u) estado = 6;
-              else if(hit_block_d) estado = 7;
-              else if(hit_block_l) estado = 8;
-              else if(hit_block_r) estado = 9;
-            end
-            else estado = 10;
-        end
-        else if (start && endgame) begin
-          estado = 0;
-        end
-        else begin
-          endgame_ball = 0;
-          estado = 0;
+        if (start) begin 
+          estado = 11;
+          hit_lava = 0;
           x_ball = 320;
-          y_ball = 240;
-          vx_mod = 2;
-          vy_mod = -2;
+          y_ball = 420;
+          vx_mod = 4;
+          vy_mod = -4;
         end
+        else estado = 0;
       end
       1: begin // bateu na borda de cima
         vy_mod = vy_mod * (-1);         // vai pra baixo
@@ -112,18 +98,22 @@ always @(posedge clock) begin
       4: begin // bateu na barra 
         vy_mod = vy_mod * (-1);         // vai pra cima
         if (hit_left) begin
-          if(vx_mod > 0) vx_mod = vx_mod - 1;
-          else vx_mod = vx_mod + 1;
+          if(vx_mod < LIM_VX) begin
+            if(vx_mod > 0) vx_mod = vx_mod - 1;
+            else vx_mod = vx_mod + 1;
+          end
         end
         else if (hit_right) begin
-          if(vx_mod > 0) vx_mod = vx_mod + 1;
-          else vx_mod = vx_mod - 1;
+          if(vy_mod < LIM_VY) begin
+            if(vy_mod > 0) vy_mod = vy_mod - 1;
+            else vy_mod = vy_mod + 1;
+          end
         end
         estado = 10;
       end
-      5: begin // bateu na borda de baixo (endgame_ball)
+      5: begin // bateu na borda de baixo (hit_lava)
         estado = 0;
-        endgame_ball = 1;
+        hit_lava = 1;
         // apertar em reset ou start novamente
       end
       6: begin // bateu no bloco por cima
@@ -143,14 +133,33 @@ always @(posedge clock) begin
         estado = 10;
       end
       10: begin         // meramente continua
-            if(move) begin
-                x_ball = x_ball + vx_mod;
-                y_ball = y_ball + vy_mod;
-                estado = 0;
-            end
-            else estado = 10;
+        if (endgame) estado = 12;
+        else if(move) begin
+            x_ball = x_ball + vx_mod;
+            y_ball = y_ball + vy_mod;
+            estado = 11;
+        end
+        else estado = 10;
       end
-      default: estado = 0;
+      11: begin
+        if (endgame) estado = 12;
+        else if(hit_bar) estado = 4;                       // bateu na barra
+        else if(y_ball <= LIM_UP) estado = 1;         // bateu em cima
+        else if(x_ball <= LIM_LEFT) estado = 2;       // bateu na esquerda
+        else if(x_ball >= LIM_RIGHT) estado = 3;      // bateu na direita
+        else if(y_ball >= LIM_ENDGAME) estado = 5;       // bateu na lava!
+        else if (hit_block) begin
+            if(hit_block_u) estado = 6;
+            else if(hit_block_d) estado = 7;
+            else if(hit_block_l) estado = 8;
+            else if(hit_block_r) estado = 9;
+        end
+        else estado = 10;
+      end
+      12: begin
+        estado = 12;
+      end
+      default: estado = 11;
     endcase
   end
 end

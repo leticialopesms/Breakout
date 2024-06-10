@@ -1,11 +1,12 @@
 module placar(
   input clock,
   input reset,
-  input hit_block,        // booleano que indica se a bolinha bateu em um bloco
-  input endgame_ball,     // booleano que indica se o jogador perdeu
-  input endgame_block,    // booleano que indica se o bloco chegou ao final da tela
   input start,            // booleano que indica se vai comecar outro jogo
-  output [5:0] vidas_restantes,
+  input hit_block,        // booleano que indica se a bolinha bateu em um bloco
+  input hit_lava,     // booleano que indica se o jogador perdeu
+  input endgame_block,    // booleano que indica se o bloco chegou ao final da tela
+  output [8:0] vidas_restantes,
+  output [8:0] pontuacao_atual,
   output [6:0] digito0,   // digito da direita
   output [6:0] digito1,
   output [6:0] digito4,
@@ -65,24 +66,13 @@ always @(posedge clock) begin
   else begin
     case(estado)
       0: begin
-        if (start) begin
-          // vidas = vidas;
-          // score = score;
-          if(endgame_ball) estado = 1;
-          else if (endgame_block) estado = 3;
-          else if (add_score) estado = 4;
-          else estado = 0;
-        end
+        if (start) estado = 5;
         else estado = 0;
       end
       1: begin  // jogador perdeu 1 vida
         vidas = vidas - 1;
-        if (vidas > 0) estado = 2;
+        if (vidas > 0) estado = 0;
         else estado = 3;
-      end
-      2: begin  // jogador perdeu 1 vida e ainda tem mais
-        if (!start) estado = 0;
-        else estado = 2;
       end
       3: begin  // jogador perdeu todas as vidas
         // imprimir OVER no display
@@ -90,13 +80,20 @@ always @(posedge clock) begin
       end
       4: begin  // jogador acertou um bloco
         score = score + 1;
-        estado = 0;
+        estado = 5;
       end
-      default: estado = 0;
+      5: begin 
+        if(hit_lava) estado = 1;
+        else if (endgame_block) estado = 3;
+        else if (add_score) estado = 4;
+        else estado = 5;
+      end
+      default: estado = 5;
     endcase
   end
 end
 
-assign vidas_restantes = vidas[5:0];
+assign vidas_restantes = vidas;
+assign pontuacao_atual = score;
 
 endmodule
