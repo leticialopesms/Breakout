@@ -1,6 +1,5 @@
 module top(
     input CLOCK_50,
-    input [9:0] SW,
     input [3:0] KEY,
     output reg VGA_CLK,
     output wire [7:0] VGA_R,        // RED (to resistor DAC VGA connector)
@@ -25,10 +24,6 @@ reg [7:0] red_reg;
 reg [7:0] green_reg;
 reg [7:0] blue_reg;
 
-wire [7:0] red_over;
-wire [7:0] green_over;
-wire [7:0] blue_over;
-
 // Coordenadas do centro dos elementos
 wire [9:0] x_bar;
 wire [9:0] y_bar;
@@ -47,23 +42,24 @@ wire barrinha;
 wire bolinha;
 wire bloquinho1, bloquinho2, bloquinho3, bloquinho4, bloquinho5,
      bloquinho6, bloquinho7, bloquinho8, bloquinho9, bloquinho10,
-     bloquinho11, bloquinho12, bloquinho13, bloquinho14, bloquinho15;
+     bloquinho11, bloquinho12, bloquinho13, bloquinho14, bloquinho15,
+     bloquinho16, bloquinho17, bloquinho18, bloquinho19, bloquinho20;
 wire lavinha;
 wire over;
-wire [5:0] vidas;
-wire [5:0] pontos;
+wire [8:0] vidas;
+wire [8:0] pontos;
 wire game_over;
 wire you_win;
 
 // Flags de parada
 wire hit_bar;
 wire hit_block;
-wire endgame_ball;
+wire hit_lava;
 wire endgame_block;
 wire endgame;
 
 // Flags para identificar a colisão com os blocos
-wire hit_block1, hit_block2, hit_block3, hit_block4, hit_block5, hit_block6, hit_block7, hit_block8, hit_block9, hit_block10;
+wire hit_block1, hit_block2, hit_block3, hit_block4, hit_block5, hit_block6, hit_block7, hit_block8, hit_block9, hit_block10, hit_block11, hit_block12, hit_block13, hit_block14, hit_block15, hit_block16, hit_block17, hit_block18, hit_block19, hit_block20;
 wire hit_block_u1, hit_block_d1, hit_block_l1, hit_block_r1;
 wire hit_block_u2, hit_block_d2, hit_block_l2, hit_block_r2;
 wire hit_block_u3, hit_block_d3, hit_block_l3, hit_block_r3;
@@ -79,17 +75,24 @@ wire hit_block_u12, hit_block_d12, hit_block_l12, hit_block_r12;
 wire hit_block_u13, hit_block_d13, hit_block_l13, hit_block_r13;
 wire hit_block_u14, hit_block_d14, hit_block_l14, hit_block_r14;
 wire hit_block_u15, hit_block_d15, hit_block_l15, hit_block_r15;
+wire hit_block_u16, hit_block_d16, hit_block_l16, hit_block_r16;
+wire hit_block_u17, hit_block_d17, hit_block_l17, hit_block_r17;
+wire hit_block_u18, hit_block_d18, hit_block_l18, hit_block_r18;
+wire hit_block_u19, hit_block_d19, hit_block_l19, hit_block_r19;
+wire hit_block_u20, hit_block_d20, hit_block_l20, hit_block_r20;
 
 // Flags para identificar se os blocos existem
 wire existe;
 wire existe_b1, existe_b2, existe_b3, existe_b4, existe_b5,
      existe_b6, existe_b7, existe_b8, existe_b9, existe_b10,
-     existe_b11, existe_b12, existe_b13, existe_b14, existe_b15;
+     existe_b11, existe_b12, existe_b13, existe_b14, existe_b15,
+     existe_b16, existe_b17, existe_b18, existe_b19, existe_b20;
 
 // Flags para identificar se os blocos chegaram ao final da tela
 wire endgame_block1, endgame_block2, endgame_block3, endgame_block4, endgame_block5,
      endgame_block6, endgame_block7, endgame_block8, endgame_block9, endgame_block10,
-     endgame_block11, endgame_block12, endgame_block13, endgame_block14, endgame_block15;
+     endgame_block11, endgame_block12, endgame_block13, endgame_block14, endgame_block15,
+     endgame_block16, endgame_block17, endgame_block18, endgame_block19, endgame_block20;
 
 // ----------------------------------- //
 // ------------- ASSINGS ------------- //
@@ -134,18 +137,18 @@ assign sin_wave[31] = 5;
 assign lavinha = ((next_y >= (460 + sin_wave[next_x[4:0]])) || (next_y >= 470));
 
 // Atribuições para hit_block
-assign hit_block_d = (hit_block_d1 || hit_block_d2 || hit_block_d3 || hit_block_d4 || hit_block_d5 || hit_block_d6 || hit_block_d7 || hit_block_d8 || hit_block_d9 || hit_block_d10 || hit_block_d11 || hit_block_d12 || hit_block_d13 || hit_block_d14 || hit_block_d15);
-assign hit_block_u = (hit_block_u1 || hit_block_u2 || hit_block_u3 || hit_block_u4 || hit_block_u5 || hit_block_u6 || hit_block_u7 || hit_block_u8 || hit_block_u9 || hit_block_u10 || hit_block_u11 || hit_block_u12 || hit_block_u13 || hit_block_u14 || hit_block_u15);
-assign hit_block_r = (hit_block_r1 || hit_block_r2 || hit_block_r3 || hit_block_r4 || hit_block_r5 || hit_block_r6 || hit_block_r7 || hit_block_r8 || hit_block_r9 || hit_block_r10 || hit_block_r11 || hit_block_r12 || hit_block_r13 || hit_block_r14 || hit_block_r15);
-assign hit_block_l = (hit_block_l1 || hit_block_l2 || hit_block_l3 || hit_block_l4 || hit_block_l5 || hit_block_l6 || hit_block_l7 || hit_block_l8 || hit_block_l9 || hit_block_l10 || hit_block_l11 || hit_block_l12 || hit_block_l13 || hit_block_l14 || hit_block_l15);
-assign hit_block = (hit_block1 || hit_block2 || hit_block3 || hit_block4 || hit_block5 || hit_block6 || hit_block7 || hit_block8 || hit_block9 || hit_block10 || hit_block11 || hit_block12 || hit_block13 || hit_block14 || hit_block15);
+assign hit_block_d = (hit_block_d1 || hit_block_d2 || hit_block_d3 || hit_block_d4 || hit_block_d5 || hit_block_d6 || hit_block_d7 || hit_block_d8 || hit_block_d9 || hit_block_d10 || hit_block_d11 || hit_block_d12 || hit_block_d13 || hit_block_d14 || hit_block_d15 || hit_block_d16 || hit_block_d17 || hit_block_d18 || hit_block_d19 || hit_block_d20);
+assign hit_block_u = (hit_block_u1 || hit_block_u2 || hit_block_u3 || hit_block_u4 || hit_block_u5 || hit_block_u6 || hit_block_u7 || hit_block_u8 || hit_block_u9 || hit_block_u10 || hit_block_u11 || hit_block_u12 || hit_block_u13 || hit_block_u14 || hit_block_u15 || hit_block_u16 || hit_block_u17 || hit_block_u18 || hit_block_u19 || hit_block_u20);
+assign hit_block_r = (hit_block_r1 || hit_block_r2 || hit_block_r3 || hit_block_r4 || hit_block_r5 || hit_block_r6 || hit_block_r7 || hit_block_r8 || hit_block_r9 || hit_block_r10 || hit_block_r11 || hit_block_r12 || hit_block_r13 || hit_block_r14 || hit_block_r15 || hit_block_r16 || hit_block_r17 || hit_block_r18 || hit_block_r19 || hit_block_r20);
+assign hit_block_l = (hit_block_l1 || hit_block_l2 || hit_block_l3 || hit_block_l4 || hit_block_l5 || hit_block_l6 || hit_block_l7 || hit_block_l8 || hit_block_l9 || hit_block_l10 || hit_block_l11 || hit_block_l12 || hit_block_l13 || hit_block_l14 || hit_block_l15 || hit_block_l16 || hit_block_l17 || hit_block_l18 || hit_block_l19 || hit_block_l20);
+assign hit_block = (hit_block1 || hit_block2 || hit_block3 || hit_block4 || hit_block5 || hit_block6 || hit_block7 || hit_block8 || hit_block9 || hit_block10 || hit_block11 || hit_block12 || hit_block13 || hit_block14 || hit_block15 || hit_block16 || hit_block17 || hit_block18 || hit_block19 || hit_block20);
 
 // Atribuições para endgame
 assign endgame_vidas = (vidas == 0);
-assign endgame_block = (endgame_block1 || endgame_block2 || endgame_block3 || endgame_block4 || endgame_block5 || endgame_block6 || endgame_block7 || endgame_block8 || endgame_block9 || endgame_block10 || endgame_block11 || endgame_block12 || endgame_block13 || endgame_block14 || endgame_block15);
-assign endgame = (endgame_block || endgame_ball || endgame_vidas);
+assign endgame_block = (endgame_block1 || endgame_block2 || endgame_block3 || endgame_block4 || endgame_block5 || endgame_block6 || endgame_block7 || endgame_block8 || endgame_block9 || endgame_block10 || endgame_block11 || endgame_block12 || endgame_block13 || endgame_block14 || endgame_block15 || endgame_block16 || endgame_block17 || endgame_block18 || endgame_block19 || endgame_block20);
+assign endgame = (game_over || you_win);
 assign game_over = (endgame_vidas || endgame_block);
-assign you_win = (pontos == 15);
+assign you_win = (pontos == 20);
 
 
 // ---------------------------------- //
@@ -166,14 +169,14 @@ always @(posedge VGA_CLK) begin
   end
   else begin
     if (game_over) begin
-      red_reg = red_over;
-      green_reg = green_over;
-      blue_reg = blue_over;
+      red_reg = 224; // vermelho
+      green_reg = 80; // verde
+      blue_reg = 78; // azul
     end
     else if (you_win) begin
-      red_reg = 200;
-      green_reg = 200;
-      blue_reg = 200;
+      red_reg = 93; // vermelho
+      green_reg = 224; // verde
+      blue_reg = 78; // azul
     end
     else if (bolinha) begin
       red_reg = 255; // vermelho
@@ -181,84 +184,109 @@ always @(posedge VGA_CLK) begin
       blue_reg = 255; // azul
     end
     else if (bloquinho1 && existe_b1) begin
-      red_reg = 10; // vermelho
-      green_reg = 230; // verde
-      blue_reg = 50; // azul
+      red_reg = 224; // vermelho
+      green_reg = 80; // verde
+      blue_reg = 78; // azul
     end
     else if (bloquinho2 && existe_b2) begin
-      red_reg = 100; // vermelho
-      green_reg = 50; // verde
-      blue_reg = 230; // azul
+      red_reg = 93; // vermelho
+      green_reg = 224; // verde
+      blue_reg = 78; // azul
     end
     else if (bloquinho3 && existe_b3) begin
-      red_reg = 200; // vermelho
-      green_reg = 100; // verde
-      blue_reg = 50; // azul
+      red_reg = 255; // vermelho
+      green_reg = 252; // verde
+      blue_reg = 89; // azul
     end
     else if (bloquinho4 && existe_b4) begin
-      red_reg = 50; // vermelho
-      green_reg = 200; // verde
-      blue_reg = 100; // azul
+      red_reg = 89; // vermelho
+      green_reg = 133; // verde
+      blue_reg = 255; // azul
     end
     else if (bloquinho5 && existe_b5) begin
-      red_reg = 100; // vermelho
-      green_reg = 50; // verde
-      blue_reg = 200; // azul
+      red_reg = 224; // vermelho
+      green_reg = 80; // verde
+      blue_reg = 78; // azul
     end
     else if (bloquinho6 && existe_b6) begin
-      red_reg = 200; // vermelho
-      green_reg = 100; // verde
-      blue_reg = 50; // azul
+      red_reg = 93; // vermelho
+      green_reg = 224; // verde
+      blue_reg = 78; // azul
     end
     else if (bloquinho7 && existe_b7) begin
-      red_reg = 50; // vermelho
-      green_reg = 200; // verde
-      blue_reg = 100; // azul
+      red_reg = 255; // vermelho
+      green_reg = 252; // verde
+      blue_reg = 89; // azul
     end
     else if (bloquinho8 && existe_b8) begin
-      red_reg = 100; // vermelho
-      green_reg = 50; // verde
-      blue_reg = 200; // azul
+      red_reg = 89; // vermelho
+      green_reg = 133; // verde
+      blue_reg = 255; // azul
     end
     else if (bloquinho9 && existe_b9) begin
-      red_reg = 200; // vermelho
-      green_reg = 100; // verde
-      blue_reg = 50; // azul
+      red_reg = 224; // vermelho
+      green_reg = 80; // verde
+      blue_reg = 78; // azul
     end
     else if (bloquinho10 && existe_b10) begin
-      red_reg = 50; // vermelho
-      green_reg = 200; // verde
-      blue_reg = 100; // azul
+      red_reg = 93; // vermelho
+      green_reg = 224; // verde
+      blue_reg = 78; // azul
     end
     else if (bloquinho11 && existe_b11) begin
-      red_reg = 100; // vermelho
-      green_reg = 50; // verde
-      blue_reg = 200; // azul
+      red_reg = 255; // vermelho
+      green_reg = 252; // verde
+      blue_reg = 89; // azul
     end
     else if (bloquinho12 && existe_b12) begin
-      red_reg = 200; // vermelho
-      green_reg = 100; // verde
-      blue_reg = 50; // azul
+      red_reg = 89; // vermelho
+      green_reg = 133; // verde
+      blue_reg = 255; // azul
     end
     else if (bloquinho13 && existe_b13) begin
-      red_reg = 50; // vermelho
-      green_reg = 200; // verde
-      blue_reg = 100; // azul
+      red_reg = 224; // vermelho
+      green_reg = 80; // verde
+      blue_reg = 78; // azul
     end
     else if (bloquinho14 && existe_b14) begin
-      red_reg = 100; // vermelho
-      green_reg = 50; // verde
-      blue_reg = 200; // azul
+      red_reg = 93; // vermelho
+      green_reg = 224; // verde
+      blue_reg = 78; // azul
     end
     else if (bloquinho15 && existe_b15) begin
-      red_reg = 200; // vermelho
-      green_reg = 100; // verde
-      blue_reg = 50; // azul
+      red_reg = 255; // vermelho
+      green_reg = 252; // verde
+      blue_reg = 89; // azul
+    end
+    else if (bloquinho16 && existe_b16) begin
+      red_reg = 89; // vermelho
+      green_reg = 133; // verde
+      blue_reg = 255; // azul
+    end
+    else if (bloquinho17 && existe_b17) begin
+      red_reg = 224; // vermelho
+      green_reg = 80; // verde
+      blue_reg = 78; // azul
+    end
+    else if (bloquinho18 && existe_b18) begin
+      red_reg = 93; // vermelho
+      green_reg = 224; // verde
+      blue_reg = 78; // azul
+    end
+    else if (bloquinho19 && existe_b19) begin
+      red_reg = 255; // vermelho
+      green_reg = 252; // verde
+      blue_reg = 89; // azul
+    end
+    else if (bloquinho20 && existe_b20) begin
+      red_reg = 89; // vermelho
+      green_reg = 133; // verde
+      blue_reg = 255; // azul
     end
     else if (lavinha && !barrinha) begin
-      red_reg = 200; // vermelho
-      green_reg = 25; // verde
-      blue_reg = 25; // azul
+      red_reg = 245; // vermelho
+      green_reg = 85; // verde
+      blue_reg = 20; // azul
     end
     else if (barrinha) begin
       red_reg = 255; // vermelho
@@ -281,22 +309,12 @@ assign VGA_B = (active)?blue_reg:0;
 // ------------- MODULES ------------- //
 // ----------------------------------- //
 
-game_over go (
-  .clock(VGA_CLK),
-  .reset(~KEY[3]),
-  .pixel_x(next_x),
-  .pixel_y(next_y),
-  .red(red_over),
-  .green(green_over),
-  .blue(blue_over)
-);
-
 placar p(
   .clock(VGA_CLK),
   .reset(~KEY[3]),
+  .start(~KEY[2]),
   .hit_block(hit_block),
-  .start(~SW[0]),
-  .endgame_ball(endgame_ball),
+  .hit_lava(hit_lava),
   .endgame_block(endgame_block),
   .vidas_restantes(vidas),
   .pontuacao_atual(pontos),
@@ -333,7 +351,7 @@ bar bar (
 ball ball (
   .clock(VGA_CLK),
   .reset(~KEY[3]),
-  .start(~SW[0]),
+  .start(~KEY[2]),
   .endgame(endgame),
   .x_bar(x_bar),
   .y_bar(y_bar),
@@ -347,14 +365,15 @@ ball ball (
   .x(x_ball),
   .y(y_ball),
   .hit_bar(hit_bar),
-  .endgame_ball(endgame_ball),
+  .hit_lava(hit_lava),
   .area(bolinha)
 );
 
 bloco b1 (
   .clock(VGA_CLK),
   .reset(~KEY[3]),
-  .start(~SW[0]),
+  .start(~KEY[2]),
+  .hit_lava(hit_lava), // Added hit_lava signal
   .x_i(64),
   .y_i(16),
   .x_ball(x_ball),
@@ -375,7 +394,8 @@ bloco b1 (
 bloco b2 (
   .clock(VGA_CLK),
   .reset(~KEY[3]),
-  .start(~SW[0]),
+  .start(~KEY[2]),
+  .hit_lava(hit_lava), // Added hit_lava signal
   .x_i(192),
   .y_i(16),
   .x_ball(x_ball),
@@ -396,7 +416,8 @@ bloco b2 (
 bloco b3 (
   .clock(VGA_CLK),
   .reset(~KEY[3]),
-  .start(~SW[0]),
+  .start(~KEY[2]),
+  .hit_lava(hit_lava), // Added hit_lava signal
   .x_i(320),
   .y_i(16),
   .x_ball(x_ball),
@@ -417,7 +438,8 @@ bloco b3 (
 bloco b4 (
   .clock(VGA_CLK),
   .reset(~KEY[3]),
-  .start(~SW[0]),
+  .start(~KEY[2]),
+  .hit_lava(hit_lava), // Added hit_lava signal
   .x_i(448),
   .y_i(16),
   .x_ball(x_ball),
@@ -438,7 +460,8 @@ bloco b4 (
 bloco b5 (
   .clock(VGA_CLK),
   .reset(~KEY[3]),
-  .start(~SW[0]),
+  .start(~KEY[2]),
+  .hit_lava(hit_lava), // Added hit_lava signal
   .x_i(576),
   .y_i(16),
   .x_ball(x_ball),
@@ -459,7 +482,8 @@ bloco b5 (
 bloco b6 (
   .clock(VGA_CLK),
   .reset(~KEY[3]),
-  .start(~SW[0]),
+  .start(~KEY[2]),
+  .hit_lava(hit_lava), // Added hit_lava signal
   .x_i(64),
   .y_i(48),
   .x_ball(x_ball),
@@ -480,7 +504,8 @@ bloco b6 (
 bloco b7 (
   .clock(VGA_CLK),
   .reset(~KEY[3]),
-  .start(~SW[0]),
+  .start(~KEY[2]),
+  .hit_lava(hit_lava), // Added hit_lava signal
   .x_i(192),
   .y_i(48),
   .x_ball(x_ball),
@@ -501,7 +526,8 @@ bloco b7 (
 bloco b8 (
   .clock(VGA_CLK),
   .reset(~KEY[3]),
-  .start(~SW[0]),
+  .start(~KEY[2]),
+  .hit_lava(hit_lava), // Added hit_lava signal
   .x_i(320),
   .y_i(48),
   .x_ball(x_ball),
@@ -522,7 +548,8 @@ bloco b8 (
 bloco b9 (
   .clock(VGA_CLK),
   .reset(~KEY[3]),
-  .start(~SW[0]),
+  .start(~KEY[2]),
+  .hit_lava(hit_lava), // Added hit_lava signal
   .x_i(448),
   .y_i(48),
   .x_ball(x_ball),
@@ -543,7 +570,8 @@ bloco b9 (
 bloco b10 (
   .clock(VGA_CLK),
   .reset(~KEY[3]),
-  .start(~SW[0]),
+  .start(~KEY[2]),
+  .hit_lava(hit_lava), // Added hit_lava signal
   .x_i(576),
   .y_i(48),
   .x_ball(x_ball),
@@ -564,7 +592,8 @@ bloco b10 (
 bloco b11 (
   .clock(VGA_CLK),
   .reset(~KEY[3]),
-  .start(~SW[0]),
+  .start(~KEY[2]),
+  .hit_lava(hit_lava), // Added hit_lava signal
   .x_i(64),
   .y_i(80),
   .x_ball(x_ball),
@@ -585,7 +614,8 @@ bloco b11 (
 bloco b12 (
   .clock(VGA_CLK),
   .reset(~KEY[3]),
-  .start(~SW[0]),
+  .start(~KEY[2]),
+  .hit_lava(hit_lava), // Added hit_lava signal
   .x_i(192),
   .y_i(80),
   .x_ball(x_ball),
@@ -606,7 +636,8 @@ bloco b12 (
 bloco b13 (
   .clock(VGA_CLK),
   .reset(~KEY[3]),
-  .start(~SW[0]),
+  .start(~KEY[2]),
+  .hit_lava(hit_lava), // Added hit_lava signal
   .x_i(320),
   .y_i(80),
   .x_ball(x_ball),
@@ -627,7 +658,8 @@ bloco b13 (
 bloco b14 (
   .clock(VGA_CLK),
   .reset(~KEY[3]),
-  .start(~SW[0]),
+  .start(~KEY[2]),
+  .hit_lava(hit_lava), // Added hit_lava signal
   .x_i(448),
   .y_i(80),
   .x_ball(x_ball),
@@ -648,7 +680,8 @@ bloco b14 (
 bloco b15 (
   .clock(VGA_CLK),
   .reset(~KEY[3]),
-  .start(~SW[0]),
+  .start(~KEY[2]),
+  .hit_lava(hit_lava), // Added hit_lava signal
   .x_i(576),
   .y_i(80),
   .x_ball(x_ball),
@@ -663,6 +696,116 @@ bloco b15 (
   .hit_block_r(hit_block_r15),
   .endgame_block(endgame_block15),
   .exist(existe_b15),
+  .endgame(endgame)
+);
+
+bloco b16 (
+  .clock(VGA_CLK),
+  .reset(~KEY[3]),
+  .start(~KEY[2]),
+  .hit_lava(hit_lava), // Added hit_lava signal
+  .x_i(64),
+  .y_i(112),
+  .x_ball(x_ball),
+  .y_ball(y_ball),
+  .next_x(next_x),
+  .next_y(next_y),
+  .area(bloquinho16),
+  .hit_block(hit_block16),
+  .hit_block_u(hit_block_u16),
+  .hit_block_d(hit_block_d16),
+  .hit_block_l(hit_block_l16),
+  .hit_block_r(hit_block_r16),
+  .endgame_block(endgame_block16),
+  .exist(existe_b16),
+  .endgame(endgame)
+);
+
+bloco b17 (
+  .clock(VGA_CLK),
+  .reset(~KEY[3]),
+  .start(~KEY[2]),
+  .hit_lava(hit_lava), // Added hit_lava signal
+  .x_i(192),
+  .y_i(112),
+  .x_ball(x_ball),
+  .y_ball(y_ball),
+  .next_x(next_x),
+  .next_y(next_y),
+  .area(bloquinho17),
+  .hit_block(hit_block17),
+  .hit_block_u(hit_block_u17),
+  .hit_block_d(hit_block_d17),
+  .hit_block_l(hit_block_l17),
+  .hit_block_r(hit_block_r17),
+  .endgame_block(endgame_block17),
+  .exist(existe_b17),
+  .endgame(endgame)
+);
+
+bloco b18 (
+  .clock(VGA_CLK),
+  .reset(~KEY[3]),
+  .start(~KEY[2]),
+  .hit_lava(hit_lava), // Added hit_lava signal
+  .x_i(320),
+  .y_i(112),
+  .x_ball(x_ball),
+  .y_ball(y_ball),
+  .next_x(next_x),
+  .next_y(next_y),
+  .area(bloquinho18),
+  .hit_block(hit_block18),
+  .hit_block_u(hit_block_u18),
+  .hit_block_d(hit_block_d18),
+  .hit_block_l(hit_block_l18),
+  .hit_block_r(hit_block_r18),
+  .endgame_block(endgame_block18),
+  .exist(existe_b18),
+  .endgame(endgame)
+);
+
+bloco b19 (
+  .clock(VGA_CLK),
+  .reset(~KEY[3]),
+  .start(~KEY[2]),
+  .hit_lava(hit_lava), // Added hit_lava signal
+  .x_i(448),
+  .y_i(112),
+  .x_ball(x_ball),
+  .y_ball(y_ball),
+  .next_x(next_x),
+  .next_y(next_y),
+  .area(bloquinho19),
+  .hit_block(hit_block19),
+  .hit_block_u(hit_block_u19),
+  .hit_block_d(hit_block_d19),
+  .hit_block_l(hit_block_l19),
+  .hit_block_r(hit_block_r19),
+  .endgame_block(endgame_block19),
+  .exist(existe_b19),
+  .endgame(endgame)
+);
+
+bloco b20 (
+  .clock(VGA_CLK),
+  .reset(~KEY[3]),
+  .start(~KEY[2]),
+  .hit_lava(hit_lava), // Added hit_lava signal
+  .x_i(576),
+  .y_i(112),
+  .x_ball(x_ball),
+  .y_ball(y_ball),
+  .next_x(next_x),
+  .next_y(next_y),
+  .area(bloquinho20),
+  .hit_block(hit_block20),
+  .hit_block_u(hit_block_u20),
+  .hit_block_d(hit_block_d20),
+  .hit_block_l(hit_block_l20),
+  .hit_block_r(hit_block_r20),
+  .endgame_block(endgame_block20),
+  .exist(existe_b20),
   .endgame(endgame)
 );
 
