@@ -18,3 +18,5 @@ Como desafio para a implementação do projeto, tentaremos fazer com que os bloc
 
 Por fim, se o usuário conseguir eliminar todos os blocos (sem ter zerado sua quantidade de vidas restantes), uma mensagem de parabenização será mostrada no display de 7 segmentos da placa.
 
+<img src="https://www.coolmathgames.com/sites/default/files/styles/blog_node_image/public/2022-11/Retro%20Game%20Atari%20Breakout%20Blog%20Thumbnail.png?itok=lmDmvPKx" width="500" />
+
